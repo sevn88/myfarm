@@ -1,0 +1,204 @@
+{include file="public/header"/}
+<link rel="stylesheet" href="/static/index/css/freeze.css">
+
+<style>
+
+.container {
+    height: 100vh;
+    padding: 0 15px 15px;
+    background: #f7f7f7;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow-y: auto
+}
+
+.container .items {
+    margin-top: 15px
+}
+
+.container .items .item {
+    padding: 10px;
+    background: #fff;
+    border-radius: 5px;
+    margin-bottom: 10px
+}
+
+.container .items .item .title {
+    color: #333;
+    font-size: 14px
+}
+
+.container .items .item .time {
+    color: #999;
+    font-size: 13px;
+    margin-top: 3px
+}
+
+.container .details-empty {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 50px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    margin-top: 100px
+}
+
+.container .details-empty .empty-img {
+    width: 60px;
+    height: 60px
+}
+
+.container .details-empty .empty-text {
+    font-size: 14px;
+    color: #999
+}
+
+.container .details-empty .jump-btn {
+    color: #fff;
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 40px;
+    background: -webkit-gradient(linear, left top, right top, from(#7260fc), to(#8b64fe));
+    background: -webkit-linear-gradient(left, #7260fc, #8b64fe);
+    background: linear-gradient(90deg, #7260fc, #8b64fe);
+    margin-top: 10px;
+    text-align: center
+}
+
+.mescroll-wrap {
+    height: calc(100vh - 100px);
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.uni-scroll-view-content {
+    width: 100%;
+    height: 100%;
+}
+
+.uni-scroll-view-refresher {
+    position: relative;
+    overflow: hidden;
+}
+
+.container .items[data-v-6790a5c4] {
+    margin-top: 19px;
+}
+
+.container .items .item[data-v-6790a5c4] {
+    padding: 13px;
+    background: #fff;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    margin-bottom: 13px;
+    position: relative;
+}
+
+.container .items .item .title[data-v-6790a5c4] {
+    color: #333;
+    font-size: 18px;
+}
+
+.container .items .item .time[data-v-6790a5c4] {
+    color: #999;
+    font-size: 17px;
+    margin-top: 3px;
+}
+
+.container .items .item .right-arrow[data-v-6790a5c4] {
+    width: 10px;
+    height: 10px;
+    border: 3px solid #aaa;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    position: absolute;
+    right: 13px;
+    top: 50%;
+    -webkit-transform: translateY(-50%) rotate(45deg);
+    transform: translateY(-50%) rotate(45deg);
+}
+</style>
+
+
+<body>
+<uni-app class="uni-app--maxwidth">
+    <uni-page data-page="pages/profile/message">
+        <!---->
+        <!---->
+        <uni-page-wrapper>
+            <uni-page-body>
+                <uni-view data-v-6790a5c4="" class="container">
+                    <uni-view data-v-71fba4a1="" data-v-6790a5c4="" class="top-page"
+                              style="height: 57px; background: linear-gradient(to right, rgb(255, 255, 255), rgb(255, 255, 255));">
+                        <uni-view data-v-71fba4a1="" class="apex"
+                                  style="height: 57px; line-height: 57px; background: linear-gradient(to right, rgb(255, 255, 255), rgb(255, 255, 255)); color: rgb(0, 0, 0); position: fixed;">
+                            <uni-view data-v-71fba4a1="" class="left">
+                                <uni-text data-v-71fba4a1="" class="iconfont icon-fanhui1"
+                                          style="font-size: 20px; color: rgb(0, 0, 0);"><span></span></uni-text>
+                            </uni-view>
+                            <uni-view data-v-71fba4a1="" class="center" style="font-size: 22px;">{:lang("BlockTheFund")}
+                            </uni-view>
+                            <uni-view data-v-71fba4a1="" class="right"></uni-view>
+                        </uni-view>
+                        <uni-view data-v-71fba4a1="" class="placeholder"
+                                  style="height: 57px; line-height: 57px;"></uni-view>
+                    </uni-view>
+                    <uni-scroll-view data-v-6790a5c4="" class="mescroll-wrap">
+                        <div class="uni-scroll-view">
+                            <div class="uni-scroll-view" style="overflow: hidden auto;">
+                                <div class="uni-scroll-view-content">
+                                    <div class="uni-scroll-view-refresher"
+                                         style="background-color: rgb(255, 255, 255); height: 0px;">
+                                        <div class="uni-scroll-view-refresh">
+                                            <div class="uni-scroll-view-refresh-inner"><!----><!----></div>
+                                        </div>
+                                    </div>
+                                    {notempty name="list"}
+                                    {volist name="list" id="vo"}
+                                    <a href="{:Url('order/detail',array('id'=>$vo.id))}">
+                                    <uni-view data-v-6790a5c4="" class="items">
+                                        <uni-view data-v-6790a5c4="" class="item">
+                                            <uni-view data-v-6790a5c4="" class="title">{:lang("PayTheOrderFreeze")} 【{$vo.goods_price}】.
+                                            </uni-view>
+                                            <uni-view data-v-6790a5c4="" class="time">{$vo.create_time|toDate}</uni-view>
+                                            <uni-view data-v-6790a5c4="" class="right-arrow"></uni-view>
+                                        </uni-view>
+                                    </uni-view>
+                                    </a>
+                                    {/volist}
+                                    {else /}
+                                    <div class="details-empty">
+                                        <uni-image class="empty-img">
+                                            <div
+                                                    style="background-image: url(&quot;/static/index/img/empty.png&quot;); background-position: center center; background-size: contain; background-repeat: no-repeat;">
+                                            </div><img src="/static/index/img/empty.png" draggable="true">
+                                            <!---->
+                                        </uni-image>
+                                        <div class="empty-text">{:lang("NoNews")}</div>
+                                    </div>
+                                    {/notempty}
+                                </div>
+                            </div>
+                        </div>
+                    </uni-scroll-view>
+                    {include file="public/footer"/}
+                </uni-view>
+            </uni-page-body>
+        </uni-page-wrapper>
+    </uni-page>
+</uni-app>
+</body>
+
+</html>

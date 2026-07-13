@@ -1,0 +1,74 @@
+{include file="public/header"/}
+  <style>
+    .container { background: #fff; -webkit-box-sizing: border-box; box-sizing: border-box; padding: 0 15px; font-size: 14px } .container .items { background: #fff; border-radius: 10px; padding: 15px 5px 1px 15px } .container .items .item { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-align: center; -webkit-align-items: center; align-items: center; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between; height: 60px; line-height: 60px; margin-bottom: 10px; position: relative; border-bottom: 2px solid #eeeff2; -webkit-box-shadow: 0 0 0 0 #eeeff2; box-shadow: 0 0 0 0 #eeeff2 } .container .items .item .label { width: 130px; font-size: 15px; font-family: PingFangSC-Medium, PingFang SC; font-weight: 500; color: #334360 } .container .items .item .input { width: calc(100% - 60px - 20px); text-align: right; padding-right: 10px; -webkit-box-sizing: border-box; box-sizing: border-box; font-size: 16px; font-family: DINPro-Medium, DINPro; font-weight: 500; color: #939bab } .container .items .item .iconfont { color: #939bab } .container .btn { width: calc(100% - 30px); padding: 10px 0; border: 1px solid #dedede; color: #666; text-align: center; border-radius: 20px; position: fixed; bottom: 65px; left: 15px }
+  </style>
+
+<body>
+  <uni-app class="uni-app--maxwidth">
+    <uni-page data-page="pages/profile/info">
+      <uni-page-wrapper>
+        <uni-page-body>
+          <div class="container">
+            <div class="top-page"
+              style="height: 44px; background: linear-gradient(to right, rgb(255, 255, 255), rgb(255, 255, 255));">
+              <div class="apex"
+                style="height: 44px; line-height: 44px; background: linear-gradient(to right, rgb(255, 255, 255), rgb(255, 255, 255)); color: rgb(0, 0, 0); position: fixed;">
+                <a href="javascript:history.go(-1)" class="left">
+                  <uni-text class="iconfont icon-fanhui1"
+                    style="font-size: 16px; color: rgb(0, 0, 0);"><span></span></uni-text>
+                </a>
+                <div class="center" style="font-size: 17px;">{:lang("Profile")}</div>
+                <div class="right"></div>
+              </div>
+              <div class="placeholder" style="height: 44px; line-height: 44px;"></div>
+            </div>
+            <div class="items">
+              <div class="item">
+                <uni-text class="label"><span>{:lang("Name")}</span></uni-text>
+                <uni-text class="input"><span>{$user_info.username}</span></uni-text>
+              </div>
+              <div class="item">
+                <uni-text class="label"><span>{:lang("phonenumber1")}</span></uni-text>
+                <uni-text class="input"><span>9{$user_info.phone|hidden_tel}</span></uni-text>
+              </div>
+              <a href="{:Url('account/usdt')}" class="item">
+                <uni-text class="label"><span> {:lang("USDTWallet")}</span></uni-text>
+                <uni-text class="input">{:lang("AlreadyBind")}</uni-text>
+                <uni-text class="iconfont icon-qianjin"><span></span></uni-text>
+              </a>
+            </div>
+            <div class="btn out">{:lang("Logout")}</div>
+            {include file="public/footer"/}
+          </div>
+        </uni-page-body>
+      </uni-page-wrapper>
+    </uni-page>
+  </uni-app>
+</body>
+
+</html>
+
+<script type="text/javascript">
+  $(document).on("click", ".out", function () {
+    layer.load(2);
+    $.ajax({
+      url: "{:Url('account/out')}",
+      type: "post",
+      traditional: true,
+      success: function (e) {
+        layer.closeAll('loading');
+        if (e.code === 1) {
+          layer.msg(e.msg, {
+            end: function () {
+              window.location.href = "{:Url('login/index')}";
+            }
+          });
+        } else {
+          layer.msg(e.msg, function () {
+            return false;
+          });
+        }
+      },
+    });
+  });
+</script>

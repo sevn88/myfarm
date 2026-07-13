@@ -1,0 +1,220 @@
+<form class="layui-form layui-card" action="{:request()->url()}" data-auto="true" method="post" autocomplete="off">
+    <div class="layui-card-body">
+        <div class="layui-form-item">
+            <label class="layui-form-label label-required">Account</label>
+            <div class="layui-input-block">
+                <input value="{$info.username}" class="layui-input" readOnly="true">
+                <input type="hidden" name="id" value="{$info.id}">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label label-required">Phone</label>
+            <div class="layui-input-block">
+                <input type="text" min="0" value="{$info.phone}" class="layui-input" readOnly="true">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label label-required">role</label>
+            <div class="layui-input-block">
+                <select name="role" id="">
+                    <option value="1" <?php echo $info['role']==1 ? 'selected': ''; ?> >普通</option>
+                    <option value="2" <?php echo $info['role']==2 ? 'selected': ''; ?> >代理</option>
+                    <option value="3" <?php echo $info['role']==3 ? 'selected': ''; ?> >总代</option>
+                    <option value="4" <?php echo $info['role']==4 ? 'selected': ''; ?> >管理</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label label-required">邀请码</label>
+            <div class="layui-input-block">
+                <input name="invite_code" type="number" min="0" required  value="{$info.invite_code}" class="layui-input" style="width:20%">
+               
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label label-required">agent_rate</label>
+            <div class="layui-input-block">
+                <input name="agent_rate" type="number" min="0" required  value="{$info.agent_rate}" class="layui-input" style="width:20%">
+                <span style="padding-right: 12px; color: rgb(169, 68, 66);font-size: 12px; z-index: 3; width: 30px; text-align: left; pointer-events: none; top: 0px; padding-bottom: 0px; line-height: 38px;">只对管理、总代或者代理起作用。并且必须输入整数，计算的时候按照百分之几计算。修改了管理（顶级），会直接自动全部修改本线所有层级的数据；修改总代，下面的代理自动变化</span>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label label-required">Balance</label>
+            <div class="layui-input-block">
+                <input name="balance" type="text" min="0" required  value="{$info.balance}" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label label-required">Total</label>
+            <div class="layui-input-block">
+                <input name="total" type="text" min="0" required  value="{$info.total}" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label label-required">Financial</label>
+            <div class="layui-input-block">
+                <input name="financial" type="text" min="0" required  value="{$info.financial}" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label label-required">Freeze</label>
+            <div class="layui-input-block">
+                <input name="freeze" type="text" min="0" required  value="{$info.freeze}" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label label-required">已完成总单数</label>
+            <div class="layui-input-block">
+                <input name="finish_order" type="text" min="0" required  value="{$info.finish_order}" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label label-required">已完成分组单数</label>
+            <div class="layui-input-block">
+                <input name="group_order" type="text" min="0" required  value="{$info.group_order}" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label label-required">VIP等级</label>
+            <div class="layui-input-inline">
+                <select name="level" class="form-control">
+                    <option value="0" >SVIP0</option>
+                    {volist name="level_info" id="vo"}
+                    {if condition="($info.level == $vo.id)"}
+                    <option value="{$vo.id}" selected="selected" >{$vo.name}</option>
+                    {else /}
+                    <option value="{$vo.id}" >{$vo.name}</option>
+                    {/if}
+                    {/volist}
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label label-required">Bank_Name</label>
+            <div class="layui-input-block">
+                <input name="bank_name" type="text" min="0" value="{$info.bank_name}" class="layui-input">
+            </div>
+        </div>
+        
+        <div class="layui-form-item">
+            <label class="layui-form-label label-required">开户行</label>
+            <div class="layui-input-block">
+                <input name="ifsc" type="text" min="0" value="{$info.ifsc}" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label label-required">Holder_Name</label>
+            <div class="layui-input-block">
+                <input name="holder_name" type="text" min="0" value="{$info.holder_name}" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label label-required">Account_Number</label>
+            <div class="layui-input-block">
+                <input name="account_number" type="text" min="0" value="{$info.account_number}" class="layui-input">
+            </div>
+        </div>
+
+        <!--<div class="layui-form-item">-->
+        <!--    <label class="layui-form-label label-required">Phone_Number</label>-->
+        <!--    <div class="layui-input-block">-->
+        <!--        <input name="phone_number" type="text" min="0" value="{$info.phone_number}" class="layui-input">-->
+        <!--    </div>-->
+        <!--</div>-->
+
+        <!--<div class="layui-form-item">-->
+        <!--    <label class="layui-form-label label-required">Email</label>-->
+        <!--    <div class="layui-input-block">-->
+        <!--        <input name="email" type="text" min="0" value="{$info.email}" class="layui-input">-->
+        <!--    </div>-->
+        <!--</div>-->
+
+        <!--<div class="layui-form-item">-->
+        <!--    <label class="layui-form-label label-required">IFSC</label>-->
+        <!--    <div class="layui-input-block">-->
+        <!--        <input name="ifsc" type="text" min="0" value="{$info.ifsc}" class="layui-input">-->
+        <!--    </div>-->
+        <!--</div>-->
+
+        <!--<div class="layui-form-item">-->
+        <!--    <label class="layui-form-label label-required">UPI</label>-->
+        <!--    <div class="layui-input-block">-->
+        <!--        <input name="upi" type="text" min="0" value="{$info.upi}" class="layui-input">-->
+        <!--    </div>-->
+        <!--</div>-->
+        <div class="layui-form-item">
+            <label class="layui-form-label label-required">usdt类型</label>
+            <div class="layui-input-block">
+                <select name="type" id="">
+                    <option value="Trc20" <?php echo $info['type']=='Trc20' ? 'selected': ''; ?> >Trc20</option>
+                    <option value="Erc20" <?php echo $info['type']=='Erc20' ? 'selected': ''; ?> >Erc20</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label label-required">usdt地址</label>
+            <div class="layui-input-block">
+                <input name="address_usdt" type="text" min="0" value="{$info.address_usdt}" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label label-required">Address_Name</label>
+            <div class="layui-input-block">
+                <input name="address_name" type="text" min="0" value="{$info.address_name}" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label label-required">Address_Phone</label>
+            <div class="layui-input-block">
+                <input name="address_phone" type="text" min="0" value="{$info.address_phone}" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label label-required">Address_Info</label>
+            <div class="layui-input-block">
+                <input name="address_info" type="text" min="0" value="{$info.address_info}" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">登录密码</label>
+            <div class="layui-input-block">
+                <input name="password" placeholder="留空不修改密码" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">支付密码</label>
+            <div class="layui-input-block">
+                <input name="payment" placeholder="留空不修改密码" class="layui-input">
+            </div>
+        </div>
+
+    </div>
+    <input name="id" type="hidden" value="{$info.id}">
+
+    <div class="hr-line-dashed"></div>
+
+    <div class="layui-form-item text-center">
+        <button class="layui-btn" type='submit'>提交</button>
+        <button class="layui-btn layui-btn-danger" type='button' data-close>取消</button>
+    </div>
+
+    <script>window.form.render();</script>
+
+</form>

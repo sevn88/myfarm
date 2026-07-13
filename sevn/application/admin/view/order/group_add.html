@@ -1,0 +1,43 @@
+<form class="layui-form layui-card" action="{:request()->url()}" data-auto="true" method="post" autocomplete="off">
+    <div class="layui-card-body">
+
+<!--        <div class="layui-form-item">-->
+<!--            <label class="layui-form-label">-->
+<!--                <span class="x-red">*</span>代理ID</label>-->
+<!--            <div class="layui-input-inline">-->
+<!--                <input type="text" name="aid" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>-->
+<!--        </div>-->
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="x-red">*</span>模式名称</label>
+            <div class="layui-input-inline">
+                <input type="text" name="name" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="x-red">*</span>支付方式</label>
+            <div class="layui-input-block">
+                <input type="checkbox" name="pay[]" value="MarsPay" lay-skin="primary" title="MarsPay">
+                <input type="checkbox" name="pay[]" value="SEP" lay-skin="primary" title="SEP">
+                <input type="checkbox" name="pay[]" value="Oceanpay" lay-skin="primary" title="Oceanpay">
+                <input type="checkbox" name="pay[]" value="GoldInd" lay-skin="primary" title="GoldInd">
+                <input type="checkbox" name="pay[]" value="QeInd" lay-skin="primary" title="QeInd">
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="hr-line-dashed"></div>
+    <div class="layui-form-item text-center">
+        <button class="layui-btn" type='submit'>提交</button>
+        <button class="layui-btn layui-btn-danger" type='button' data-close>取消</button>
+    </div>
+
+    <script>
+        window.form.render();
+    </script>
+
+</form>

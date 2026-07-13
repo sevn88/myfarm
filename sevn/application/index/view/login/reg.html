@@ -1,0 +1,373 @@
+{include file="public/header"/}
+
+<style>
+    .evan-form-item-container{border-bottom:0.5px solid #eee}.evan-form-item-container__label{font-size:14px;color:#666;line-height:20px;padding:12px 0;display:inline-block}.evan-form-item-container__label.showAsteriskRect::before{content:"";color:#f56c6c;width:10px;display:inline-block}.evan-form-item-container__label.isRequired::before{content:"*"}.evan-form-item-container__main{-webkit-box-flex:1;-webkit-flex:1;flex:1;min-height:45px;display:-webkit-box;display:-webkit-flex;display:flex;-webkit-box-align:center;-webkit-align-items:center;align-items:center;overflow:hidden}.evan-form-item-container--left{display:-webkit-box;display:-webkit-flex;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-webkit-flex-direction:row;flex-direction:row;-webkit-box-align:start;-webkit-align-items:flex-start;align-items:flex-start}.evan-form-item-container--top .evan-form-item-container__label{padding-bottom:5px}
+    .container1 { width: 100%; height: 100vh !important; padding: 0 24px 24px; background: #70e6cc; -webkit-box-sizing: border-box; box-sizing: border-box;background-image: url('/static/index/auth-bg-green.jpg');background-size: cover;background-repeat: no-repeat; } .container1 .title { font-size: 36px; font-family: Rubik-Bold, Rubik; font-weight: 400; color: #fff; padding-top: 60px } .container1 uni-input { caret-color: #fff } .container1 .wrap { padding: 0 } .container1 .wrap .items .evan-form-item-container__label { font-size: 15px; font-family: Rubik-Regular, Rubik; font-weight: 400; color: #fff; padding: 0; margin-top: 20px } .container1 .wrap .items .uni-input-placeholder { font-size: 15px; font-family: Rubik-Regular, Rubik; font-weight: 400; color: #fff; opacity: .4 } .container1 .wrap .items .evan-form-item-container__main { width: 100%; position: relative; overflow: visible !important } .container1 .wrap .items .evan-form-item-container__main .form-input { width: 100% } .container1 .wrap .items .evan-form-item-container { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -webkit-flex-direction: column; flex-direction: column; border-bottom: 2px solid hsla(0, 0%, 100%, .4) } .container1 .wrap .items .uni-input-input { font-size: 15px; font-family: Rubik-Medium, Rubik; font-weight: 500; color: #fff; width: 100% } .container1 .wrap .items .uni-input { font-size: 15px; font-family: Rubik-Regular, Rubik; font-weight: 400; color: #fff; width: 90px } .container1 .wrap .items .getCode { padding: 0 10px; border-radius: 10px; background-color: #dad5d5; font-size: 15px; font-family: Rubik-Medium, Rubik; font-weight: 500; color: #fff; top: -20px; right: 0; position: absolute; z-index: 999999 } .container1 .wrap .items .active { background: #56b3f8; color: #fff } .container1 .wrap .btn { margin-top: 40px; height: 48px; text-align: center; line-height: 48px; background: #fff; border-radius: 8px; color: #0e73ff; font-weight: 500; font-family: Rubik-Medium, Rubik } .container1 .wrap .download { background: hsla(0, 0%, 100%, .2); color: #fff } .container1 .wrap>.btn~.btn { margin-top: 12px }
+    .mm-container  .mm-div::placeholder{color:#c8c9cc;font-size:4vw;}
+    input::-webkit-input-placeholder {
+        color: #87b5f3;
+    }
+    input::-ms-input-placeholder {
+        color: #87b5f3;
+    }
+    .van-field__control {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    color: var(--van-field-input-text-color);
+    line-height: inherit;
+    text-align: left;
+    background-color: #ffffff;
+    border: 0;
+    resize: none;
+    -webkit-user-select: auto;
+    user-select: auto
+}
+
+.van-field__control::-webkit-input-placeholder {
+    color: var(--van-field-placeholder-text-color)
+}
+
+.van-field__control::placeholder {
+    color: var(--van-field-placeholder-text-color)
+}
+
+.van-field__control:disabled {
+    color: var(--van-field-input-disabled-text-color);
+    cursor: not-allowed;
+    opacity: 1;
+    -webkit-text-fill-color: var(--van-field-input-disabled-text-color)
+}
+
+.van-field__control:read-only {
+    cursor: default
+}
+
+.van-field__control--center {
+    justify-content: center;
+    text-align: center
+}
+
+.van-field__control--right {
+    justify-content: flex-end;
+    text-align: right
+}
+
+.van-field__control--custom {
+    display: flex;
+    align-items: center;
+    min-height: var(--van-cell-line-height)
+}
+
+.van-field__control--error::-webkit-input-placeholder {
+    color: var(--van-field-input-error-text-color);
+    -webkit-text-fill-color: currentColor
+}
+
+.van-field__control--error,.van-field__control--error::placeholder {
+    color: var(--van-field-input-error-text-color);
+    -webkit-text-fill-color: currentColor
+}
+
+.van-field__control--min-height {
+    min-height: var(--van-field-text-area-min-height)
+}
+
+.van-field__control[type=date],.van-field__control[type=time],.van-field__control[type=datetime-local] {
+    min-height: var(--van-cell-line-height)
+}
+
+.van-field__control[type=search] {
+    -webkit-appearance: none
+}
+.mm-container{
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: 2vw;
+    margin-top:5vw;
+}
+.mm-container .mm-image{
+    width: 9.4vw;
+}
+.mm-container .mm-span{
+    /*line-height:10vw;*/
+    font-size: 4vw;
+    color: #000000;
+    margin-right: 1vw;
+    margin-left: 1vw;
+    width: 25vw;
+}
+.mm-container .mm-div{
+    height: 2em;
+    /*margin-left: 6vw;*/
+    /*font-size: 3vw;*/
+    width: 45vw;
+    border: none;
+    outline: none;
+}
+
+</style>
+
+<body>
+<uni-app class="uni-app--maxwidth">
+    <uni-page data-page="pages/regist/index">
+        <!---->
+        <!---->
+        <uni-page-wrapper>
+            <uni-page-body>
+                <div class="container1">
+                    <!--<div class="title" style="text-align:center;"><img class="mm-image" src="/static/index/img/bb.png"></div>-->
+                    <div class="title" style="text-align:center;">{:lang('welcome1')}</div>
+                    <div class="wrap">
+                        <div class="evan-form-container items" style="margin-top:20vw;">
+<!--main start-->
+<div class="mm-container">
+    <img class="mm-image" src="/static/index/login/account-green.png">
+    <span class="mm-span">
+        {:lang("account1")}
+       
+    </span>
+    <div class="van-cell van-field">
+        <div class="van-cell__value van-cell__value--alone van-field__value">
+            <div class="van-field__body">
+                <input type="" name="username" class="mm-div" onchange="check_username()" placeholder="{:lang('entertheusername1')}" maxlength="140" enterkeyhint="done" autocomplete="off">
+                
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mm-container">
+    <img class="mm-image" src="/static/index/login/phone.png">
+    <span class="mm-span">
+        {:lang('phone1')}
+        <!--<span style="border-radius:3vw;background-color:#e6f3ee;padding:1vw;">+92</span>-->
+    </span>
+    <div class="van-cell van-field">
+        <div class="van-cell__value van-cell__value--alone van-field__value">
+            <div class="van-field__body">
+                
+                <input type=""  name="phone"  class="mm-div"  onchange="check_phone()" maxlength="11" enterkeyhint="done" autocomplete="off" placeholder="{:lang('enterphonenumber1')}">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mm-container">
+    <img class="mm-image" src="/static/index/login/password-green.png">
+    <span class="mm-span">
+       {:lang('loginpassword1')}
+    </span>
+    <div class="van-cell van-field">
+        <div class="van-cell__value van-cell__value--alone van-field__value">
+            <div class="van-field__body">
+                
+                <input name="password" maxlength="140" step="" enterkeyhint="done" autocomplete="off" type="password" class="mm-div" placeholder="{:lang('enteryourpassword1')}">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mm-container">
+    <img class="mm-image" src="/static/index/login/card.png">
+    <span class="mm-span">
+      {:lang('paymentpassword1')}
+    </span>
+    <div class="van-cell van-field">
+        <div class="van-cell__value van-cell__value--alone van-field__value">
+            <div class="van-field__body">
+                <input type="password" pattern="[0-9]{6}" maxlength="6" name="payment" step="" enterkeyhint="done" autocomplete="off" oninput="validateNumber(this)"   class="mm-div" placeholder="{:lang('input6number1')}">
+               
+            </div>
+        </div>
+    </div>
+</div>
+<!--main end-->
+
+                            <div class="item" style="display:none;">
+                                <div class="evan-form-item-container evan-form-item-container--left"
+                                     style="border-width: 0.5px;">
+                                    <div class="evan-form-item-container__label">{:lang('invite1')}</div>
+                                    <div class="evan-form-item-container__main">
+                                        <uni-input class="form-input">
+                                            <div class="uni-input-wrapper">
+                                                {present name="invite"}
+                                                <input name="invite_code" maxlength="6" step="0.000000000000000001" enterkeyhint="done" pattern="[0-9]*" type="number" class="uni-input-input" value="{$invite}" readOnly="true">
+                                                {else /}
+                                                <input name="invite_code" maxlength="6" step="0.000000000000000001" enterkeyhint="done" pattern="[0-9]*" autocomplete="off" type="number" class="uni-input-input" placeholder=" {:lang('invitecode1')}">
+                                                {/present}
+                                                <!---->
+                                            </div>
+                                        </uni-input>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn reg">{:lang('registered1')}</div>
+                        <div class="btn download">
+                            <a href="{:Url('login/index')}"> {:lang('alreadyhaveanaccount1')}</a></div>
+                        <!---->
+                    </div>
+                </div>
+            </uni-page-body>
+        </uni-page-wrapper>
+    </uni-page>
+</uni-app>
+</body>
+</html>
+
+<script src="/static/jquery.cookie.js"></script>
+
+<script>
+    $(function () {
+        if ($.cookie("captcha")) {
+            var count = $.cookie("captcha");
+            $('#Send').text("(" + count + ")S").attr('disabled', true);
+            var resend = setInterval(function () {
+                count--;
+                if (count > 0) {
+                    $('#Send').text("(" + count + ")S").attr('disabled', true);
+                    $.cookie("captcha", count, {path: '/', expires: (1 / 86400) * count});
+                } else {
+                    clearInterval(resend);
+                    $('#Send').text("Send").addClass("active");
+                }
+            }, 1000);
+        }
+
+        $(document).on("click", ".active", function () {
+            var phone = $("input[ name='phone']").val();
+            var type = 1;
+            if (phone && type){
+                layer.load(2);
+                $.ajax({
+                    url: "{:Url('sms_code')}",
+                    type: "post",
+                    traditional: true,
+                    data: {phone:phone,type:type},
+                    success: function (e) {
+                        layer.closeAll('loading');
+                        if (e.code === 1) {
+                            layer.msg(e.msg);
+                            var btn = $(this);
+                            var count = 10;
+                            var resend = setInterval(function () {
+                                count--;
+                                if (count > 0) {
+                                    $('#Send').text("(" + count + ")S").attr('disabled', true);
+                                    $('#Send').removeClass("active");
+                                    $.cookie("captcha", count, {path: '/', expires: (1 / 86400) * count});
+                                } else {
+                                    clearInterval(resend);
+                                    $('#Send').text("Send").addClass("active");
+                                }
+                            }, 1000);
+                            btn.attr('disabled', true).css('cursor', 'not-allowed');
+                        } else {
+                            layer.msg(e.msg, function () {
+                                return false;
+                            });
+                        }
+                    },
+                });
+            }else {
+                layer.msg('{:lang("mobilecannotbeempty1")}}', function(){
+                });
+            }
+        });
+    });
+</script>
+
+<script>
+    function check_username() {
+        var username = $("input[ name='username']").val();
+        layer.load(2);
+        $.ajax({
+            url: "{:Url('check_username')}",
+            type: "post",
+            traditional: true,
+            data: {username: username},
+            success: function (e) {
+                layer.closeAll('loading');
+                if (e.code === 0){
+                    layer.msg(e.msg, function(){
+                        $("input[ name='username']").val('');
+                    });
+                }
+            },
+        });
+    }
+
+    function validateNumber(input) {
+            // 使用正则表达式检查输入是否为数字
+            input.value = input.value.replace(/[^0-9]/g, '');
+
+            // 如果需要限制最大长度，可以在这里添加逻辑
+            // 例如，如果要限制最大长度为6：
+            // if (input.value.length > 6) {
+            //     input.value = input.value.slice(0, 6);
+            // }
+        }
+    function check_phone() {
+        var phone = $("input[ name='phone']").val();
+        layer.load(2);
+        $.ajax({
+            url: "{:Url('check_phone')}",
+            type: "post",
+            traditional: true,
+            data: {phone: phone},
+            success: function (e) {
+                layer.closeAll('loading');
+                if (e.code === 0){
+                    layer.msg(e.msg, function(){
+                        $("input[ name='phone']").val('');
+                    });
+                }else {
+                    $("#Send").addClass("active");
+                }
+            },
+        });
+    }
+</script>
+
+<script>
+function isNumeric(str) {
+  var re = /^[0-9]+$/;
+  return re.test(str);
+}
+    $(document).on("click", ".reg", function () {
+        var username = $("input[ name='username']").val();
+        var phone = $("input[ name='phone']").val();
+        var code = $("input[ name='code']").val();
+        var password = $("input[ name='password']").val();
+        var payment = $("input[ name='payment']").val();
+        if (payment.length!=6 || !isNumeric(payment)){
+            layer.msg("{:lang('enter6correctpassword1')}",{time:3000,end:function(){return false}})
+            return false
+        }
+        var invite_code = $("input[ name='invite_code']").val();
+            layer.load(2);
+            $.ajax({
+                url: "{:Url('reg')}",
+                type: "post",
+                traditional: true,
+                data: {username: username, phone: phone, code:code,password: password,payment:payment,invite_code:invite_code},
+                success: function (e) {
+                    layer.closeAll('loading');
+                    if (e.code === 1) {
+                        layer.msg(e.msg, {
+                            time: 2000,
+                            end: function () {
+                                window.location.href = "{:Url('login/index')}";
+                            }
+                        });
+                    } else {
+                        layer.msg(e.msg, function () {
+                            return false;
+                        });
+                    }
+                },
+            });
+    });
+</script>

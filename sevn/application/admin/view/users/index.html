@@ -1,0 +1,153 @@
+{extend name='main'}
+
+{block name="button"}
+
+{if auth("add_users")}
+<button data-modal='{:url("add_users")}' data-title="添加会员" class='layui-btn'>添加会员</button>
+{/if}
+
+{/block}
+
+{block name="content"}
+
+<div class="think-box-shadow">
+    {include file='users/index_search'}
+    <table class="layui-table" lay-filter="tab" lay-skin="line">
+        {notempty name='list'}
+        <thead>
+        <tr>
+            <th lay-data="{field:'id',width:80}" class='text-left nowrap'>ID</th>
+            <th lay-data="{field:'pid'}" class='text-left nowrap'>上级账号</th>
+            <th lay-data="{field:'username'}" class='text-left nowrap'>账号</th>
+            <th lay-data="{field:'phone'}" class='text-left nowrap'>电话</th>
+            <th lay-data="{field:'group'}" class='text-left nowrap'>分组</th>
+            <th lay-data="{field:'level'}" class='text-left nowrap'>VIP</th>
+            <th lay-data="{field:'group_num'}" class='text-left nowrap'>该组单数</th>
+            <th lay-data="{field:'group_order'}" class='text-left nowrap'>已完成单数</th>
+            <th lay-data="{field:'invite_code'}" class='text-left nowrap'>邀请码</th>
+            <th lay-data="{field:'role'}" class='text-left nowrap'>角色</th>
+            <th lay-data="{field:'balance'}" class='text-left nowrap'>余额</th>
+            <th lay-data="{field:'day_max_o'}" class='text-left nowrap'>日接单最大量</th>
+            <th lay-data="{field:'day_o'}" class='text-left nowrap'>今日接单数量</th>
+            <th lay-data="{field:'total'}" class='text-left nowrap'>总获得佣金</th>
+            <th lay-data="{field:'freeze'}" class='text-left nowrap'>冻结资金</th>
+            <th lay-data="{field:'bank_name'}" class='text-left nowrap'>银行名称</th>
+            <th lay-data="{field:'holder_name'}" class='text-left nowrap'>持有人姓名</th>
+            <th lay-data="{field:'account_number'}" class='text-left nowrap'>银行卡号</th>
+            <!--<th lay-data="{field:'phone_number'}" class='text-left nowrap'>电话号码</th>-->
+            <!--<th lay-data="{field:'email'}" class='text-left nowrap'>Email</th>-->
+            <!--<th lay-data="{field:'ifsc'}" class='text-left nowrap'>IFSC</th>-->
+            <!--<th lay-data="{field:'upi'}" class='text-left nowrap'>UPI</th>-->
+            <!--<th lay-data="{field:'type'}" class='text-left nowrap'>usdt方式</th>-->
+            <!--<th lay-data="{field:'address_usdt'}" class='text-left nowrap'>usdt地址</th>-->
+            <!--<th lay-data="{field:'address_name'}" class='text-left nowrap'>地址/姓名</th>-->
+            <!--<th lay-data="{field:'address_phone'}" class='text-left nowrap'>地址和电话</th>-->
+            <!--<th lay-data="{field:'address_info'}" class='text-left nowrap'>地址信息</th>-->
+            <th lay-data="{field:'reg_ip'}" class='text-left nowrap'>注册IP</th>
+            <th lay-data="{field:'create_time',width:200}" class='text-left nowrap'>注册时间</th>
+            <th lay-data="{field:'last_time',width:200}" class='text-left nowrap'>最后登录时间</th>
+            <th lay-data="{field:'edit',width:280,fixed: 'right'}" class='text-left nowrap'>操作</th>
+        </tr>
+        </thead>
+        {/notempty}
+        <tbody>
+        {foreach $list as $key=>$vo}
+        <tr>
+            <td class='text-left nowrap'>{$vo.id}</td>
+            <td class='text-left nowrap'>{$vo.pid|get_pid_name}</td>
+            <td class='text-left nowrap'>{$vo.username}</td>
+            <td class='text-left nowrap'>{$vo.phone}</td>
+            <td class='text-left nowrap'>{$vo.group|get_group}</td>
+            <td class='text-left nowrap'>SVIP{$vo.level}</td>
+            <td class='text-left nowrap'>{$vo.group|get_task_num}</td>
+            <td class='text-left nowrap'>{$vo.group_order}</td>
+            <td class='text-left nowrap'>{$vo.invite_code}</td>
+            {switch vo.role}
+            {case 1}<td class='text-left nowrap'><span style="color:blueviolet">普通</span></td>{/case}
+            {case 2}<td class='text-left nowrap'><span style="color:green">代理</span></td>{/case}
+            {case 3}<td class='text-left nowrap'><span style="color:green">总代</span></td>{/case}
+            {case 4}<td class='text-left nowrap'><span style="color:green">管理</span></td>{/case}
+            {/switch}
+            <td class='text-left nowrap'>{$vo.balance}</td>
+            <td class='text-left nowrap'>{$vo.day_max_o}</td>
+            <td class='text-left nowrap'>{$vo.day_o}</td>
+            <td class='text-left nowrap'>{$vo.total}</td>
+            <td class='text-left nowrap'>{$vo.freeze}</td>
+            <td class='text-left nowrap'>{$vo.bank_name}</td>
+            <td class='text-left nowrap'>{$vo.holder_name}</td>
+            <td class='text-left nowrap'>{$vo.account_number}</td>
+            <!--<td class='text-left nowrap'>{$vo.phone_number}</td>-->
+            <!--<td class='text-left nowrap'>{$vo.email}</td>-->
+            <!--<td class='text-left nowrap'>{$vo.ifsc}</td>-->
+            <!--<td class='text-left nowrap'>{$vo.upi}</td>-->
+            <!--<td class='text-left nowrap'>{$vo.type}</td>-->
+            <!--<td class='text-left nowrap'>{$vo.address_usdt}</td>-->
+            <!--<td class='text-left nowrap'>{$vo.address_name}</td>-->
+            <!--<td class='text-left nowrap'>{$vo.address_phone}</td>-->
+            <!--<td class='text-left nowrap'>{$vo.address_info}</td>-->
+            <td class='text-left nowrap'>{$vo.reg_ip}</td>
+            <td class='text-left nowrap'>{$vo.create_time|format_datetime}</td>
+            <td class='text-left nowrap'>{$vo.last_time|format_datetime}</td>
+            <td class='text-left nowrap'>
+                {if auth("edit_users")}
+                <a class="layui-btn layui-btn-xs layui-bg-blue" role="button" onClick="recharge({$vo.id})">充值</a>
+                <a data-dbclick class="layui-btn layui-btn-xs" data-title="编辑菜单" data-modal='{:url("admin/users/edit_users")}?id={$vo.id}'>编 辑</a>
+                <a data-dbclick class="layui-btn layui-btn-xs" data-title="编辑等级" data-modal='{:url("admin/users/user_level")}?id={$vo.id}'>等 级</a>
+
+                <a data-dbclick class="layui-btn layui-btn-xs" data-title="编辑分组" data-modal='{:url("admin/users/user_group")}?id={$vo.id}'>分 组</a>
+                    {if ($vo.status == 1)}
+                    <a class="layui-btn layui-btn-xs layui-btn-warm" data-action="{:url('edit_users_status',['status'=>2,'id'=>$vo.id])}" data-value="id#{$vo.id};status#2" style='background:red;'>禁用</a>
+                    {elseif ($vo.status == 2) /}
+                    <a class="layui-btn layui-btn-xs layui-btn-warm" data-action="{:url('edit_users_status',['status'=>1,'id'=>$vo.id])}" data-value="id#{$vo.id};status#1" style='background:green;'>启用</a>
+                    {/if}
+                {/if}
+
+            </td>
+        </tr>
+        {/foreach}
+        </tbody>
+    </table>
+
+    <script>
+        function recharge(id){
+            layer.prompt({title: '输请输入充值金额', formType: 3}, function(money, index){
+                layer.close(index);
+                $.ajax({
+                    url: "{:Url('recharge')}",
+                    type: "post",
+                    traditional: true,
+                    data: {id:id,money:money},
+                    success: function (e) {
+                        layer.closeAll('loading');
+                        if (e.code === 1){
+                            layer.msg(e.msg, {
+                                time: 2000,
+                                end: function () {
+                                    location.reload();
+                                }
+                            });
+                        }else {
+                            layer.msg(e.msg, function(){});
+                            return false;
+                        }
+                    },
+                });
+            });
+        }
+    </script>
+    <script>
+        var table = layui.table;
+        //转换静态表格
+        var limit = Number('{$Think.get.limit}');
+        if(limit==0) limit=20;
+        table.init('tab', {
+            cellMinWidth:120,
+            skin: 'line,row',
+            even: false,
+            size: 'sm ',
+            limit: limit
+        });
+    </script>
+    {empty name='list'}<span class="notdata">没有记录哦</span>{else}{$pages|raw|default=''}{/empty}
+</div>
+{/block}

@@ -1,0 +1,547 @@
+{include file="public/header"/}
+<link rel="stylesheet" href="/static/index/css/index.css">
+<link href="/static/index/swiper/swiper-bundle.min.css" rel="stylesheet">
+<script src="/static/index/swiper/swiper-bundle.min.js"></script>
+
+<body class="uni-body pages-index-index">
+<noscript><strong>Please enable JavaScript to continue.</strong></noscript>
+<uni-app class="uni-app--maxwidth">
+    <uni-page data-page="pages/index/index">
+        <uni-page-wrapper>
+            <uni-page-body>
+                <div class="container1">
+                    <div class="top-page"
+                         style="height: 44px; background: linear-gradient(to right, rgb(212, 223, 245), rgb(212, 223, 245));">
+                        <div class="apex"
+                             style="height: 44px; line-height: 44px; background: linear-gradient(to right, rgb(212, 223, 245), rgb(212, 223, 245)); color: rgb(0, 0, 0); position: fixed;">
+                            <div class="left"></div>
+                            <div class="center" style="font-size: 17px;">Welcome</div>
+                            <div class="right"></div>
+                        </div>
+                        <div class="placeholder" style="height: 44px; line-height: 44px;"></div>
+                    </div>
+                    <div class="bannerlist">
+                        <div class="swiper-container" style="width: 88%;">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div style="border-radius: 24px;overflow: hidden;height: 228px;display: flex;justify-content: center;">
+                                        <img src="/static/index/banner/photo_2022-11-10_22-41-48.jpg"
+                                             draggable="true" style="max-width: 150%;height: 100%;border-radius:25px;">
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div style="border-radius: 24px;overflow: hidden;height: 188px;display: flex;justify-content: center;">
+                                        <img src="/static/index/banner/photo_2022-11-10_22-41-29.jpg"
+                                             draggable="true" style="max-width: 100%;height: 100%;border-radius:25px;">
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div style="border-radius: 24px;overflow: hidden;height: 188px;display: flex;justify-content: center;">
+                                        <img src="/static/index/banner/photo_2022-11-10_22-41-49.jpg"
+                                             draggable="true" style="max-width: 100%;height: 100%;border-radius:25px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 如果需要分页器 -->
+                            <div class="swiper-pagination"></div>
+
+                        </div>
+                    </div>
+                    <div class="columnlist">
+                        <a href="{:Url('recharge/index')}" class="columnlist-item">
+                            <uni-image>
+                                <div
+                                        style="background-image: url(/static/index/img/index02.png); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                </div>
+                                <img src="/static/index/img/index02.png" draggable="true">
+                                <!---->
+                            </uni-image>
+                            <!---->
+                            <!---->
+                            <div>Recharge</div>
+                        </a>
+                        <a href="{:Url('withdrawal/index')}" class="columnlist-item">
+                            <uni-image>
+                                <div
+                                        style="background-image: url(/static/index/img/index03.png); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                </div>
+                                <img src="/static/index/img/index03.png" draggable="true">
+                                <!---->
+                            </uni-image>
+                            <!---->
+                            <!---->
+                            <div>Withdrawal</div>
+                        </a>
+                        <a href="{:Url('account/invitation')}" class="columnlist-item">
+                            <uni-image>
+                                <div
+                                        style="background-image: url(/static/index/img/index04.png); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                </div>
+                                <img src="/static/index/img/index04.png" draggable="true">
+                                <!---->
+                            </uni-image>
+                            <!---->
+                            <!---->
+                            <div>Invite</div>
+                        </a>
+                    </div>
+                    <div class="notice">
+                        <uni-text class="iconfont icon-svg45-copy"><span></span></uni-text>
+                        <div class="notice-text">
+                            <div class="uni-noticebar"
+                                 style="background-color: rgb(255, 251, 232);">
+                                <!---->
+                                <!---->
+                                <div
+                                        class="uni-noticebar__content-wrapper uni-noticebar__content-wrapper--scrollable">
+                                    <div id="Uni_7vip"
+                                         class="uni-noticebar__content uni-noticebar__content--scrollable">
+                                        <uni-text id="Uni_6foo"
+                                                  class="uni-noticebar__content-text uni-noticebar__content-text--scrollable"
+                                                  style="color: rgb(222, 140, 23); animation-play-state: running; animation-delay: -28.7s; animation-duration: 28.7s;">
+                                            <p>{$notice}</p>
+                                        </uni-text>
+                                    </div>
+                                </div>
+                                <!---->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="earnings">
+                        <div class="earnings_Info">
+                            <div class="balance">Balance</div>
+                            <div class="balance_val">
+                                <uni-text class="yuanSign"><span>R</span></uni-text>
+                                <uni-text class="money"><span>{$user_info.balance}</span></uni-text>
+                            </div>
+                            <div class="other_val">
+                                <div>
+                                    <uni-text class="background_val"><span></span></uni-text>
+                                    <uni-text class="value_name"><span>Today :</span></uni-text>
+                                    <uni-text class="val"><span>R{$user_info.total}</span></uni-text>
+                                </div>
+                                <div>
+                                    <uni-text class="background_val1"><span></span></uni-text>
+                                    <uni-text class="value_name"><span>Financial : </span></uni-text>
+                                    <uni-text class="val"><span>R{$user_info.financial}</span></uni-text>
+                                </div>
+                                <div>
+                                    <uni-text class="background_val2"><span></span></uni-text>
+                                    <uni-text class="value_name"><span> Freeze :</span></uni-text>
+                                    <uni-text class="val"><span>R{$user_info.freeze}</span></uni-text>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--
+                    <div class="glory">
+                        <div class="title">Honor Roll</div>
+                        <div class="marquee_box gbromarquee" style="width: 100%;">
+
+                            <div class="broadcastTopBtm"
+                                 style="background: rgb(255, 255, 255); height: 576px; --scrollHeight--:-1080px; --scrollSpeed--:36s;">
+
+                                <div class="broadcastDataTopBtmDatacss_top">
+                                    <div>
+                                        <div class="new-list">
+                                            {present name="roll_list"}
+                                            {volist name="roll_list" id="vo"}
+                                            <a data-img="{$vo.img}" data-txt="                                                        {$vo.name|str_roll}
+                                                        &nbsp;&nbsp;
+                                                        {switch vo.sign}
+                                                        {case 1}Deposit is successful{/case}
+                                                        {case 2}Withdrawal is successful{/case}
+                                                        {/switch}" class="roll">
+                                                <div class="news">
+                                                    <div class="icon">
+                                                        <uni-image>
+                                                            <div style="background-image: url({$vo.img}); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                                            </div>
+                                                            <img src="{$vo.img}" draggable="true">
+
+                                                        </uni-image>
+                                                    </div>
+                                                    <div class="new-item-content" style="text-align: center;">
+                                                        {$vo.name|str_roll}
+                                                        &nbsp;&nbsp;
+                                                        {switch vo.sign}
+                                                        {case 1}Deposit is successful{/case}
+                                                        {case 2}Withdrawal is successful{/case}
+                                                        {/switch}
+                                                    </div>
+                                                    <div class="new-item-time">৳{$vo.money}</div>
+                                                </div>
+                                            </a>
+                                            {/volist}
+                                            {/present}
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="new-list">
+                                            {present name="roll_list"}
+                                            {volist name="roll_list" id="vo"}
+                                            <a data-img="{$vo.img}" data-txt="                                                        {$vo.name|str_roll}
+                                                        &nbsp;&nbsp;
+                                                        {switch vo.sign}
+                                                        {case 1}Deposit is successful{/case}
+                                                        {case 2}Withdrawal is successful{/case}
+                                                        {/switch}" class="roll">
+                                                <div class="news">
+                                                    <div class="icon">
+                                                        <uni-image>
+                                                            <div style="background-image: url({$vo.img}); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                                            </div>
+                                                            <img src="{$vo.img}" draggable="true">
+                                                        </uni-image>
+                                                    </div>
+                                                    <div class="new-item-content" style="text-align: center;">
+                                                        {$vo.name|str_roll}
+                                                        &nbsp;&nbsp;
+                                                        {switch vo.sign}
+                                                        {case 1}Deposit is successful{/case}
+                                                        {case 2}Withdrawal is successful{/case}
+                                                        {/switch}
+                                                    </div>
+                                                    <div class="new-item-time">৳{$vo.money}</div>
+                                                </div>
+                                            </a>
+                                            {/volist}
+                                            {/present}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    -->
+                    <div class="member-news" style="">
+                        <div class="title">Mem - News</div>
+                        <div class="new-list">
+                            <div class="marquee_box gbromarquee" style="width: 100%;">
+                                <!---->
+                                <div class="broadcastTopBtm"
+                                     style="background: rgb(255, 255, 255); height: 576px; --scrollHeight--:-648px; --scrollSpeed--:21.6s;">
+                                    <!---->
+                                    <div class="broadcastDataTopBtmDatacss_top">
+                                        <div>
+                                            <div class="new-list">
+
+                                                {volist name="news_list" id="vo"}
+                                                <div class="news">
+                                                    <div class="icon">
+                                                        <uni-image>
+                                                            <div style="background-image: url({$vo.img}); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                                            </div>
+                                                            <img src="{$vo.img}" draggable="true">
+                                                            <!---->
+                                                        </uni-image>
+                                                    </div>
+                                                    <div class="new-item-content">
+                                                        <div>{$vo.name|news_roll}</div>
+                                                        <div class="content_text"> Get a commission today</div>
+                                                    </div>
+                                                    <div class="new-item-price">R{$vo.money}</div>
+                                                </div>
+                                                {/volist}
+
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="new-list">
+
+                                                {volist name="news_list" id="vo"}
+                                                <div class="news">
+                                                    <div class="icon">
+                                                        <uni-image>
+                                                            <div style="background-image: url({$vo.img}); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                                            </div>
+                                                            <img src="{$vo.img}" draggable="true">
+                                                            <!---->
+                                                        </uni-image>
+                                                    </div>
+                                                    <div class="new-item-content">
+                                                        <div>{$vo.name|news_roll}</div>
+                                                        <div class="content_text"> Get a commission today</div>
+                                                    </div>
+                                                    <div class="new-item-price">R{$vo.money}</div>
+                                                </div>
+                                                {/volist}
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contentValidity" style="padding-bottom: 3px;">
+                        <a href="{:Url('about_us')}" class="contentValidity-text">
+                            <div class="content-img"></div>
+                            <div class="content-text">About Us</div>
+                        </a>
+                        <a href="{:Url('about_withdrawal')}" class="contentValidity-text">
+                            <div class="content-img"></div>
+                            <div class="content-text">About Withdrawal</div>
+                        </a>
+                        <a href="{:Url('about_investment_income')}" class="contentValidity-text">
+                            <div class="content-img"></div>
+                            <div class="content-text">About order</div>
+                        </a>
+                        <a href="{:Url('about_invitation')}" class="contentValidity-text">
+                            <div class="content-img"></div>
+                            <div class="content-text">About Invitation</div>
+                        </a>
+                    </div>
+                    <div class="partner">
+                        <div class="title">Partner</div>
+                        <div class="partnerlist">
+                            <uni-image>
+                                <div
+                                        style="background-image: url(&quot;/static/index/b5ad5a56-554d-4b74-a541-2bf3dde3e31e.jpg&quot;); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                </div>
+                                <img src="/static/index/b5ad5a56-554d-4b74-a541-2bf3dde3e31e.jpg" draggable="true">
+                                <!---->
+                            </uni-image>
+                            <uni-image>
+                                <div
+                                        style="background-image: url(&quot;/static/index/ee18e9b9-1582-4455-9852-c77b8230b49b.jpg&quot;); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                </div>
+                                <img src="/static/index/ee18e9b9-1582-4455-9852-c77b8230b49b.jpg" draggable="true">
+                                <!---->
+                            </uni-image>
+                            <uni-image>
+                                <div
+                                        style="background-image: url(&quot;/static/index/d12820a7-762f-4d9a-9f7b-9264cedecd69.jpg&quot;); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                </div>
+                                <img src="/static/index/d12820a7-762f-4d9a-9f7b-9264cedecd69.jpg" draggable="true">
+                                <!---->
+                            </uni-image>
+                            <uni-image>
+                                <div
+                                        style="background-image: url(&quot;/static/index/f28146af-934a-4295-8c81-f4fea5a624c5.jpg&quot;); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                </div>
+                                <img src="/static/index/f28146af-934a-4295-8c81-f4fea5a624c5.jpg" draggable="true">
+                                <!---->
+                            </uni-image>
+                            <uni-image>
+                                <div
+                                        style="background-image: url(&quot;/static/index/559dd00b-b67f-486a-bf2f-b81422ae6a20.jpg&quot;); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                </div>
+                                <img src="/static/index/559dd00b-b67f-486a-bf2f-b81422ae6a20.jpg" draggable="true">
+                                <!---->
+                            </uni-image>
+                            <uni-image>
+                                <div
+                                        style="background-image: url(&quot;/static/index/ea3dbb3f-fd34-43ee-b856-3a80b19c188c.jpg&quot;); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                </div>
+                                <img src="/static/index/ea3dbb3f-fd34-43ee-b856-3a80b19c188c.jpg" draggable="true">
+                                <!---->
+                            </uni-image>
+                        </div>
+                    </div>
+                    <!---->
+                    <!--                    <div class="custom-modal">-->
+                    <!--                        <div class="modal-wrap">-->
+                    <!--                            <div class="modal-background"></div>-->
+                    <!--                            <div class="modal-title">Good news</div>-->
+                    <!--                            <div class="modal-content">-->
+                    <!--                                <div>-->
+                    <!--                                    <p>{$popup}</p>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
+                    <!--                            <div class="btn">-->
+                    <!--                                <div class="sure-btn">Confirm</div>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                        <div class="hidden-btn"></div>-->
+                    <!--                    </div>-->
+                    <div class="custom-modal earingModel">
+                        <div class="modal-wrap">
+                            <div class="modal-background">
+                                <uni-image>
+                                    <div
+                                            style="background-image: none; background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                    </div>
+                                    <!---->
+                                    <!---->
+                                </uni-image>
+                            </div>
+                            <div class="modal-title">Yesterday</div>
+                            <div class="modal-content">
+                                <div class="yestDay">
+                                    <div>Yesterday Recharge</div>
+                                    <div class="money"></div>
+                                </div>
+                                <div class="yestDay">
+                                    <div>Yesterday Earning</div>
+                                    <div class="money"></div>
+                                </div>
+                                <div class="yestDay">
+                                    <div>Yesterday Withdraw</div>
+                                    <div class="money"></div>
+                                </div>
+                            </div>
+                            <div class="btn">
+                                <div class="sure-btn">Confirm</div>
+                            </div>
+                        </div>
+                        <div class="hidden-btn"></div>
+                    </div>
+                    <div class="custom-modal GloryModel">
+                        <div class="modal-wrap">
+                            <div class="modal-background"></div>
+                            <div class="modal-title">tips</div>
+                            <div class="modal-content">
+                                <div>
+                                    <uni-image>
+                                        <div style="background-image: none; background-size: 100% 100%; background-repeat: no-repeat;">
+                                        </div>
+                                        <!---->
+                                        <uni-resize-sensor>
+                                            <div>
+                                                <div></div>
+                                            </div>
+                                            <div>
+                                                <div></div>
+                                            </div>
+                                        </uni-resize-sensor>
+                                    </uni-image>
+                                </div>
+                                <div class="textcontent"></div>
+                            </div>
+                            <div class="btn">
+                                <div class="sure-btn">Confirm</div>
+                            </div>
+                        </div>
+                        <div class="hidden-btn"></div>
+                    </div>
+                    {include file="public/footer"/}
+                </div>
+            </uni-page-body>
+        </uni-page-wrapper>
+    </uni-page>
+
+    <uni-modal style="display: none;">
+        <uni-view class="custom-modal show">
+            <uni-view class="modal-wrap">
+                <uni-view class="modal-background"></uni-view>
+                <uni-view class="modal-title">Good news</uni-view>
+                <uni-view class="modal-content">
+                    <uni-view><p id="popup"></p></uni-view>
+                </uni-view>
+                <uni-view class="btn">
+                    <uni-view class="sure-btn Confirm">Confirm</uni-view>
+                </uni-view>
+            </uni-view>
+            <uni-view class="hidden-btn close"></uni-view>
+        </uni-view>
+    </uni-modal>
+
+
+
+</uni-app>
+{present name="$notice"}
+<input type="hidden" id="popup_c" value="{$popup}">
+{/present}
+</body>
+</html>
+
+<script>
+    var notice = $("#popup_c").val();
+    if (notice) {
+        ;(function () {
+            $("#popup").append(notice);
+            let $modal = $("uni-modal");
+            $(".Confirm").on("click", closeModal);
+            $(".close").on("click", closeModal);
+            $modal.show();
+            function closeModal() {
+                $modal.hide();
+            }
+        }());
+    }
+</script>
+
+<script>
+    $(document).on("click", ".roll", function () {
+        var img = $(this).data('img');
+        var txt = $(this).data('txt');
+
+        var html = "<uni-img >\n" +
+            "        <uni-view class=\"custom-modal show\">\n" +
+            "            <uni-view data-v-3197bf80=\"\" class=\"modal-wrap\">\n" +
+            "                <uni-view data-v-3197bf80=\"\" class=\"modal-background\"></uni-view>\n" +
+            "                <uni-view data-v-3197bf80=\"\" class=\"modal-title\">"+txt+"</uni-view>\n" +
+            "                <uni-view data-v-3197bf80=\"\" class=\"modal-content\">\n" +
+            "                    <uni-view data-v-413e3568=\"\">\n" +
+            "                        <uni-image data-v-413e3568=\"\" style=\"height: 670px;\">\n" +
+            "                            <div style=\"background-image: url( "+img+"); background-size: 100% 100%; background-repeat: no-repeat;\"></div>\n" +
+            "                            <img src=\""+img+"\"\n" +
+            "                                 draggable=\"true\">\n" +
+            "                            <uni-resize-sensor>\n" +
+            "                                <div>\n" +
+            "                                    <div></div>\n" +
+            "                                </div>\n" +
+            "                                <div>\n" +
+            "                                    <div></div>\n" +
+            "                                </div>\n" +
+            "                            </uni-resize-sensor>\n" +
+            "                        </uni-image>\n" +
+            "                    </uni-view>\n" +
+            "                </uni-view>\n" +
+            "                <uni-view data-v-3197bf80=\"\" class=\"btn\">\n" +
+            "                    <uni-view class=\"sure-btn Confirm\">Confirm</uni-view>\n" +
+            "                </uni-view>\n" +
+            "            </uni-view>\n" +
+            "            <uni-view class=\"hidden-btn Confirm\"></uni-view>\n" +
+            "        </uni-view>\n" +
+            "    </uni-img>";
+        layer.open({
+            type: 5,
+            title: false,
+            closeBtn: 0, //不显示关闭按钮
+            anim: 2,
+            content: html
+        });
+
+        let $modal = $("uni-img");
+        $(".Confirm").on("click", closeModal);
+        $(".close").on("click", closeModal);
+        $modal.show();
+        layer.closeAll('iframe');
+        function closeModal() {
+            layer.closeAll();
+            $modal.hide();
+        }
+    });
+</script>
+
+<script>
+    // var mySwiper = new Swiper('.swiper-container', {
+    //     loop: true, // 循环模式选项
+    //     // 如果需要分页器
+    //     pagination: {
+    //         el: '.swiper-pagination',
+    //     },
+    // })
+    window.addEventListener('load', function () {
+        var swiper = new Swiper('.swiper-container', {
+            spaceBetween: 30,
+            centeredSlides: true,
+            autoplay: {
+                delay: 2000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+    })
+</script>

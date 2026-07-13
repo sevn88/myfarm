@@ -1,0 +1,215 @@
+{extend name='main'}
+
+{block name="content"}
+
+<div class="think-box-shadow">
+    {include file='order/order_search'}
+    <table class="layui-table" lay-filter="tab" lay-skin="line">
+        {notempty name='list'}
+        <thead>
+        <tr>
+            <th lay-data="{field:'id',width:80}" class='text-left nowrap'>ID</th>
+            <th lay-data="{field:'order_id',width:160}" class='text-left nowrap'>订单号</th>
+            <th lay-data="{field:'aid'}" class='text-left nowrap'>上级账号</th>
+            <th lay-data="{field:'uid',width:80}" class='text-left nowrap'>客户ID</th>
+            <th lay-data="{field:'username'}" class='text-left nowrap'>客户名</th>
+            <th lay-data="{field:'phone'}" class='text-left nowrap'>客户手机</th>
+            <th lay-data="{field:'status'}" class='text-left nowrap'>状态</th>
+            <th lay-data="{field:'num'}" class='text-left nowrap'>单数</th>
+            <th lay-data="{field:'goods_id',width:80}" class='text-left nowrap'>商品ID</th>
+            <th lay-data="{field:'goods_name'}" class='text-left nowrap'>商品名</th>
+            <th lay-data="{field:'goods_price'}" class='text-left nowrap'>商品价格</th>
+            <th lay-data="{field:'p_user_balance'}" class='text-left nowrap'>当前余额</th>
+            <th lay-data="{field:'p_user_balance - goods_price',width:150}" class='text-left nowrap'>差值</th>
+            <th lay-data="{field:'order_commission'}" class='text-left nowrap'>佣金比例</th>
+            
+            <th lay-data="{field:'order_earnings'}" class='text-left nowrap'>实际佣金</th>
+            <th lay-data="{field:'grab_type'}" class='text-left nowrap'>派单类型</th>
+            <th lay-data="{field:'create_time',width:200}" class='text-left nowrap'>创建时间</th>
+            <th lay-data="{field:'edit',width:280,fixed: 'right'}" class='text-left nowrap'>操作</th>
+        </tr>
+        </thead>
+        {/notempty}
+        <tbody>
+        {foreach $list as $key=>$vo}
+        <tr>
+            <td class='text-left nowrap'>{$vo.id}</td>
+            <td class='text-left nowrap'>{$vo.order_id}</td>
+            <td class='text-left nowrap'>{$vo.aid|get_pid_name}</td>
+            <td class='text-left nowrap'>{$vo.uid}</td>
+            <td class='text-left nowrap'>{$vo.username}</td>
+            <td class='text-left nowrap'>{$vo.phone}</td>
+            {switch vo.status}
+            {case 0}<td class='text-left nowrap'><span style="color:blueviolet">已派单</span></td>{/case}
+            {case 1}<td class='text-left nowrap'><span style="color:green">已完成</span></td>{/case}
+            {case 2}<td class='text-left nowrap'><span style="color:yellowgreen">待结算</span></td>{/case}
+            {case 3}<td class='text-left nowrap'><span style="color:red">已冻结</span></td>{/case}
+            {case 4}<td class='text-left nowrap'><span style="color:coral">已解冻</span></td>{/case}
+            {/switch}
+            <td class='text-left nowrap'>{$vo.s_num}/{$vo.e_num}</td>
+            <td class='text-left nowrap'>{$vo.goods_id}</td>
+            <td class='text-left nowrap'>{$vo.goods_name}</td>
+            <td class='text-left nowrap'>{$vo.goods_price}</td>
+            <td class='text-left nowrap'>{$vo.p_user_balance}</td>
+            <td class='text-left nowrap'>{$vo.p_user_balance - $vo.goods_price}</td>
+            <td class='text-left nowrap'>{$vo.order_commission}</td>
+            
+            <td class='text-left nowrap'>{$vo.order_earnings}</td>
+            {switch vo.grab_type}
+            {case 1}<td class='text-left nowrap'><span style="color: steelblue">默认模式</span></td>{/case}
+            {case 2}<td class='text-left nowrap'><span style="color: steelblue">随机模式</span></td>{/case}
+            {case 3}<td class='text-left nowrap'><span style="color: steelblue">叠加模式</span></td>{/case}
+            {/switch}
+            <td class='text-left nowrap'>{$vo.create_time|format_datetime}</td>
+            <td class='text-left nowrap'>
+                {switch vo.status}
+                {case 0}
+                <button data-open="{:url('admin/order/order_add')}?oid={$vo.id}" class='layui-btn layui-btn-xs layui-btn-normal'>新增</button>
+                <button type="button" data-id="{$vo.id}" class="layui-btn layui-btn-danger layui-btn-xs order_del">删除</button>
+                <button type="button" data-id="{$vo.id}" class="layui-btn layui-btn-warm layui-btn-xs order_frozen">冻结</button>
+                {/case}
+                {case 3}
+                <button type="button" data-id="{$vo.id}" class="layui-btn layui-btn-xs layui-btn-normal rollover">续期</button>
+                <button type="button" data-id="{$vo.id}" class="layui-btn layui-btn-xs release">解冻</button>
+                {/case}
+                {default /}<button type="button" class="layui-btn layui-btn-xs layui-btn-disabled">无需操作</button>
+                {/switch}
+            </td>
+        </tr>
+        {/foreach}
+        </tbody>
+    </table>
+
+    <script>
+        var table = layui.table;
+        //转换静态表格
+        var limit = Number('{$Think.get.limit}');
+        if(limit==0) limit=20;
+        table.init('tab', {
+            cellMinWidth:120,
+            skin: 'line,row',
+            even: false,
+            size: 'sm ',
+            limit: limit
+        });
+    </script>
+
+    <script>
+        $(document).on("click", ".rollover", function (){
+            var id = $(this).data('id');
+            layer.prompt({title: '请输入续期小时数', formType: 3}, function(hour, index){
+                layer.close(index);
+                if (hour != null){
+                    $.ajax({
+                        url: "{:Url('order_rollover')}",
+                        type: "post",
+                        traditional: true,
+                        data: {id:id,hour:hour} ,
+                        success: function (e) {
+                            if (e.code === 1){
+                                layer.msg(e.msg, {
+                                    time: 2000,
+                                    end: function () {
+                                        location.reload();
+                                    }
+                                });
+                            }else {
+                                layer.msg(e.msg, function(){
+                                    return false;
+                                });
+                            }
+
+                        },
+                    });
+                }
+            });
+        });
+
+        $(document).on("click", ".release", function (){
+            var id = $(this).data('id');
+            layer.confirm('确定要解冻吗？', {
+                btn: ['确定','取消'] //按钮
+            }, function(){
+                $.ajax({
+                    url: "{:Url('order_release')}",
+                    type: "post",
+                    traditional: true,
+                    data: {id:id} ,
+                    success: function (e) {
+                        if (e.code === 1){
+                            layer.msg(e.msg, {
+                                time: 2000,
+                                end: function () {
+                                    location.reload();
+                                }
+                            });
+                        }else {
+                            layer.msg(e.msg, function(){
+                                return false;
+                            });
+                        }
+                    },
+                });
+            });
+        });
+
+        $(document).on("click", ".order_del", function (){
+            var id = $(this).data('id');
+            layer.confirm('确定要删除吗？', {
+                btn: ['确定','取消'] //按钮
+            }, function(){
+                $.ajax({
+                    url: "{:Url('order_del')}",
+                    type: "post",
+                    traditional: true,
+                    data: {id:id} ,
+                    success: function (e) {
+                        if (e.code === 1){
+                            layer.msg(e.msg, {
+                                time: 2000,
+                                end: function () {
+                                    location.reload();
+                                }
+                            });
+                        }else {
+                            layer.msg(e.msg, function(){
+                                return false;
+                            });
+                        }
+                    },
+                });
+            });
+        });
+
+        $(document).on("click", ".order_frozen", function (){
+            var id = $(this).data('id');
+            layer.confirm('确定要冻结吗？', {
+                btn: ['确定','取消'] //按钮
+            }, function(){
+                $.ajax({
+                    url: "{:Url('order_frozen')}",
+                    type: "post",
+                    traditional: true,
+                    data: {id:id} ,
+                    success: function (e) {
+                        if (e.code === 1){
+                            layer.msg(e.msg, {
+                                time: 2000,
+                                end: function () {
+                                    location.reload();
+                                }
+                            });
+                        }else {
+                            layer.msg(e.msg, function(){
+                                return false;
+                            });
+                        }
+                    },
+                });
+            });
+        });
+    </script>
+
+    {empty name='list'}<span class="notdata">没有记录哦</span>{else}{$pages|raw|default=''}{/empty}
+</div>
+{/block}

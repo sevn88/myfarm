@@ -1,0 +1,459 @@
+{include file="public/header"/}
+<style>
+    .recharge1 {
+        background: #347ae2
+    }
+
+    .recharge1 .balanceTotal {
+        padding: 56px 0
+    }
+
+    .recharge1 .balanceTotal .current-balance {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: reverse;
+        -webkit-flex-direction: row-reverse;
+        flex-direction: row-reverse;
+        padding: 0 31px
+    }
+
+    .recharge1 .balanceTotal .current-balance .money {
+        font-size: 28px;
+        font-family: Rubik-Medium;
+        font-weight: 700;
+        color: #fff
+    }
+
+    .recharge1 .balanceTotal .current-balance div {
+        font-size: 15px;
+        font-family: Rubik-Medium;
+        font-weight: 700;
+        color: #fff
+    }
+
+    .recharge1 .input {
+        background: #fff;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        text-align: center;
+        font-size: 28px;
+        font-family: Rubik-Bold, Rubik;
+        font-weight: 700;
+        color: #39324b;
+        padding: 10px 50px 8px 50px
+    }
+
+    .recharge1 .input .inputClass {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        padding: 0 60px
+    }
+
+    .recharge1 .input .inputClass uni-text {
+        font-size: 28px;
+        display: inline-block
+    }
+
+    .recharge1 .input .inputClass uni-input {
+        height: 100%
+    }
+
+    .recharge1 .input .inputClass .uni-input-input {
+        font-size: 28px;
+        font-family: Rubik-Bold, Rubik;
+        font-weight: 700;
+        color: #39324b;
+        display: inline-block;
+        height: 100%;
+        text-align: left
+    }
+
+    .recharge1 .tip {
+        background: #fff;
+        font-size: 12px;
+        font-family: Rubik-Bold, Rubik;
+        font-weight: 400;
+        color: #000;
+        text-align: center;
+        padding: 12px 25px
+    }
+
+    .recharge1 .main {
+        border-top: 2px solid #efefef;
+        background: #fff;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 0 25px
+    }
+
+    .recharge1 .main .title {
+        font-size: 15px;
+        font-family: Rubik-Bold, Rubik;
+        font-weight: 700;
+        color: #25396f;
+        margin: 10px 0 20px
+    }
+    .recharge1 .main .title_input {
+        font-size: 15px;
+        font-family: Rubik-Bold, Rubik;
+        font-weight: 700;
+        color: #25396f;
+        margin: 10px 0 5px
+    }
+
+    .recharge1 .main .money {
+        overflow: hidden;
+        padding-bottom: 15px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        justify-content: space-between
+    }
+
+    .recharge1 .main .money .block {
+        width: 30%;
+        height: 48px;
+        line-height: 48px;
+        text-align: center;
+        font-size: 18px;
+        font-family: Rubik-Bold, Rubik;
+        font-weight: 400;
+        color: #6b6b6b;
+        background: #efefef;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        float: left;
+        margin-top: 20px;
+        font-size: 16px
+    }
+
+    .recharge1 .main .money > .block:nth-child(1) {
+        margin-top: 0px
+    }
+
+    .recharge1 .main .money > .block:nth-child(2) {
+        margin-top: 0px
+    }
+
+    .recharge1 .main .money > .block:nth-child(3) {
+        margin-top: 0px
+    }
+
+    .recharge1 .main .money .active {
+        background: #1e7eee;
+        color: #fff
+    }
+
+    .recharge1 .main .payment div {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        height: 48px
+    }
+
+    .recharge1 .main .payment div uni-image {
+        width: 20px;
+        height: 20px
+    }
+
+    .recharge1 .main .payment div .payment-content {
+        width: 90%;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center
+    }
+
+    .recharge1 .main .payment div .payment-content uni-text {
+        opacity: .8;
+        font-size: 14px
+    }
+
+    .recharge1 .main .topup {
+        height: 48px;
+        background: #1e7eee;
+        border-radius: 4px;
+        line-height: 48px;
+        font-size: 18px;
+        font-family: Rubik-Bold, Rubik;
+        font-weight: 700;
+        color: #fff;
+        text-align: center
+    }
+
+    .recharge1 .main .disable {
+        background: #ddd;
+        color: #fff
+    }
+
+    .recharge1 .main .notice {
+        font-size: 14px;
+        font-family: Rubik-Bold, Rubik;
+        font-weight: 400;
+        color: #636f85;
+        line-height: 20px;
+        padding: 10px 0 10px
+    }
+    .anniu{
+            width:90%;
+            margin-top: 5%;
+            height: 5%;
+            background: #1e7eee;
+            border-radius:15px;
+            line-height: 3;
+            /*font-size: 30px;*/
+            font-family: Rubik-Bold, Rubik;
+            font-weight: 700;
+            color: #fff;
+            text-align: center;
+            overflow:hidden;
+        }
+</style>
+
+<body>
+<uni-app class="uni-app--maxwidth">
+    <uni-page data-page="pages/recharge/index">
+        <!---->
+        <!---->
+        <uni-page-wrapper>
+            <uni-page-body>
+                <div class="recharge1">
+                    <div class="top-page"
+                         style="height: 44px; background: linear-gradient(to right, rgb(52, 122, 226), rgb(52, 122, 226)); color: rgb(255, 255, 255);">
+                        <div class="apex"
+                             style="height: 44px; line-height: 44px; background: linear-gradient(to right, rgb(52, 122, 226), rgb(52, 122, 226)); color: rgb(255, 255, 255); position: fixed;">
+                            <a href="javascript:window.history.go(-1)" class="left">
+                                <uni-text class="iconfont icon-fanhui1"
+                                          style="font-size: 16px; color: rgb(255, 255, 255);"><span></span></uni-text>
+                            </a>
+                            <div class="center" style="font-size: 17px;">{:lang("OfflineRecharge")}</div>
+                            <div class="right"></div>
+                        </div>
+                        <div class="placeholder" style="height: 44px; line-height: 44px;"></div>
+                    </div>
+                    
+                   
+                    <!---->
+                    <div class="input">
+                         <div class="line">{:lang("transferFunds")}：</div>
+                      
+                    </div>
+                  
+                    <div class="main">
+                        <div class="title_input">{:lang("BankName")}</div>
+                        <div >
+                            <input type="text" value="{$offline_bank_name}" disabled>
+                            <button  style="margin-left:20px" onclick="mk_copy('{$offline_bank_name}')">{:lang("copy")}</button>
+                        </div>
+                        <!--<div class="notice" style="color:red">Copy your bank card number and name below and use your bank card to transfer money to your bank card! After a successful transfer, take a screenshot and send!-->
+                        <!--</div>-->
+                        <!-- <div class="title_input">Account opening</div>-->
+                        <!--<div >-->
+                        <!--    <input type="text" value="{$offline_bank_name_kai}" disabled>-->
+                        <!--    <button  style="margin-left:20px" onclick="mk_copy('{$offline_bank_name_kai}')">copy</button>-->
+                        <!--</div>-->
+                        <!--<div class="notice" style="color:red">Copy your bank card number and name below and use your bank card to transfer money to your bank card! After a successful transfer, take a screenshot and send!-->
+                        <!--</div>-->
+                       
+                       <div class="title_input">{:lang("CardNumber")}</div>
+                        <div >
+                            <input type="text" value="{$offline_bank_number}" disabled>
+                            <button style="margin-left:20px" onclick="mk_copy('{$offline_bank_number}')">{:lang("copy")}</button>
+                            <div style="color:red">{:lang("MaximumRechargeAmount")} 100000!</div>
+                        </div>
+                        
+                        <div class="title_input">{:lang("HolderName")}</div>
+                        <div >
+                            <input type="text" value="{$offline_bank_user}" disabled>
+                            <button  style="margin-left:20px" onclick="mk_copy('{$offline_bank_user}')">{:lang("copy")}</button>
+                        </div>
+                       
+                        <div class="title_input">{:lang("TransferAmount")}</div>
+                        <div >
+                            <input type="text" value="{$recharge_number}" disabled>
+                            <input type="hidden" value="{$order_id}">
+                            <button  style="margin-left:20px" onclick="mk_copy('{$recharge_number}')">{:lang("copy")}</button>
+                        </div>
+                       
+                        
+                        <div class="notice">{:lang("Offline1")} </div>
+                        <div class="notice">{:lang("Offline2")}</div>
+                        <div class="notice">{:lang("Offline3")}</div>
+                        
+                        
+                        
+                      
+                        
+                    </div>
+                    {include file="public/footer"/}
+                </div>
+            </uni-page-body>
+        </uni-page-wrapper>
+    </uni-page>
+</uni-app>
+</body>
+</html>
+
+<script>
+    function mk_copy(var_arg){
+        var input = document.createElement("input");
+        document.body.appendChild(input);
+        input.setAttribute("value",var_arg);
+        input.select();
+        document.execCommand("copy");
+        document.body.removeChild(input);
+        layer.msg("copy successfully")
+    }
+    function change() {  
+        layer.load(2);
+              var formData = new FormData($('#uploadForm')[0]);
+                     $.ajax({ 
+                        type: 'post', 
+                        url: "/ch/recharge/upload", //上传文件的请求路径必须是绝对路劲
+                        data: formData, 
+                        cache: false, 
+                        processData: false, 
+                        contentType: false, 
+                    success:function(res){ 
+                        // console.log("res",res)
+                        // console.log("{:Url('recharge_update')}")
+                       
+                        if(res){
+                            $.ajax({
+                                url:'/index/recharge/rechargeupdate',
+                                type:"post",
+                                traditional:true,
+                                data:{money:{$recharge_number},img:res["img"],order_id:'{$order_id}'},
+                                success:function(e){
+                                    // console.log(e)
+                                    layer.closeAll("loading")
+                                    if (e['code']==1){
+                                        
+                                        layer.msg("{:lang('SubmittedSuccessfull')}", {
+                                            end: function () {
+                                                window.location.href = "{:Url('index/index')}";
+                                                // console.log("over")
+                                            }
+                                        });
+                                        
+                                    }
+                                },
+                                error:function(e){
+                                    console.log("error")
+                                    console.log(e)
+                                }
+                                
+                    
+                                
+                                });
+                        }
+                     }});
+            }
+    $('.fuzhi').click(function(){
+        window.clipboardData.setData("Text","aaaa")
+    })
+
+    $('.block').click(function(){
+        $("#tijiao").addClass("Confirm");
+        $("#tijiao").removeClass("disable");
+
+    });
+
+    // $('#tijiao').click(function(){
+    //     var a = $('#money').val();
+    //     if(a!=''){
+    //         if (a<100){
+    //             layer.msg("Minimum recharge amount 100", function () {
+    //                 return false;
+    //             });
+    //             return false;
+    //         }
+    //         var type = $("input[name='type']:checked").val();
+    //         // console.log(type);
+    //         //  var lj = '/ch/recharge/'.type; alert(lj);
+
+    //         // window.location.href = "/index/recharge/recharge?type="+type+'&money='+a;
+    //         $.ajax({
+    //             url: "{:Url('recharge/recharge')}",
+    //             type: "post",
+    //             traditional: true,
+    //             data: {type: type, money:a},
+    //             success: function (e) {
+    //                 layer.closeAll('loading');
+    //                 if (e.code === 1) {
+    //                     console.log(e)
+
+
+    //                     layer.msg(e.msg, {
+    //                         end: function () {
+    //                             window.location.href = e.data;
+    //                         }
+    //                     });
+    //                 } else {
+    //                     console.log(e)
+
+    //                     layer.msg(e.msg, function () {
+    //                         return false;
+    //                     });
+    //                 }
+    //             },
+    //         });
+    //     }
+
+    // });
+
+</script>
+
+<script>
+    ;(function () {
+        let $list = $(".money .block");
+        let $inputBar = $(".uni-input-input");
+        $list.on("click", function () {
+            $list.eq($(this).index()).addClass("active").siblings().removeClass("active");
+            $inputBar.val($(this).text());
+            $("#confirm").removeClass("disable");
+            $("#confirm").addClass("Confirm");
+        })
+
+    }())
+
+    $('#money').blur(function () {
+        var money = $('input[name="money"]').val();
+        if (money > 0){
+            $("#tijiao").addClass("Confirm");
+            $("#tijiao").removeClass("disable");
+        }
+    })
+
+</script>
+

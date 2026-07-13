@@ -1,0 +1,341 @@
+{include file="public/header"/}
+<link rel="stylesheet" href="/static/index/css/order_info.css">
+
+
+<style type="text/css">@charset "UTF-8";
+.ss-modal-body[data-v-56119d4a]{-webkit-box-sizing:border-box;box-sizing:border-box;opacity:0;position:fixed;top:44px;bottom:50px;left:0;width:100%;pointer-events:none;-webkit-transform:translateX(0);transform:translateX(0);-webkit-transition:all .2s linear;transition:all .2s linear;z-index:98}.ss-modal-body.ss-modal-active[data-v-56119d4a]{pointer-events:auto;opacity:1}.ss-modal-body.ss-modal-H5Top[data-v-56119d4a]{top:0;z-index:999}.ss-modal-body.ss-modal-H5Bottom[data-v-56119d4a]{bottom:0;z-index:999}.ss-modal-body .uni-mask[data-v-56119d4a]{z-index:1;position:fixed;top:0;right:0;left:0;bottom:0;background:rgba(0,0,0,.6)}.ss-modal[data-v-56119d4a]{position:fixed;z-index:2;-webkit-transition:inherit;transition:inherit}.ss-modal[data-v-56119d4a] .gmy-float-touch{display:none}.ss-modal-middle[data-v-56119d4a]{top:50%;left:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}.ss-modal-cover[data-v-56119d4a]{width:100%;width:calc(100% + 3px);height:100%;height:calc(100% + 3px);left:0;top:0;-webkit-transform:translate(100%);transform:translate(100%)}.ss-modal-top[data-v-56119d4a]{left:50%;z-index:98;width:100%;height:auto;-webkit-transform:translate(-50%,-100%);transform:translate(-50%,-100%)}.ss-modal-top + .uni-mask[data-v-56119d4a]{z-index:97}.ss-modal-full[data-v-56119d4a]{width:100%;width:calc(100% + 3px);left:0;-webkit-transform:translateY(-100%);transform:translateY(-100%)}.ss-modal-full.ss-modal-top[data-v-56119d4a]{-webkit-transform:translateY(-200%);transform:translateY(-200%)}.ss-modal-full.ss-modal-bottom[data-v-56119d4a]{-webkit-transform:translateY(100%);transform:translateY(100%);-webkit-transition:inherit;transition:inherit}.ss-modal-right[data-v-56119d4a]{right:0;max-width:80%}.ss-modal-left[data-v-56119d4a]{left:0;max-width:80%}.ss-modal-middle.ss-modal-insert[data-v-56119d4a]{min-width:248px;min-height:248px;max-width:102%;max-height:80%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);background:none;-webkit-box-shadow:none;box-shadow:none}.ss-modal-body[data-v-56119d4a]{opacity:0;pointer-events:none}.ss-modal-active[data-v-56119d4a]{opacity:1;pointer-events:auto}.ss-modal-active .ss-modal-top[data-v-56119d4a]{top:44px;-webkit-transform:translate(-50%);transform:translate(-50%)}.ss-modal-active .ss-modal-full[data-v-56119d4a]{-webkit-transform:translateY(-50%);transform:translateY(-50%)}.ss-modal-active .ss-modal-full.ss-modal-top[data-v-56119d4a]{-webkit-transform:translate(0);transform:translate(0)}.ss-modal-active .ss-modal-bottom[data-v-56119d4a]{-webkit-transform:translate(0);transform:translate(0)}.ss-modal-active .ss-modal-cover[data-v-56119d4a]{-webkit-transform:translate(0);transform:translate(0)}.ss-modal-bottom[data-v-56119d4a]{bottom:0}
+.container[data-v-27e0cf69]{height:100vh;background:#f7f8fc}.container .flex-column[data-v-27e0cf69]{display:-webkit-box;display:-webkit-flex;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;flex-direction:column;-webkit-box-align:center;-webkit-align-items:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;justify-content:center}.container .flex-row[data-v-27e0cf69]{display:-webkit-box;display:-webkit-flex;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;-webkit-box-align:center;-webkit-align-items:center;align-items:center}.container .address[data-v-27e0cf69]{height:104px;background:#fff;padding:0 19px 0 78px;-webkit-border-bottom-left-radius:13px;border-bottom-left-radius:13px;-webkit-border-bottom-right-radius:13px;border-bottom-right-radius:13px;-webkit-box-align:start;-webkit-align-items:flex-start;-ms-flex-align:start;align-items:flex-start;border-bottom:2px dashed #1e7eee;position:relative}.container .address .arrow[data-v-27e0cf69]{position:absolute;right:19px}.container .address .arrow uni-text[data-v-27e0cf69]{font-size:32px;color:#8e9297}.container .address .location[data-v-27e0cf69]{width:39px;height:39px;line-height:39px;text-align:center;background:-webkit-gradient(linear,left top,right top,from(var(--color1)),to(var(--color2)));background:-webkit-linear-gradient(left,var(--color1),var(--color2));background:linear-gradient(90deg,var(--color1),var(--color2));-webkit-border-radius:50%;border-radius:50%;position:absolute;left:19px}.container .address .location uni-image[data-v-27e0cf69]{width:26px;height:26px;margin-top:6px}.container .address .top[data-v-27e0cf69]{font-size:20px}.container .address .flex-row[data-v-27e0cf69]{display:-webkit-box;display:-webkit-flex;display:flex;-webkit-box-align:center;-webkit-align-items:center;align-items:center;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between}.container .address .bottom[data-v-27e0cf69]{font-size:17px;margin-top:3px}.container .address .bottom .name[data-v-27e0cf69]{margin-right:10px}.container .card[data-v-27e0cf69]{padding:19px;background:#fff;margin-top:13px;-webkit-border-radius:13px;border-radius:13px}.container .status[data-v-27e0cf69]{font-size:17px;background:#fbf8d9}.container .status .txt[data-v-27e0cf69]{font-weight:700;margin-right:13px;color:#666}.container .goods .top[data-v-27e0cf69]{margin-bottom:6px;-webkit-box-pack:start;-webkit-justify-content:flex-start;justify-content:flex-start}.container .goods .top uni-text[data-v-27e0cf69]{font-size:19px;margin:0 13px}.container .goods .top uni-image[data-v-27e0cf69]{width:26px;height:26px;-webkit-border-radius:13px;border-radius:13px}.container .goods .bottom uni-image[data-v-27e0cf69]{width:117px;height:117px;-webkit-border-radius:7px;border-radius:7px}.container .goods .bottom .right[data-v-27e0cf69]{width:calc(100% - 130px)}.container .goods .bottom .right .title[data-v-27e0cf69]{font-size:18px;margin-bottom:6px;height:52px;overflow:hidden}.container .goods .bottom .right .number uni-text[data-v-27e0cf69]:first-child{font-size:20px}.container .goods .bottom .right .number uni-text[data-v-27e0cf69]:last-child{color:#666}.container .goods .bottom .right .tag[data-v-27e0cf69]{color:#fff;font-size:15px;padding:2px 6px;-webkit-border-radius:6px;border-radius:6px;background:#4caf50;display:inline-block;margin-top:3px}.container .count[data-v-27e0cf69]{color:#999;font-size:18px}.container .count uni-view[data-v-27e0cf69]:first-child{margin-bottom:5px}.container .count uni-view:last-child uni-text[data-v-27e0cf69]:last-child{color:#3a78cb;font-weight:700}.container .fix[data-v-27e0cf69]{width:100%;height:65px;padding:0 19px;background:#fff;border-top:2px solid #f2f2f2;position:fixed;bottom:65px;left:0;z-index:999}.container .fix uni-view[data-v-27e0cf69]{color:#000;font-size:18px;width:calc(100% - 189px)}.container .fix uni-button[data-v-27e0cf69]{background:-webkit-gradient(linear,left top,right top,from(var(--color1)),to(var(--color2)));background:-webkit-linear-gradient(left,var(--color1),var(--color2));background:linear-gradient(90deg,var(--color1),var(--color2))}.container[data-v-27e0cf69] .custom-modal{padding:0 91px}.container .snacthModel[data-v-27e0cf69] .modal-wrap{padding:26px 0;width:100%}.container .snacthModel[data-v-27e0cf69] .modal-wrap .imageModel{padding:13px 0 6px 0;display:-webkit-box;display:-webkit-flex;display:flex;-webkit-box-pack:center;-webkit-justify-content:center;justify-content:center;-webkit-box-align:center;-webkit-align-items:center;align-items:center}.container .snacthModel[data-v-27e0cf69] .modal-wrap .imageModel uni-image{width:96%}.container1[data-v-27e0cf69]{background-color:#edf3fb;padding:0 26px 26px;min-height:100vh;height:100%!important}.container1 .address[data-v-27e0cf69]{height:104px;background:#fff;-webkit-border-radius:15px;border-radius:15px;padding:26px 26px 26px 91px;-webkit-box-sizing:border-box;box-sizing:border-box;margin:26px 0;position:relative}.container1 .address .location[data-v-27e0cf69]{height:52px;width:52px;-webkit-border-radius:15px;border-radius:15px;overflow:hidden;position:absolute;left:26px;top:50%;-webkit-transform:translateY(-50%);transform:translateY(-50%)}.container1 .address .location uni-image[data-v-27e0cf69]{width:100%;height:100%}.container1 .address .top[data-v-27e0cf69]{font-size:20px;font-family:PingFangSC-Semibold,PingFang SC;font-weight:600;color:#131415;height:31px}.container1 .address .bottom .name[data-v-27e0cf69], .container1 .address .bottom .phone[data-v-27e0cf69]{font-size:17px;font-family:PingFangSC-Regular,PingFang SC;font-weight:400;color:#717273;line-height:20px}.container1 .address .bottom .name[data-v-27e0cf69]{margin-right:13px}.container1 .address .arrow[data-v-27e0cf69]{position:absolute;right:26px;top:50%;-webkit-transform:translateY(-50%);transform:translateY(-50%)}.container1 .address .arrow uni-text[data-v-27e0cf69]{font-size:32px;color:#8e9297}.container1 .card[data-v-27e0cf69]{background-color:#fff;-webkit-border-radius:15px;border-radius:15px}.container1 .status[data-v-27e0cf69]{padding:13px 19px;margin-top:26px}.container1 .status uni-text[data-v-27e0cf69]{font-size:17px;line-height:23px;letter-spacing:1px}.container1 .goods[data-v-27e0cf69]{margin:26px 0;padding:0 19px 19px}.container1 .goods .top[data-v-27e0cf69]{height:52px;line-height:52px;font-size:18px;font-family:PingFangSC-Medium,PingFang SC;font-weight:500;color:#000}.container1 .goods .top .iconfont[data-v-27e0cf69]{margin-right:9px}.container1 .goods .bottom[data-v-27e0cf69]{padding-left:130px;position:relative}.container1 .goods .bottom uni-image[data-v-27e0cf69]{height:117px;width:117px;position:absolute;left:0px;top:50%;-webkit-transform:translateY(-50%);transform:translateY(-50%)}.container1 .goods .bottom .right[data-v-27e0cf69]{position:relative}.container1 .goods .bottom .right .title[data-v-27e0cf69]{font-size:17px;font-family:Gilroy-Medium,Gilroy;font-weight:500;color:#000;display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2}.container1 .goods .bottom .right .number[data-v-27e0cf69]{position:relative;margin:13px 0 6px}.container1 .goods .bottom .right .number uni-text[data-v-27e0cf69]{font-size:20px;font-family:PingFangSC-Semibold,PingFang SC;font-weight:600;color:#000}.container1 .goods .bottom .right .number uni-text[data-v-27e0cf69]:last-of-type{font-size:18px;color:#989998;font-weight:500;position:absolute;right:0}.container1 .goods .bottom .right .tag[data-v-27e0cf69]{padding:6px 13px;background:rgba(252,227,226,.8);-webkit-border-radius:5px;border-radius:5px;display:inline-block;font-size:15px;font-weight:700;color:#f37374}.container1 .count[data-v-27e0cf69]{padding:19px 19px;margin-bottom:154px}.container1 .count .flex-row[data-v-27e0cf69]{margin-bottom:19px}.container1 .count .flex-row uni-text[data-v-27e0cf69]{font-size:18px;font-family:Gilroy-Medium,Gilroy;font-weight:500}.container1 .count .flex-row uni-text[data-v-27e0cf69]:first-of-type{color:#666}.container1 .count .flex-row uni-text[data-v-27e0cf69]:last-of-type{color:#000;float:right}.container1 .count .flex-row[data-v-27e0cf69]:last-of-type{margin-bottom:0}.container1 .fix[data-v-27e0cf69]{background-color:#fff;position:fixed;width:100%;bottom:72px;height:94px;background:#fff;-webkit-border-radius:15px;border-radius:15px;left:0;padding:26px 19px 26px 39px;z-index:999;-webkit-box-sizing:border-box;box-sizing:border-box;border:1px solid #edf3fb}.container1 .fix uni-view[data-v-27e0cf69]{line-height:41px;display:inline-block;font-size:20px;font-family:PingFangSC-Semibold,PingFang SC;font-weight:600;color:#f37374}.container1 .fix uni-button[data-v-27e0cf69]{float:right;background:#ff2442}.container2[data-v-27e0cf69]{background-color:#000}.container2 .address[data-v-27e0cf69]{background-color:#262626}.container2 .address .top[data-v-27e0cf69]{color:#fff}.container2 .address .bottom uni-text[data-v-27e0cf69]{color:#929292!important}.container2 .address .arrow uni-text[data-v-27e0cf69]{color:#fff}.container2 .card[data-v-27e0cf69]{background-color:#262626!important;color:#fefffe}.container2 .goods .top uni-text[data-v-27e0cf69]{color:#fff}.container2 .goods .bottom .right .title[data-v-27e0cf69]{color:#fff}.container2 .goods .bottom .right .number uni-text[data-v-27e0cf69]{color:#fff!important}.container2 .goods .bottom .right .tag[data-v-27e0cf69]{background-color:rgba(243,115,116,.2)}.container2 .count .flex-row uni-text[data-v-27e0cf69]{color:#b7b7b7!important}.container2 .count .flex-row uni-text[data-v-27e0cf69]:last-of-type{color:#d1d1d1!important}.container2 .fix[data-v-27e0cf69]{background-color:#423a31;border:none}.container2 .fix uni-view[data-v-27e0cf69]{color:#ebebea}.container2 .fix uni-button[data-v-27e0cf69]{background:-webkit-gradient(linear,left top,right top,from(#f7d7b4),to(#f3c08d));background:-webkit-linear-gradient(left,#f7d7b4,#f3c08d);background:linear-gradient(90deg,#f7d7b4,#f3c08d);color:#502303}</style>
+
+
+<body class="uni-body pages-order-info">
+<noscript><strong>Please enable JavaScript to continue.</strong></noscript>
+<uni-app class="">
+    <uni-page data-page="pages/order/info"><!---->
+        <uni-page-refresh>
+            <div class="uni-page-refresh" style="margin-top: 0px;">
+                <div class="uni-page-refresh-inner">
+                    <svg fill="#2BD009" width="24" height="24" viewBox="0 0 24 24" class="uni-page-refresh__icon">
+                        <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"></path>
+                        <path d="M0 0h24v24H0z" fill="none"></path>
+                    </svg>
+                    <svg width="24" height="24" viewBox="25 25 50 50" class="uni-page-refresh__spinner">
+                        <circle stroke="#2BD009" cx="50" cy="50" r="20" fill="none" stroke-width="4"
+                                stroke-miterlimit="10" class="uni-page-refresh__path"></circle>
+                    </svg>
+                </div>
+            </div>
+        </uni-page-refresh>
+        <uni-page-wrapper>
+            <uni-page-body>
+                <uni-view data-v-27e0cf69="" class="container1">
+                    <uni-view data-v-71fba4a1="" data-v-27e0cf69="" class="top-page"
+                              style="height: 57px; background: linear-gradient(to right, rgb(237, 243, 251), rgb(237, 243, 251));">
+                        <uni-view data-v-71fba4a1="" class="apex"
+                                  style="height: 57px; line-height: 57px; background: linear-gradient(to right, rgb(237, 243, 251), rgb(237, 243, 251)); color: rgb(0, 0, 0); position: fixed;">
+                            <uni-view data-v-71fba4a1="" class="left">
+                                <a href="javascript:window.history.go(-1)" >
+                                <uni-text class="iconfont icon-fanhui1" style="font-size: 16px; color: rgb(0, 0, 0);"><span></span></uni-text></a>
+                            </uni-view>
+                            <uni-view data-v-71fba4a1="" class="center" style="font-size: 22px;">order detail</uni-view>
+                            <uni-view data-v-71fba4a1="" class="right"></uni-view>
+                        </uni-view>
+                        <uni-view data-v-71fba4a1="" class="placeholder"
+                                  style="height: 57px; line-height: 57px;"></uni-view>
+                    </uni-view>
+                    <uni-view data-v-27e0cf69="" class="address flex-column">
+                        <uni-view data-v-27e0cf69="" class="location">
+                            <uni-image data-v-27e0cf69="">
+                                <div style="background-image: url(/static/index/img/location.png); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;"></div>
+                                <img src="/static/index/img/location.png"><!----></uni-image>
+                        </uni-view>
+                        <uni-view data-v-27e0cf69="" class="top">{$user_info.address_name}</uni-view>
+                        <uni-view data-v-27e0cf69="" class="bottom">
+                            <uni-text data-v-27e0cf69="" class="name"><span>{$user_info.address_phone}</span></uni-text>
+<!--                            <uni-text data-v-27e0cf69="" class="phone"><span>asdasd</span></uni-text>-->
+                        </uni-view>
+                        <uni-view data-v-27e0cf69="" class="arrow">
+                            <uni-text data-v-27e0cf69="" class="iconfont icon-bianji"><span></span></uni-text>
+                        </uni-view>
+                    </uni-view><!---->
+                    <uni-view data-v-27e0cf69="" class="status card">
+                        {switch info.status}
+                        {case 0}<uni-text data-v-27e0cf69="" class="txt"><span>Order in progress</span></uni-text>{/case}
+                        {case 1}<uni-text data-v-27e0cf69="" class="txt"><span>The order is finished</span></uni-text>{/case}
+                        {case 2}<uni-text data-v-27e0cf69="" class="txt"><span>Order to be settled</span></uni-text>{/case}
+                        {case 3}<uni-text data-v-27e0cf69="" class="txt"><span>The order is frozen</span></uni-text>{/case}
+                        {/switch}
+                    </uni-view>
+
+                    {if $info.status == 0}
+                    <uni-view data-v-27e0cf69="" class="status card">
+                        <uni-text data-v-27e0cf69="" class="txt">
+                            <span class="time" id="{$info.id}" data-timestamp="{$info.sub_time}">Wait for the buyer to confirm.That your order will be placed&nbsp;<span id="show_time"></span>:  go into frozen.
+                            </span>
+                        </uni-text>
+                    </uni-view>
+                    {/if}
+
+                    {if $info.status == 2}
+                    <uni-view data-v-27e0cf69="" class="status card">
+                        <uni-text data-v-27e0cf69="" class="txt">
+                            <span class="time" id="{$info.id}" data-timestamp="{$info.settle_time}">
+                                The system will settle after <span id="show_time"></span>
+                            </span>
+                        </uni-text>
+                    </uni-view>
+                    {/if}
+
+                    <uni-view data-v-27e0cf69="" class="card goods">
+                        <uni-view data-v-27e0cf69="" class="top flex-row">
+                            <uni-text data-v-27e0cf69="" class="iconfont icon-shangdian"><span></span></uni-text>
+                            <uni-text data-v-27e0cf69=""><span>GFK Flagship store</span></uni-text>
+                        </uni-view>
+                        <uni-view data-v-27e0cf69="" class="bottom flex-row">
+
+                            <uni-image data-v-27e0cf69="">
+                                <div style="background-image: url({$info.goods_pic}); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;"></div>
+                                <img src="{$info.goods_pic}">
+                            </uni-image>
+                            <uni-view data-v-27e0cf69="" class="right">
+                                <uni-view data-v-27e0cf69="" class="title">{$info.order_id}</uni-view>
+                                <uni-view data-v-27e0cf69="" class="number flex-row">
+                                    <uni-text data-v-27e0cf69=""><span>{$info.goods_price}</span></uni-text>
+                                    <uni-text data-v-27e0cf69=""><span>x1</span></uni-text>
+                                </uni-view>
+                                <uni-view data-v-27e0cf69="" class="tag"> Official guarantees</uni-view>
+                            </uni-view>
+
+                        </uni-view>
+                    </uni-view>
+                    <uni-view data-v-27e0cf69="" class="count card">
+                        <uni-view data-v-27e0cf69="" class="flex-row">
+                            <uni-text data-v-27e0cf69=""><span> Total amount</span></uni-text>
+                            <uni-text data-v-27e0cf69=""><span>{$info.goods_price}</span></uni-text>
+                        </uni-view>
+                        {if $info.order_commission != 0}
+                        <uni-view data-v-27e0cf69="" class="flex-row">
+                            <uni-text data-v-27e0cf69=""><span>commission</span></uni-text>
+                            <uni-text data-v-27e0cf69=""><span>{$info.order_commission * 100} %</span></uni-text>
+                        </uni-view>
+                        {/if}
+                        <uni-view data-v-27e0cf69="" class="flex-row">
+                            <uni-text data-v-27e0cf69=""><span>Earnings</span></uni-text>
+                            <uni-text data-v-27e0cf69=""><span>{$info.order_earnings}</span></uni-text>
+                        </uni-view>
+                        <uni-view data-v-27e0cf69="" class="flex-row">
+                            <uni-text data-v-27e0cf69=""><span>Payment status</span></uni-text>
+                            <uni-text data-v-27e0cf69="">Paid</uni-text>
+                        </uni-view><!---->
+                    </uni-view><!---->
+
+                    <uni-view data-v-0b1f9cd8="" data-v-27e0cf69="">
+                        <uni-view data-v-56119d4a="" data-v-0b1f9cd8="" data-platform="android"
+                                  class="ss-modal-body ss-modal-H5Top ss-modal-H5Bottom">
+                            <uni-view data-v-56119d4a="" class="ss-modal ss-modal-bottom ss-modal-full">
+                                <uni-view data-v-0b1f9cd8="" class="digital-keyboard-modal digital-keyboard-modal-1">
+                                    <!---->
+                                    <uni-swiper data-v-0b1f9cd8="" class="dk-swiper">
+                                        <div class="uni-swiper-wrapper">
+                                            <div class="uni-swiper-slides">
+                                                <div class="uni-swiper-slide-frame"
+                                                     style="width: 100%; height: 100%; transform: translate(0%, 0px) translateZ(0px);">
+                                                    <uni-swiper-item data-v-0b1f9cd8=""
+                                                                     style="position: absolute; width: 100%; height: 100%; transform: translate(0%, 0px) translateZ(0px);">
+                                                        <uni-view data-v-0b1f9cd8="" class="dk-title">Enter payment
+                                                            password
+                                                        </uni-view>
+                                                        <uni-view data-v-0b1f9cd8="" class="dk-subtitle">Enter payment
+                                                            password
+                                                        </uni-view>
+                                                        <uni-view data-v-0b1f9cd8="" class="pwd-box clearfix">
+                                                            <uni-view data-v-0b1f9cd8="" data-index="0"
+                                                                      class="pwd-text active"></uni-view>
+                                                            <uni-view data-v-0b1f9cd8="" data-index="1"
+                                                                      class="pwd-text"></uni-view>
+                                                            <uni-view data-v-0b1f9cd8="" data-index="2"
+                                                                      class="pwd-text"></uni-view>
+                                                            <uni-view data-v-0b1f9cd8="" data-index="3"
+                                                                      class="pwd-text"></uni-view>
+                                                            <uni-view data-v-0b1f9cd8="" data-index="4"
+                                                                      class="pwd-text"></uni-view>
+                                                            <uni-view data-v-0b1f9cd8="" data-index="5"
+                                                                      class="pwd-text"></uni-view>
+                                                        </uni-view>
+                                                    </uni-swiper-item>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </uni-swiper><!---->
+
+                                </uni-view>
+                            </uni-view>
+                            <uni-view data-v-56119d4a="" catchtouchmove="true" class="uni-mask"></uni-view>
+                        </uni-view>
+                    </uni-view>
+                        {switch info.status}
+                        {case 0}
+                    <uni-view data-v-27e0cf69="" class="fix flex-row">
+                        <uni-view data-v-27e0cf69="">${$info.goods_price}</uni-view>
+                        <uni-button data-v-27e0cf69="" data-id="{$info.id}" class="Pay" type="warn" size="mini">Pay</uni-button>
+                    </uni-view>
+                        {/case}
+                        {/switch}
+
+                    {include file="public/footer"/}
+                </uni-view>
+            </uni-page-body>
+        </uni-page-wrapper>
+    </uni-page>
+
+    <script src="https://indiaea.com/static/js/index.b7b9727a.js"></script>
+
+
+
+    <uni-view data-v-56119d4a="" class="ss-modal ss-modal-bottom ss-modal-full"><uni-view data-v-0b1f9cd8="" class="digital-keyboard-modal digital-keyboard-modal-1"><!----><uni-swiper data-v-0b1f9cd8="" class="dk-swiper"><div class="uni-swiper-wrapper"><div class="uni-swiper-slides"><div class="uni-swiper-slide-frame" style="width: 100%; height: 100%; transform: translate(0%, 0px) translateZ(0px);"><uni-swiper-item data-v-0b1f9cd8="" style="position: absolute; width: 100%; height: 100%; transform: translate(0%, 0px) translateZ(0px);"><uni-view data-v-0b1f9cd8="" class="dk-title">Enter payment password</uni-view><uni-view data-v-0b1f9cd8="" class="dk-subtitle">Enter payment password</uni-view><uni-view data-v-0b1f9cd8="" class="pwd-box clearfix"><uni-view data-v-0b1f9cd8="" data-index="0" class="pwd-text active"></uni-view><uni-view data-v-0b1f9cd8="" data-index="1" class="pwd-text"></uni-view><uni-view data-v-0b1f9cd8="" data-index="2" class="pwd-text"></uni-view><uni-view data-v-0b1f9cd8="" data-index="3" class="pwd-text"></uni-view><uni-view data-v-0b1f9cd8="" data-index="4" class="pwd-text"></uni-view><uni-view data-v-0b1f9cd8="" data-index="5" class="pwd-text"></uni-view></uni-view></uni-swiper-item></div></div></div></uni-swiper><!----><uni-view data-v-0b1f9cd8="" class="pwd-forget"></uni-view><uni-view data-v-0b1f9cd8="" class="digital-keyboard digital-keyboard-show"><!----><uni-view data-v-0b1f9cd8="" class="digital-key-box clearfix"><uni-view data-v-0b1f9cd8="" class="num">1</uni-view><uni-view data-v-0b1f9cd8="" class="num">2</uni-view><uni-view data-v-0b1f9cd8="" class="num">3</uni-view><uni-view data-v-0b1f9cd8="" class="num">4</uni-view><uni-view data-v-0b1f9cd8="" class="num">5</uni-view><uni-view data-v-0b1f9cd8="" class="num">6</uni-view><uni-view data-v-0b1f9cd8="" class="num">7</uni-view><uni-view data-v-0b1f9cd8="" class="num">8</uni-view><uni-view data-v-0b1f9cd8="" class="num">9</uni-view><uni-view data-v-0b1f9cd8="" class="num no-num"></uni-view><uni-view data-v-0b1f9cd8="" class="num">0</uni-view><uni-view data-v-0b1f9cd8="" class="num no-num">-1</uni-view></uni-view></uni-view></uni-view></uni-view>
+
+</uni-app>
+
+</div>
+</body>
+
+<script>
+    $(document).on("click", ".Pay", function () {
+        var id = $(this).data('id');
+        layer.prompt({title: 'Please enter the transaction password', formType: 1,btn:['Submit','Cancel']}, function(pass, index){
+            layer.close(index);
+            layer.load(2);
+            $.ajax({
+                url: "{:Url('order_finish')}",
+                type: "post",
+                traditional: true,
+                data: {id:id,pass:pass},
+                success: function (e) {
+                    layer.closeAll('loading');
+                    if (e.code === 3){
+                        layer.msg(e.msg, {
+                            time: 2000,
+                            end: function () {
+                                window.location.href = "/index/order/detail/" + e.data.id ;
+                            }
+                        });
+                    }
+                    if (e.code === 2){
+                        layer.confirm('Your balance is not enough to pay the order, please recharge!', {
+                            title:'Info',
+                            btn: ['Recharge','Cancel'] //按钮
+                        }, function(){
+                            window.location.href = "{:Url('recharge/index')}";
+                        })
+                    }
+                    if (e.code === 1) {
+                        layer.msg(e.msg, {
+                            time: 2000,
+                            end: function () {
+                                location.reload();
+                            }
+                        });
+                    }
+                    if (e.code === 0){
+                        layer.msg(e.msg, function () {
+                            return false;
+                        })
+                    }
+                },
+            });
+        });
+    });
+</script>
+
+<script>
+    $.each($(".time"),function(){
+        var timer = [];
+        timer.push($(this).data("timestamp"));
+        var divId = [];
+        divId.push($(this).attr("id"));
+        var date = new Date(parseInt(timer)*1000);
+        if(timer !== 0){
+            setInterval(function(){
+                ShowCountDown(
+                    date.getFullYear(),
+                    date.getMonth()+1,
+                    date.getDate(),date.getHours(),
+                    date.getMinutes(),
+                    date.getSeconds(),
+                    divId);
+            },1000);
+        }
+    });
+    function ShowCountDown(year,month,day,h,m,s,divname)
+    {
+        var now = new Date();
+        var endDate = new Date(year, month-1, day,h,m,s);
+        var leftTime=endDate.getTime()-now.getTime();
+        var leftsecond = parseInt(leftTime/1000);
+        var day1=checkTime(Math.floor(leftsecond/(60*60*24)));
+        var hour=checkTime(Math.floor((leftsecond-day1*24*60*60)/3600));
+        var minute=checkTime(Math.floor((leftsecond-day1*24*60*60-hour*3600)/60));
+        var second=checkTime(Math.floor(leftsecond-day1*24*60*60-hour*3600-minute*60));
+        var cc = document.getElementById("show_time");
+        if(day1 <= 0 && hour <= 0 && minute <=0 && second <= 0){
+            window.clearInterval();
+        }else if(day1 === "0-1" || hour === "0NaN" || minute === "0NaN" || second === "0NaN"){
+            window.clearInterval();
+        }else if(day1 == "00" && (hour != "0" || minute != "0" || second != "0")){
+            cc.innerHTML = minute+":"+second;
+        }else{
+            if(cc != null){
+                cc.innerHTML = minute+":"+second;
+            }
+        }
+    }
+
+    function checkTime(i){
+        if (i < 10) {
+            i = "0" + i;
+        }
+        return i;
+    }
+</script>
+
+<script type="text/javascript" charset="utf-8">
+    $(function(){
+        var order_id = "{$info.id}";
+        setInterval(function (){
+            $.ajax({
+                url: "{:Url('check_timeout')}",
+                type: "post",
+                traditional: true,
+                data: {order_id:order_id},
+                success: function (e) {
+                    if (e.code === 1){
+                        window.location.href = "/index/order/index.html?type=3";
+                    }
+                },
+            });
+        } , 5000)
+    })
+</script>
+
+<script type="text/javascript" charset="utf-8">
+    $(function(){
+        var order_id = "{$info.id}";
+        setInterval(function (){
+            $.ajax({
+                url: "{:Url('check_settlement')}",
+                type: "post",
+                traditional: true,
+                data: {order_id:order_id},
+                success: function (e) {
+                    if (e.code === 1){
+                        window.location.href = "{:Url('grab/index')}";
+                    }else {
+                        var http = "{$http}";
+                        $.get(http + "{:Url('agent/api/settle_order')}",function(){
+
+                        });
+                    }
+                },
+            });
+        } , 3000)
+    })
+</script>

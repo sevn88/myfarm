@@ -1,0 +1,47 @@
+<fieldset>
+    <legend>代理查询</legend>
+    <form action="{:request()->url()}" autocomplete="off" class="layui-form layui-form-pane form-search" method="get"
+          onsubmit="return false">
+
+        <div class="layui-form-item layui-inline">
+            <label class="layui-input-inline" >
+                <input class="layui-input" value="{$start_time}" id="start_time" name="start_time">
+            </label>
+            <label class="layui-input-inline" style="width: 5px">-</label>
+            <label class="layui-input-inline" >
+                <input class="layui-input" value="{$end_time}" id="end_time" name="end_time">
+            </label>
+        </div>
+
+        <div class="layui-form-item layui-inline">
+            <label class="layui-input-inline" >
+                <input class="layui-input" placeholder="必须输入代理名" name="pid_name" value="{$pid_name}">
+            </label>
+        </div>
+
+        <div class="layui-form-item layui-inline">
+            <button class="layui-btn" lay-submit="" lay-filter="sreach">查询</button>
+            <button class="layui-btn layui-btn-danger" onClick="day_dec()" lay-submit=""
+                    lay-filter="sreach">上一天
+            </button>
+            <button class="layui-btn layui-btn-danger" onClick="day_inc()" lay-submit=""
+                    lay-filter="sreach">下一天
+            </button>
+        </div>
+
+    </form>
+
+    <script>
+        function day_dec() {
+            document.getElementById("start_time").value = "{$dec_time}";
+            document.getElementById("end_time").value = "{$dec_time}";
+        }
+
+        function day_inc() {
+            document.getElementById("start_time").value = "{$inc_time}";
+            document.getElementById("end_time").value = "{$inc_time}";
+        }
+    </script>
+
+    <script>window.form.render()</script>
+</fieldset>

@@ -1,0 +1,53 @@
+<form class="layui-form layui-card" action="{:request()->url()}" data-auto="true" method="post" autocomplete="off">
+    <div class="layui-card-body">
+        <div class="layui-form-item">
+            <label class="layui-form-label label-required">服务名称</label>
+            <div class="layui-input-block">
+                <input name="username" required placeholder="请输入用户名称" value="{$list.username}" class="layui-input">
+                <input type="hidden" name="_csrf_" value="{:systoken('admin/users/edit_cs')}">
+                <input type="hidden" name="id" value="{$list.id}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label label-required">链接地址</label>
+            <div class="layui-input-block">
+                <input name="link" required placeholder="请输入完整的链接地址" value="{$list.link}" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">Whatsapp/Telegram</label>
+            <div class="layui-input-block">
+                <select name="WhatsappTelegram">
+                    <option value='0' {if $list.WhatsappTelegram==0} selected>Whatsapp</option>
+                    <option value='1' {if $list.WhatsappTelegram==1} selected>telegram</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-inline">
+            <label class="layui-form-label">时间范围</label>
+            <div class="layui-input-inline">
+                <input data-time-range type="text" class="layui-input" name='time' id="time" value="{$list.btime}:00 - {$list.etime}:00" placeholder=" - ">
+            </div>
+        </div>
+    </div>
+
+    <div class="hr-line-dashed"></div>
+
+    <div class="layui-form-item text-center">
+        <button class="layui-btn" type='submit'>提交</button>
+        <button class="layui-btn layui-btn-danger" type='button' data-close>取消</button>
+    </div>
+
+    <script>window.form.render();</script>
+    <script>
+    laydate.render({ 
+    elem: '#time'
+    ,type: 'time'
+    ,range:'-'
+    ,done: function(value, date, endDate){
+        console.log(value); //得到日期生成的值，如：2017-08-18
+    }
+    });
+    </script>
+</form>

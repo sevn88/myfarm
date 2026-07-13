@@ -1,0 +1,341 @@
+{include file="public/header"/}
+{include file="public/menu"/}
+<div class="page-content">
+    <div class="x-nav">
+            <span class="layui-breadcrumb">
+
+                <a><cite>数据统计</cite></a>
+            </span>
+        <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
+           onclick="location.reload()" title="刷新">
+            <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i>
+        </a>
+    </div>
+    <div class="layui-fluid">
+        <div class="think-box-shadow">
+            <fieldset>
+                <legend style="margin-left: 20px;padding:5px">代理查询</legend>
+                <!--        <form class="layui-form layui-form-pane form-search" action="{:request()->url()}" onsubmit="return false"-->
+                <!--              method="get" autocomplete="off">-->
+                <div class="margin-bottom-15">统计
+
+                    <input id="start_date"  type="text" value="{$start_date}" style="height:30px;border:1px solid #e6e6e6;border-radius: 2px">
+                    ----
+                    <input id="end_date" type="text" value="{$end_date}" style="height:30px;border:1px solid #e6e6e6;border-radius: 2px">
+                   
+                    <div class="layui-inline layui-btn-container">
+                        <button class="layui-btn-sm layui-btn-primary" style="margin-left:10px;" onclick="tongji()"><i
+                                class="layui-icon">&#xe615;</i>
+                            统 计
+                        </button>
+                        <button class="layui-btn-sm layui-btn-normal" style="margin-left:10px;" onclick="dangtian()"><i
+                                class="layui-icon">&#xe66c;</i>当天
+                        </button>
+                        <button class="layui-btn-sm layui-btn-warm" style="margin-left:10px;" onclick="zuotian()"><i
+                                class="layui-icon">&#xe665;</i>昨天
+                        </button>
+                        <button class="layui-btn-sm layui-btn-danger" style="margin-left:10px;" onclick="qiantian()"><i
+                                class="layui-icon">&#xe668;</i>前天
+                        </button>
+                        <button class="layui-btn-sm layui-btn-primary" style="margin-left:10px;" onclick="benzhou()"><i
+                                class="layui-icon">&#xe662;</i>本周
+                        </button>
+                        <button class="layui-btn-sm layui-btn-normal" style="margin-left:10px;" onclick="shangzhou()"><i
+                                class="layui-icon">&#xe661;</i>上周
+                        </button>
+                        <button class="layui-btn-sm layui-btn-warm" style="margin-left:10px;" onclick="dangyue()"><i
+                                class="layui-icon">&#xe656;</i>当月
+                        </button>
+                        <button class="layui-btn-sm layui-btn-danger" style="margin-left:10px;" onclick="shangyue()"><i
+                                class="layui-icon">&#xe653;</i>上月
+                        </button>
+                    </div>
+
+
+                </div>
+                当前查询时间为:{$yes1|toDate} --- {$yes2|toDate}
+                <!--        </form>-->
+            </fieldset>
+
+            <table class="layui-table" lay-filter="tab" lay-skin="line">
+
+                <thead>
+                <tr>
+                    <th lay-data="{field:'reg_num',width:80}" class='text-left nowrap'>注册人数</th>
+                    <th lay-data="{field:'c_recharge'}" class='text-left nowrap' >通道充值</th>
+                    <th lay-data="{field:'service_cz'}" class='text-left nowrap'>通道手续费</th>
+                    <th lay-data="{field:'m_recharge'}" class='text-left nowrap'>手动充值</th>
+                    <th lay-data="{field:'m_withdrawal'}" class='text-left nowrap'>提现金额</th>
+                    <th lay-data="{field:'m_withdrawal_cost_new'}" class='text-left nowrap'>提现手续费</th>
+                    
+                    <th lay-data="{field:'shouchong'}" class='text-left nowrap'>首充人数</th>
+                    <th lay-data="{field:'profit_rate'}" class='text-left nowrap'>代理手续费</th>
+                    <th lay-data="{field:'profit'}" class='text-left nowrap'>盈利金额</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                <tr>
+                    <td class='text-left nowrap'>{$info.reg_num}</td>
+                    <td class='text-left nowrap'>{$info.c_recharge}</td>
+                    <td class='text-left nowrap'>{$info.service_cz}</td>
+                    <td class='text-left nowrap'>{$info.m_recharge}</td>
+                    <td class='text-left nowrap'>{$info.m_withdrawal}</td>
+                    <td class='text-left nowrap'>{$info.m_withdrawal_cost_new}</td>
+                    
+                    <td class='text-left nowrap'>{$info.shouchong}</td>
+                     <td class='text-left nowrap'>{$info.profit_rate}</td>
+                    <td class='text-left nowrap'>{$info.profit}</td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+        
+
+
+        <script>
+            var table = layui.table;
+            //转换静态表格
+            var limit = Number('{$Think.get.limit}');
+            if(limit==0) limit=2000000;
+            table.init('tab', {
+                cellMinWidth:120,
+                skin: 'line,row',
+                even: false,
+                size: 'sm ',
+                limit: limit
+            });
+
+            layui.use('laydate', function () {
+                var laydate = layui.laydate;
+                laydate.render({elem: '#start_date', theme: 'molv', type: 'date'})
+                laydate.render({elem: '#end_date', theme: 'molv', type: 'date'})
+
+            })
+
+
+
+        </script>
+        <script>
+            function tongji() {
+                
+                var start_date = $('#start_date').val();
+                var end_date = $('#end_date').val();
+                var date_start = new Date(start_date);
+                var date_end = new Date(end_date);
+                if (date_start > date_end) {
+                    layer.msg("开始日期不能大于结束日期", function () {
+                        return false
+                    })
+                } else {
+                    location.href = "/agent/count/statistics.html?spm=m-69-72-103&start_date=" + start_date + "&end_date=" + end_date
+                }
+            }
+
+            function dangtian() {
+               
+                var now_date = new Date();
+                var start_date = now_date.getFullYear() + "-" + (now_date.getMonth() + 1) + "-" + now_date.getDate()
+                location.href = "/agent/count/statistics.html?spm=m-69-72-103&start_date=" + start_date + "&end_date=" + start_date
+            }
+            function zuotian(){
+                
+                var now_date = new Date();
+                now_date.setDate(now_date.getDate() - 1);
+                var s1 = now_date.format("yyyy-MM-dd");
+                location.href = "/agent/count/statistics.html?spm=m-69-72-103&start_date=" + s1 + "&end_date=" + s1
+            }
+            function qiantian(){
+                
+                var now_date = new Date();
+                now_date.setDate(now_date.getDate() - 2);
+                var s1 = now_date.format("yyyy-MM-dd");
+                location.href = "/agent/count/statistics.html?spm=m-69-72-103&start_date=" + s1 + "&end_date=" + s1
+            }
+            function benzhou(){
+                
+                var s1 = getWeekStartDate()
+                var s2 = getWeekEndDate()
+                location.href = "/agent/count/statistics.html?spm=m-69-72-103&start_date=" + s1 + "&end_date=" + s2
+            }
+            function shangzhou(){
+               
+                var s1 = getLastWeekStartDate()
+                var s2 = getLastWeekEndDate()
+                location.href = "/agent/count/statistics.html?spm=m-69-72-103&start_date=" + s1 + "&end_date=" + s2
+            }
+            function dangyue(){
+                
+                var s1 = getMonthStartDate()
+                var s2 = getMonthEndDate()
+                location.href = "/agent/count/statistics.html?spm=m-69-72-103&start_date=" + s1 + "&end_date=" + s2
+            }
+            function shangyue(){
+                
+                var s1 = getLastMonthStartDate()
+                var s2 = getLastMonthEndDate()
+                location.href = "/agent/count/statistics.html?spm=m-69-72-103&start_date=" + s1 + "&end_date=" + s2
+            }
+            /**
+             *对Date的扩展，将 Date 转化为指定格式的String
+             *月(M)、日(d)、小时(h)、分(m)、秒(s)、季度(q) 可以用 1-2 个占位符，
+             *年(y)可以用 1-4 个占位符，毫秒(S)只能用 1 个占位符(是 1-3 位的数字)
+             *例子：
+             *(new Date()).Format("yyyy-MM-dd hh:mm:ss.S") ==> 2006-07-02 08:09:04.423
+             *(new Date()).Format("yyyy-M-d h:m:s.S")      ==> 2006-7-2 8:9:4.18
+             */
+            Date.prototype.format = function (fmt) {
+                var o = {
+                    "M+": this.getMonth() + 1, //月份
+                    "d+": this.getDate(), //日
+                    "h+": this.getHours(), //小时
+                    "m+": this.getMinutes(), //分
+                    "s+": this.getSeconds(), //秒
+                    "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+                    "S": this.getMilliseconds() //毫秒
+                };
+                if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+                for (var k in o)
+                    if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+                return fmt;
+            }
+
+            /**
+             * 获取上周、本周、上月、本月、上季度、本季度的开始日期、结束日期 start
+             * 亲测无bug。获取上月开始结束日期考虑了年份的变化
+             */
+            var now = new Date(); //当前日期
+            var nowDayOfWeek = now.getDay() - 1; //今天本周的第几天
+            var nowDay = now.getDate(); //当前日
+            var nowMonth = now.getMonth(); //当前月
+            var nowYear = now.getYear(); //当前年
+            nowYear += (nowYear < 2000) ? 1900 : 0; //
+            var lastMonthDate = new Date(); //上月日期
+            lastMonthDate.setDate(1);
+            lastMonthDate.setMonth(lastMonthDate.getMonth() - 1);
+            var lastYear = lastMonthDate.getYear();
+            var lastMonth = lastMonthDate.getMonth();
+
+            //格式化日期：yyyy-MM-dd
+            function formatDate(date) {
+                var myyear = date.getFullYear();
+                var mymonth = date.getMonth() + 1;
+                var myweekday = date.getDate();
+                if (mymonth < 10) {
+                    mymonth = "0" + mymonth;
+                }
+                if (myweekday < 10) {
+                    myweekday = "0" + myweekday;
+                }
+                return (myyear + "-" + mymonth + "-" + myweekday);
+            }
+
+
+            //获得某月的天数
+            function getMonthDays(myMonth) {
+                var monthStartDate = new Date(nowYear, myMonth, 1);
+                var monthEndDate = new Date(nowYear, myMonth + 1, 1);
+                var days = (monthEndDate - monthStartDate) / (1000 * 60 * 60 * 24);
+                return days;
+            }
+
+            //获得本季度的开始月份
+            function getQuarterStartMonth() {
+                var quarterStartMonth = 0;
+                if (nowMonth < 3) {
+                    quarterStartMonth = 0;
+                }
+                if (2 < nowMonth && nowMonth < 6) {
+                    quarterStartMonth = 3;
+                }
+                if (5 < nowMonth && nowMonth < 9) {
+                    quarterStartMonth = 6;
+                }
+                if (nowMonth > 8) {
+                    quarterStartMonth = 9;
+                }
+                return quarterStartMonth;
+            }
+
+
+            //获得本周的开始日期
+            function getWeekStartDate() {
+                var weekStartDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek);
+                return formatDate(weekStartDate);
+            }
+
+            //获得本周的结束日期
+            function getWeekEndDate() {
+                var weekEndDate = new Date(nowYear, nowMonth, nowDay + (6 - nowDayOfWeek));
+                return formatDate(weekEndDate);
+            }
+
+            //获得上周的开始日期
+            function getLastWeekStartDate() {
+                var weekStartDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek - 7);
+                return formatDate(weekStartDate);
+            }
+
+            //获得上周的结束日期
+            function getLastWeekEndDate() {
+                var weekEndDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek - 1);
+                return formatDate(weekEndDate);
+            }
+
+            //获得本月的开始日期
+            function getMonthStartDate() {
+                var monthStartDate = new Date(nowYear, nowMonth, 1);
+                return formatDate(monthStartDate);
+            }
+
+            //获得本月的结束日期
+            function getMonthEndDate() {
+                var monthEndDate = new Date(nowYear, nowMonth, getMonthDays(nowMonth));
+                return formatDate(monthEndDate);
+            }
+
+            //获得上月开始时间
+            function getLastMonthStartDate() {
+                if (lastMonth == 11) {
+                    var lastMonthStartDate = new Date(nowYear - 1, lastMonth, 1);
+                } else {
+                    var lastMonthStartDate = new Date(nowYear, lastMonth, 1);
+                }
+                return formatDate(lastMonthStartDate);
+            }
+
+            //获得上月结束时间
+            function getLastMonthEndDate() {
+                if (lastMonth == 11) {
+                    var lastMonthEndDate = new Date(nowYear - 1, lastMonth, getMonthDays(lastMonth));
+                } else {
+                    var lastMonthEndDate = new Date(nowYear, lastMonth, getMonthDays(lastMonth));
+                }
+                return formatDate(lastMonthEndDate);
+            }
+
+            //获得本季度的开始日期
+            function getQuarterStartDate() {
+                var quarterStartDate = new Date(nowYear, getQuarterStartMonth(), 1);
+                return formatDate(quarterStartDate);
+            }
+
+            //获得本季度的结束日期
+            function getQuarterEndDate() {
+                var quarterEndMonth = getQuarterStartMonth() + 2;
+                var quarterStartDate = new Date(nowYear, quarterEndMonth,
+                    getMonthDays(quarterEndMonth));
+                return formatDate(quarterStartDate);
+            }
+
+            /**
+             * 获取时间 end
+             */
+
+        </script>
+    </div>
+</div>
+
+{include file="public/footer"/}

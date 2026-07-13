@@ -1,0 +1,10 @@
+<fieldset>
+    <legend>条件搜索</legend>
+
+    <script>
+        var test = "{$Think.get.cid|default='0'}";
+        $("#selectList").find("option[value="+test+"]").prop("selected",true);
+
+        form.render()
+    </script>
+</fieldset>

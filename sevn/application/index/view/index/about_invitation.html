@@ -1,0 +1,83 @@
+{include file="public/header"/}
+<style>
+    .container {
+        height: calc(100vh - 50px);
+        background: #f1f1f1;
+        padding: 0 15px 15px
+    }
+
+    .container .title {
+        font-size: 20px;
+        font-weight: 700;
+        margin-top: 15px
+    }
+
+    .container .date {
+        color: #999;
+        font-size: 13px;
+        margin: 15px 0
+    }
+
+    .container .content uni-view {
+        font-size: 14px
+    }
+
+    .container .content uni-view uni-text {
+        font-size: 12px;
+        color: red
+    }
+
+    .container .content img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover
+    }
+</style>
+
+
+<body>
+<uni-app class="uni-app--maxwidth">
+    <uni-page data-page="pages/article/index">
+        <!---->
+        <!---->
+        <uni-page-wrapper>
+            <uni-page-body>
+                <div class="container">
+                    <div class="top-page"
+                         style="height: 44px; background: linear-gradient(to right, rgb(255, 255, 255), rgb(255, 255, 255));">
+                        <div class="apex"
+                             style="height: 44px; line-height: 44px; background: linear-gradient(to right, rgb(255, 255, 255), rgb(255, 255, 255)); color: rgb(0, 0, 0); position: fixed;">
+                            <a href="javascript:window.history.go(-1)" class="left">
+                                <uni-text class="iconfont icon-fanhui1"
+                                          style="font-size: 16px; color: rgb(0, 0, 0);"><span></span></uni-text>
+                            </a>
+                            <div class="center" style="font-size: 17px;">{:lang("AboutInvite")}</div>
+                            <div class="right"></div>
+                        </div>
+                        <div class="placeholder" style="height: 44px; line-height: 44px;"></div>
+                    </div>
+                    <div class="title">{:lang("AboutInvite")}</div>
+                    <div class="date">2015-07-23 10:43:36</div>
+                    <uni-view data-v-16c8b9f0="" class="content"><p>{:lang("AboutInvite1")}</p>
+                        <p><br></p>
+                        <p>{:lang("AboutInvite2")}</p>
+                        <p><br></p>
+                        <p>{:lang("AboutInvite3")}</p>
+                        <p><br></p>
+                        <p>1. {:lang("AboutInvite4")}</p>
+                        <p><br></p>
+                        <p>2. {:lang("AboutInvite5")}</p>
+                        <p><br></p>
+                        <p>3.  {:lang("AboutInvite6")}</p>
+                        <p><br></p>
+                        <p>4. {:lang("AboutInvite7")}</p>
+                        <p><br></p>
+                        <p>{:lang("AboutInvite8")}</p></uni-view>
+                    {include file="public/footer"/}
+                </div>
+            </uni-page-body>
+        </uni-page-wrapper>
+    </uni-page>
+</uni-app>
+</body>
+</html>

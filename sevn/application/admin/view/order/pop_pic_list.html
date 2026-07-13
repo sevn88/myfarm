@@ -1,0 +1,78 @@
+{extend name='main'}
+
+{block name="button"}
+    {if auth("pop_pic_add")}
+    <button data-open='{:url("pop_pic_add")}' data-title="添加弹窗" class='layui-btn'>添加弹窗</button>
+    {/if}
+{/block}
+
+{block name="content"}
+
+<div class="think-box-shadow">
+    {include file='order/pop_pic_search'}
+
+    <table class="layui-table" lay-filter="tab" lay-skin="line">
+        {notempty name='list'}
+        <thead>
+        <tr>
+            <th lay-data="{field:'id',width:80}" class='text-left nowrap'>ID</th>
+            <th lay-data="{field:'goods_name'}" class='text-left nowrap' >弹窗名称</th>
+            <th lay-data="{field:'goods_pic'}" class='text-left nowrap'>商品图片</th>
+            <th lay-data="{field:'create_time'}" class='text-left nowrap'>添加时间</th>
+            <th lay-data="{field:'edit_goods'}" class='text-left nowrap'>操作</th>
+        </tr>
+        </thead>
+        {/notempty}
+        <tbody>
+        {foreach $list as $key=>$vo}
+        <tr>
+            <td class='text-left nowrap'>{$vo.id}</td>
+            <td class='text-left nowrap' width="200">{$vo.name}</td>
+            <td class='text-left nowrap'><img src="{$vo.pic}" alt="" style="width: 80px"></td>
+            <td class='text-left nowrap'>{$vo.create_time|toDate}</td>
+            <td class='text-left nowrap'>
+            {if auth("pop_pic_del")}
+                <a class="layui-btn layui-btn-xs layui-btn" style='background:red;' onClick="del_goods({$vo.id})">删除</a>
+            {/if}
+            </td>
+        </tr>
+        {/foreach}
+        </tbody>
+    </table>
+
+    {empty name='list'}<span class="notdata">没有记录哦</span>{else}{$pages|raw|default=''}{/empty}
+
+</div>
+
+<script>
+    var table = layui.table;
+    //转换静态表格
+    var limit = Number('{$Think.get.limit}');
+    if(limit==0) limit=20;
+    table.init('tab', {
+        cellMinWidth:120,
+        skin: 'line,row',
+        even: false,
+        size: 'sm ',
+        limit: limit
+    });
+</script>
+
+<script>
+    function del_goods(id){
+         layer.confirm("确认要删除吗，删除后不能恢复",{ title: "删除确认" },function(index){
+            $.ajax({
+                type: 'POST',
+                url: "{:url('pop_pic_del')}",
+                data: {
+                    'id': id,
+                },
+                success:function (res) {
+                    layer.msg(res.info,{time:2500});
+                    location.reload();
+                }
+            });
+        },function(){});
+    }
+</script>
+{/block}

@@ -1,0 +1,33 @@
+{include file="public/header"/}
+
+<div class="layui-fluid">
+    <div class="layui-row">
+        <form class="layui-form" action="" method="post">
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>请输入要增加的彩金金额</label>
+                
+                     <div class="layui-input-block">
+                        <input name="balance" placeholder="请输入彩金金额，可以是负数" class="layui-input">
+                    </div>
+               
+            </div>
+
+            <div class="layui-form-item" style="margin-left: 25%">
+                {if condition="($user_info.agent_role==3 or $user_info.agent_role==4 or  $user_info.agent_role==2)"}
+                <input type="hidden" name="id" value="{$user_info.id}" >
+                <button  class="layui-btn" lay-filter="add" lay-submit="">提交</button>
+                {/if}
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    layui.use(['form', 'layer'],
+    );
+</script>
+
+
+

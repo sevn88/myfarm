@@ -1,0 +1,179 @@
+{include file="public/header"/}
+<style>
+    .container1{width:100%;height:100vh!important;background:-webkit-gradient(linear,left top,left bottom,from(#70e6cc),to(#70e6cc));background:-webkit-linear-gradient(top,#70e6cc,#70e6cc);background:linear-gradient(180deg,#70e6cc,#70e6cc);background-image: url('/static/index/auth-bg-green.jpg');background-size: cover;background-repeat: no-repeat;}.container1 .title{font-size:36px;font-family:Rubik-Bold,Rubik;font-weight:400;color:#fff;padding:85px 36px}.container1 .wrap{padding:0 32px}.container1 .wrap .item ~ .item{margin-top:8px}.container1 .wrap .item{padding:15px 0;border-bottom:1px solid hsla(0,0%,100%,.4)}.container1 .wrap .item .uni-input-placeholder{font-size:15px;font-family:Rubik-Regular,Rubik;font-weight:400;color:#fff;opacity:.4}.container1 .wrap .item .uni-input-input{font-size:15px;font-family:Rubik-Regular,Rubik;font-weight:400;color:#fff}.container1  .uni-input-input::placeholder{color:#fff}.container1 .wrap .label{text-align:right;font-size:14px;font-family:Rubik-Regular,Rubik;font-weight:400;color:#fff;margin-top:12px;opacity:.8}.container1 .wrap .btn{height:48px;background:#fff;border-radius:8px;text-align:center;line-height:48px;font-size:15px;font-family:Rubik-Medium,Rubik;font-weight:500;color:#0e73ff;margin-top:99px}.container1 .wrap .btn ~ .btn{margin-top:20px;background:hsla(0,0%,100%,.1);color:#fff}.container1 .wrap .regist{text-align:center;margin-top:50px}.container1 .wrap .regist div{font-size:14px;font-family:Rubik-Medium,Rubik;font-weight:500;color:#fff}  
+    input::-webkit-input-placeholder {
+        color: #87b5f3;
+    }
+    input::-ms-input-placeholder {
+        color: #87b5f3;
+    }
+    .mm-container{
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: 2vw;
+    margin-top:5vw;
+}
+.mm-container .mm-image{
+    width: 9.4vw;
+}
+.mm-container .mm-span{
+    /*line-height:10vw;*/
+    font-size: 4vw;
+    color: #000000;
+    margin-right: 1vw;
+    margin-left: 1vw;
+    width: 25vw;
+}
+.mm-container .mm-div{
+    height: 2em;
+    /*margin-left: 6vw;*/
+    /*font-size: 3vw;*/
+    width: 45vw;
+    border: none;
+    outline: none;
+}
+</style>
+
+<body>
+<uni-app class="uni-app--maxwidth">
+    <uni-page data-page="pages/login/index">
+        <uni-page-wrapper>
+            <uni-page-body>
+                <div class="container1">
+                {if (cookie("think_var")=="es")}
+                    <div class="yy" style='float: right;margin: 5%;'>Idioma</div>
+                {elseif (cookie("think_var")=="ru")}
+                    <div class="yy" style='float: right;margin: 5%;'>Язык</div>
+                {elseif (cookie("think_var")=="pt")}
+                    <div class="yy" style='float: right;margin: 5%;'>linguagem</div>
+                {elseif (cookie("think_var")=="ar")}
+                    <div class="yy" style='float: right;margin: 5%;'>لغة</div>
+                {elseif (cookie("think_var")=="fr")}
+                    <div class="yy" style='float: right;margin: 5%;'>langue</div>
+                {elseif (cookie("think_var")=="ko")}
+                    <div class="yy" style='float: right;margin: 5%;'>언어</div>
+                {else}
+                    <div class="yy" style='float: right;margin: 5%;'>Language</div>
+                {/if}
+                
+                        <div id='xx' style='float: right;height: 20%; overflow: scroll;display: none;'>
+                             <a href="#" onclick="changelang('en-us')">English</a>----
+                             <a href='#' onclick="changelang('es')">español</a>----
+                             <a href="#" onclick="changelang('ru')">Русский</a>----
+                             <a href="#" onclick="changelang('pt')">Português</a>----
+                             <a href="#" onclick="changelang('ar')">عربي</a>----
+                             <a href="#" onclick="changelang('fr')">Français</a>----
+                             <a href="#" onclick="changelang('ko')">한국인</a>----
+                            
+                             
+                        </div>
+                    
+                    <div class="title" style="text-align:center;">{:lang('welcome1')}</div>
+                    <div class="wrap">
+                        <div class="items">
+                            <div class="mm-container">
+                                <img class="mm-image" src="/static/index/login/account-green.png">
+                                <span class="mm-span">
+                                    {:lang('account1')}
+                                </span>
+                                <div class="van-cell van-field">
+                                    <div class="van-cell__value van-cell__value--alone van-field__value">
+                                        <div class="van-field__body">
+                                            <input type="" name="account" class="mm-div"  placeholder="{:lang('entertheusername1')}" maxlength="140" enterkeyhint="done" autocomplete="off">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                                        <div class="mm-container">
+                                <img class="mm-image" src="/static/index/login/password-green.png">
+                                <span class="mm-span">
+                                   {:lang('loginpassword1')}
+                                </span>
+                                <div class="van-cell van-field">
+                                    <div class="van-cell__value van-cell__value--alone van-field__value">
+                                        <div class="van-field__body">
+                                            
+                                            <input name="password" maxlength="140" step="" enterkeyhint="done" autocomplete="off" type="password" class="mm-div" placeholder="{:lang('enteryourpassword1')}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<div class="item">-->
+                            <!--    <uni-input>-->
+                            <!--        <div class="uni-input-wrapper">-->
+                            <!--            <input name="account" placeholder="phone number/ account" maxlength="100" step="" enterkeyhint="done" autocomplete="off" type="text" class="uni-input-input">-->
+                                        <!---->
+                            <!--        </div>-->
+                            <!--    </uni-input>-->
+                            <!--</div>-->
+                            <!--<div class="item">-->
+                            <!--    <uni-input>-->
+                            <!--        <div class="uni-input-wrapper">-->
+                            <!--            <input name="password" placeholder="Please enter the password" maxlength="100" step="" enterkeyhint="done" autocomplete="off" type="password" class="uni-input-input">-->
+                                        <!---->
+                            <!--        </div>-->
+                            <!--    </uni-input>-->
+                            <!--</div>-->
+                            <!--<div class="label">-->
+                            <!--    <div><a href="{:Url('login/forget')}"> Forget the password</a></div>-->
+                            <!--</div>-->
+                        </div>
+                        <div class="btn login" >{:lang("login1")}</div>
+                        <!--<div class="regist">-->
+                        <!--    <div class="line"></div>-->
+                        <!--    <div><a href="{:Url('login/reg')}">No account, register now</a>  </div>-->
+                        <!--</div>-->
+                    </div>
+                </div>
+                <script>
+                        $('.yy').click(function(){
+                           $('#xx').show();
+                           $('.yy').hide();
+                        });
+                        $('.title').click(function(){
+                            $('#xx').hide();
+                            $('.yy').show();
+                        });
+                </script>
+            </uni-page-body>
+        </uni-page-wrapper>
+    </uni-page>
+</uni-app>
+</body>
+</html>
+
+<script type="text/javascript">
+    $(document).on("click", ".login", function () {
+        var account = $("input[ name='account']").val();
+        var password = $("input[ name='password']").val();
+        layer.load(2);
+        $.ajax({
+            url: "{:Url('login/index')}",
+            type: "post",
+            traditional: true,
+            data: {account: account, password: password},
+            success: function (e) {
+                layer.closeAll('loading');
+                if (e.code === 1) {
+                    layer.msg(e.msg, {
+                        end: function () {
+                            window.location.href = "{:Url('index/index')}";
+                        }
+                    });
+                } else {
+                    layer.msg(e.msg, function () {
+                        return false;
+                    });
+                }
+            },
+        });
+    });
+    function changelang(var_x){
+        _pathname = window.location.pathname;
+        $.post('{:url('changelang')}',{lang:var_x},function(data){
+            location.reload();
+        })
+    }
+</script>

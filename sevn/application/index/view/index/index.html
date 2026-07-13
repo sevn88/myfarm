@@ -1,0 +1,651 @@
+{include file="public/header"/}
+<link rel="stylesheet" href="/static/index/css/index.css">
+<link href="/static/index/swiper/swiper-bundle.min.css" rel="stylesheet">
+<script src="/static/index/swiper/swiper-bundle.min.js"></script>
+
+<body class="uni-body pages-index-index">
+<noscript><strong>Please enable JavaScript to continue.</strong></noscript>
+<uni-app class="uni-app--maxwidth">
+    <uni-page data-page="pages/index/index">
+        <uni-page-wrapper>
+            <uni-page-body>
+                <div class="container1">
+                    <div class="top-page"
+                         style="height: 44px; background: linear-gradient(to right, rgb(112, 230, 204), rgb(112, 230, 204));">
+                        <div class="apex"
+                             style="height: 44px; line-height: 44px; background: linear-gradient(to right, rgb(112, 230, 204), rgb(112, 230, 204)); color: rgb(0, 0, 0); position: fixed;">
+                            <div class="left"></div>
+                            <div class="center" style="font-size: 30px;color:teal">{:lang('welcome2')}</div>
+                            <div class="right"></div>
+                        </div>
+                        <div class="placeholder" style="heigh 44px; line-height: 44px;"></div>
+                    </div>
+                    <div class="bannerlist">
+                        <div class="swiper-container" style="width: 88%;">
+                            <div class="swiper-wrapper">
+                                
+                                <div class="swiper-slide">
+                                    <div style="border-radius: 24px;overflow: hidden;height: 230px;display: flex;justify-content: center;">
+                                        <img src="/static/index/banner/photo_2023-07-23_12-24-58.jpg"
+                                             draggable="true" style="max-width: 100%;height: 100%;border-radius:25px;">
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div style="border-radius: 24px;overflow: hidden;height: 230px;display: flex;justify-content: center;">
+                                        <img src="/static/index/banner/photo_2023-07-23_00-56-21.jpg"
+                                             draggable="true" style="max-width: 100%;height: 100%;border-radius:25px;">
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div style="border-radius: 24px;overflow: hidden;height: 230px;display: flex;justify-content: center;">
+                                        <img src="/static/index/banner/photo_2023-07-23_12-50-38.jpg"
+                                             draggable="true" style="max-width: 100%;height: 100%;border-radius:25px;">
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div style="border-radius: 24px;overflow: hidden;height: 230px;display: flex;justify-content: center;">
+                                        <img src="/static/index/banner/photo_2023-08-04_19-15-38.jpg"
+                                             draggable="true" style="max-width: 100%;height: 100%;border-radius:25px;">
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div style="border-radius: 24px;overflow: hidden;height: 230px;display: flex;justify-content: center;">
+                                        <img src="/static/index/banner/photo_2023-08-21_10-00-05.jpg"
+                                             draggable="true" style="max-width: 150%;height: 100%;border-radius:25px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 如果需要分页器 -->
+                            <div class="swiper-pagination"></div>
+
+                        </div>
+                    </div>
+                    <div class="columnlist">
+                        <span style="width:33%">
+                            <a href="{:Url('recharge/index')}" class="columnlist-item">
+                                <uni-image>
+                                    <div
+                                            style="background-image: url(/static/index/img/index02.png); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                    </div>
+                                    <img src="/static/index/img/index02.png" draggable="true">
+                                    <!---->
+                                </uni-image>
+                                <!---->
+                                <!---->
+                                <div>{:lang('recharge2')}</div>
+                            </a>
+                        </span>
+                        <span style="width:33%">
+                            <a href="{:Url('withdrawal/index')}" class="columnlist-item">
+                                <uni-image>
+                                    <div
+                                            style="background-image: url(/static/index/img/index03.png); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                    </div>
+                                    <img src="/static/index/img/index03.png" draggable="true">
+                                    <!---->
+                                </uni-image>
+                                <!---->
+                                <!---->
+                                <div>{:lang('withdrawal2')}</div>
+                            </a>
+                        </span>
+                        <!--<a href="{:Url('account/invitation')}" class="columnlist-item">-->
+                        <!--    <uni-image>-->
+                        <!--        <div-->
+                        <!--                style="background-image: url(/static/index/img/index04.png); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">-->
+                        <!--        </div>-->
+                        <!--        <img src="/static/index/img/index04.png" draggable="true">-->
+                                <!---->
+                        <!--    </uni-image>-->
+                            <!---->
+                            <!---->
+                        <!--    <div>Invite</div>-->
+                        <!--</a>-->
+                        
+                        <!--<div class="contentValidity" style="padding-bottom: 3px;">-->
+                        <!--    <a href="{:Url('about_us')}" class="contentValidity-text">-->
+                        <!--        <div class="content-img"></div>-->
+                        <!--        <div class="content-text">About Us</div>-->
+                        <!--    </a>-->
+                        <!--    <a href="{:Url('about_withdrawal')}" class="contentValidity-text">-->
+                        <!--        <div class="content-img"></div>-->
+                        <!--        <div class="content-text">About Withdrawal</div>-->
+                        <!--    </a>-->
+                        <!--    <a href="{:Url('about_investment_income')}" class="contentValidity-text">-->
+                        <!--        <div class="content-img"></div>-->
+                        <!--        <div class="content-text">About order</div>-->
+                        <!--    </a>-->
+                        <!--    <a href="{:Url('about_invitation')}" class="contentValidity-text">-->
+                        <!--        <div class="content-img"></div>-->
+                        <!--        <div class="content-text">About Invitation</div>-->
+                        <!--    </a>-->
+                        <!--</div>-->
+                        <span style="width:33%">
+                            <a href="{:Url('about_invitation')}" class="columnlist-item">
+                            <uni-image>
+                                <div
+                                        style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAEp0lEQVR4Xu2aS2yUVRTHf2em9iEIxTcY46IuNPHRmKhRTExIjIaWFtAF6MaoM1OMdKaoMbrqSmMUOlONdKZq3CgutKWlJRoTEhPR+IjBR4ILWRgjKD4oSO2Ddo75SqgVC+39zp1K2u9u5/z/53/+37n3m7lnhAW+ZIHXT2RA1AEL3IFoCyzwBogOwTnbAsmX9HoZZ7UKK1GuBS4FFgGDwGGE/aLs1Ti7C5vlm7nqzJIa0NqqsYPL2IDyOHCTQ1FfImxdcYS3W1ul6IBzDi2ZAYms3ixQAGqdVf0D2CdxEvnN8oWB46zQkhiQyukWLfI8QplZuDImMZ7Kp2WbmWsaAr8GqEoyRzvwWAnEvlxI04yI+uT2akAqp1tV2eJT4FQuEbbl0xKcJ96WNwMSbfqQCK95U3YGIlUe7myR133l8WJAsl1rKLIPWOxL2Fl4jhOjttAsB3zk8mJAIqu7BOp9CJoNh0JfZ0bWzCZ2phizAak2vU2Fj2dK5PtzUW7Pt8gnVl6zAcmsvgPcaxUSAv9uISP3hcD9C2Iy4ME2rS4XfgYqrEJC4EdGlcvfaJGBENhJiMmAVLtu1CJvWQRYsBLj/nyz7DBxWMCpnG5XpcnCYcGK0JFPyyYThwWcyOpHAistHBaswt7OjNxh4TBtgWRWDwLLLQKM2EOFjKywcFgN+AuosggwYocKGTnfwmE14AR4+MUXvoKxQkbOCw/HdiWWzOoRoNoiwIgdKGRkmYXD2gH7gWssAozY7woZCa7XQi+TAamc7lSlMXR2I1CEnnxa1lpoTAYk2vRpEZ61CLBgVXmms0Wes3DYDDh57/eZRYAFq3BLZ0Y+t3CYDAgSJ7P6PVBjERESe6CQkatDYidhZgNSOX1ClResQlzxIjyZT8uLrrjT480GPNCuSxYVCW5nLnYRM1oFYxVQNgLlQy7IidjfBmPUvNksx5yRpwHMBgR8qZw2qbJ9JjHFGAwvgeGlMD7l60v8BFQehcpjEJvFGESETfm0dMyUbzafezEgmAD9VM0HAqumSzpeBkPVJ4vX2JllBTOgwISqAYiPTR+nsOeKAe7yNTHyYsDEYdimyxE+Ba48JT1o86GlMBpMAF0yKZQPQtXR/2yPH1FuLbTIodk83dnEuMiaka8pp9eNw56RxVwSPPFgj1tXcEYEHVFxnF/jsKojLd9aOafivRnQ0KOXxcpokiKPIhOTX79LOawxXimO0dHbKL/4IjcbsLZfa2NKWmHjHN0NjgjsKAq5nXUSzCJMK5QBraqxr3azBiWDcCfqtMNNgifBgqJ8iJC9cTW7WiXcGN3ZgPX9epVCL8oNfirxwCJ8LdDQVSc/uLK5G9Cn7ync7Zqo1PEC73fVyz2ueZwNWNenwfe2StdEcxA/3F0vztdzYQzwOp/3aUx3vTjX4wxY16eRAT6fmk+uqAOiLRCdAc5nmjMgOgSjt0D0GvwduNDn68sT1x/d9XKRK5f7GdCvnSiPuCYqebzwanedJFzzOBvQ0KMXxONkgfX/82D0VK3Bf4S6xsfJ9DbKnyU3wDXBuR7v3AHnekGu+iIDXB2bb/FRB8y3J+paT9QBro7Nt/i/Af3RX1Bt6jeoAAAAAElFTkSuQmCC); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                </div>
+                                <!--<img src="/static/index/img/index03.png" draggable="true">-->
+                                <!---->
+                            </uni-image>
+                            <!---->
+                            <!---->
+                            <div>{:lang('aboutinvitation2')}</div>
+                        </a>
+                        </span>
+                        
+                    </div>
+                    <div class="columnlist">
+                        <span style="width:33%">
+                            <a href="{:Url('about_withdrawal')}" class="columnlist-item">
+                            <uni-image>
+                                <div
+                                        style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAFl0lEQVR4Xu2aW2wUVRjH/2cu227vLbRyMQVptyhYg5cIAn2AbEyIPJiQRjDxxvaCtFsKUiHoAzHxRUUhSEJ88I6gQLExlhdMTQjFFiOmF1CEKCKGttALrOxud+d8Zopb6NJlZ2ZnK93OPO6e8/2//2++c+bMOcMwwS82wf3DAmBVwAQnYA2BCV4A1iQ45kPA/Zs7yTtIixiHk8CcDrlnXrboPcsYr+8ne0trITXuZ/uVsarM+AMgMNcp9zzG4GQKOQlYDCAlZLBI7sYUyTPsV4EwGCTxBwVoHOC2pk2z97fGE0ZcAKw5XTszoHAnI+4EsBRAbiQT4QDC2wVIvMYZDvu5dMwn2Rs2zvrivJlATAHg6nTlCGRfAgYnEZwgFGpNMhqAEXEYyM+lLkHAwatK0o8DzFa/1bHnqlat0doZAhA+jgF6BIBoJBFdAMIEOBj3c/GMINDBa2RvOW5g/tANoKy9+kMQVoLBbsRweJ9YAITHUucPL7NtW1tQv0VrbkYAkNbgWtqZCUDV85F8vsLRMFOLttrGAqCVVKhdWXv1mFZAijgZJfe8ihRp8m2pBrgXLT270OM/NfxfwlXA7IzleDz35Yj36dzVI2jueS9xAdjFHCzM24BUadKoFdB6eTeu+M8kLgC9QzThhoAFQCcBqwKsdYC1ELJWgtZS2HoXSMCXoVlpTkxKKkB7/z74lIGID8eEewzahDQ8kbsO+WkLh0x39B3Ayd6PJgaAvOS5WJxXh1T5xpYiEUfTpTdw8fqJxAbAIKA4exWKs5+BwG7stKnmj3fvwDnPkTuuDcf9EEiRclGSV4c8+9xho1rN39U7QllSJoKkwKPcPANQE751Syw/dREW5NYgSUwzZP6uBTAjOR+bC9ZDIQXNfS042nccF3x/DZlUAUyXA3hsUjmKMpeNKG89dz7U8a4cAvPSi1E1o2KEuT+8f+JobzNY8DSWT3Uhy5Yfs/mxqoB/bj3a0vq2+vy0VSjJufEoi3YZufOhmF6ST1U6Gm5OIFHEjOwKXwBwbzQT4f8zMDw3bWVUCLGY/68CmiocDepxnKZLN4DyDvcxItJ2K8NSiAYhVvOqnAJx50uF39Rocm/kXMDVWb2dcazTKqC1Eswwr2oN8OQad1H9Tq35GaiA6hVEOKBVYLR24ZVglnkwUHcwc87G2Xt/0ZqfbgClzevtGemBSwzI0CoSCULplKcxP7MYbb2f4HdPUyzhhvr6ST5d7miYoyeQbgBq8PL2qt0EVqlHKFJbM88GrzNb7ZqCr3foycsQANdPVTOYzH4FkKRHbLS2ZgEYJLFHKZw6vZJ9ENCTkyEAqkBZp/stcKrTIxZPAB6WtHptwaHI78kREjUMYOgjCR9aAXooFghmVICPy40VRQ1PGcnDMABVrKKt+n4u0FEQu/3oVmM2sQIIQDjbFchZsOWBT69olBzRLCYAQ0OhreZRMP4dgEwjCcQCIAjxQq+QXhLLh1MxAxh6KvxcNZeL7BADHHohGAXgh3iiy5u64vXiferS3PBlCgBV/cWTtVmSFHwXDC+AIGjNSC8ABYx7ubyr+2L/hq1Lvg9q1YnUzjQAIYGKzqr5nIQ3AVoKiv4JjlYABNAg5MP9SN5UV/hlR6zGQ/1NBxAK7Op0P8yINoJQCkA2uhAKEgsGIH3Wh5Rtmx17O80yHncAwxXRUZNPnNcSozKApYcbiFQBARI9QQjvXxZTtr82a2+X2cbHDEBISJ0jZDlQSZzVgGFa6PdwAIMk/T0oSG93Cxm7t973sS9exsccQEiwtKPUlsWnPEugV8DwoApgquwhL5farkN+p9Zx8PN4m741ftzmAC0mVrdVLytKvvKkDcq3G4q+uvOGv5aABtr8rwAM5Gt6FwuA6UjHWUCrAsbZDTM9XasCTEc6zgJO+Ar4F4ciyV84RT3fAAAAAElFTkSuQmCC); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                </div>
+                                <!--<img src="/static/index/img/index03.png" draggable="true">-->
+                                <!---->
+                            </uni-image>
+                            <!---->
+                            <!---->
+                            <div>{:lang('aboutwithdrawal2')}</div>
+                        </a>
+                        </span>
+                        <span style="width:33%">
+                            <a href="{:Url('about_investment_income')}" class="columnlist-item">
+                                <uni-image>
+                                    <div
+                                            style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAB0klEQVR4Xu1asUoDQRB9ixGLQBArLbS18QPs/AYbz8JaLCxTCAZJK1hoIYilfoDfYOcH2Fjb2EUiguZOTyIEz3BmdqND5tyXepjMvn3z3t7uOET+c5GvHwSADIgcAbZA5ASgCAa3QPMir7884SzLsPmeozZg0NKCCS51HHCeOhy0N1zPp6JgAHZP88teiq3h5EYA+CzLAYf7idtTAWDnJE+LO2+MAYNyOq3EzakAsH2c52WJLTGgX18rcV7s9goqLpgAkAFhLbC2AqwuA7Upn44cHZO9ATd3wPWtnMtMCzTXgZlpuWDfiNcUOLqSo80AED0D5L3SiTDDAJ3lyVkJgJVzwDgaEKL2P3HBDAPGdQFftTcPQPQMkOVKJ8JMC+gsT85KAKrgAn+h9uZFUHKB36q9eQBGuUAUDJDlSieCImhFBHX2V85KBpABvBX2uvH2CuK1eAEBvgvwXSDsXUA2LJ0I2iBtkDbo5XBeQbRB2uAXAjwH8BzAcwBnhDgkVYIAp8SUJ0Ufu0D3+TvyjTow2yj/lvh33wL3D8Cw/PYPu4vzkQBghgHRj8pGPywd/bi8zv3N5LIGfw5PrlSdfyYAOrhWJysZUJ290qmUDNDBtTpZPwDPbBxQ/EVk4gAAAABJRU5ErkJggg==); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                    </div>
+                                    <!--<img src="/static/index/img/index03.png" draggable="true">-->
+                                    <!---->
+                                </uni-image>
+                                <!---->
+                                <!---->
+                                <div>{:lang("aboutorder2")}</div>
+                            </a>
+                        </span>
+                        <span style="width:33%">
+                            <a href="{:Url('about_us')}" class="columnlist-item">
+                                <uni-image>
+                                    <div
+                                            style="background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAACvklEQVR4Xu2av2/TQBTH3zcurYRgQLCA1LESIJut7EwsMCH+g7RCIgj+BFY2AmkHYozo2IgJVMTGQodWYigRKqpgqcQPdahQKiSUJg+ZqMENJXf1nWNsv4z23fm9z33f9+4cgwr+Q8HzJwEgCig4ASmBggtATDATJTDTrFxjJvdfagWoWXdrz+KoORMAymuVNoHGhiTY9r3aeH4BvKuwKjnfq8WazFidVMHYvl8WAKKA9EpA5cCh3Bl4+3Hr5MvXl+7u2pZ/OF6qJaDhwHs5fwXTQmfcCYKz1Q82QaQLQMOABpJlAG8YHHznbqPhzu+YwsgagD/5Ai0iLIIpqHsPluOCyC6A/RmvEyEgKi34XvXbYWDkBcBezm0ClrrEwaetU0s6xpk3ANHJ1zLOPAPowQAxMS0zcTABXpwfMM78A4hqAmiBqUFjeFw/1zPOYgEYME4GPQHTPZVpJnYY0qGvCm4U9wVAUsdhUcDht8KjUPxfz0C4yYoYp24QyhciWVFAJOH1nnE6T3V2nHkE0N9xgjioe3M3hqkhzwB+v6rwvVqpyABItTzmXQECQBSg2CDFLoGdH5/pZ7u1z18mjhynY0fP9K/ZaqO7ph/ULjEFbGy+CE124Jmgqckr/Wu22vynAJ4fGNfU5NUIADttBIABgQRLwM7sbmyqxzHIP7llUCdwW20EgAEBKYGk9gG25K0zjoEAxAOkBKQEhn87FPssoFO7ttqIBxgQSNADCn4YsnXU1RnHQADJLYMmQY2yb2IlMMokTJ5lDmDt5i4BjkkQqfVl7vgX5oZ9Y6z+XL7cvLVCzNOpJWHyYGDVdx9eNPpfYKZ5e5q584qITpjEkkLfbcC5XHerq0YAws6z7++c7nLnOnU5GxBK2C7BaTw6f/+LCrxyJ6gaIOv3BUDWZ9A0flGAKcGs9xcFZH0GTeP/BZrE6lDg4s0ZAAAAAElFTkSuQmCC); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                    </div>
+                                    <!--<img src="/static/index/img/index03.png" draggable="true">-->
+                                    <!---->
+                                </uni-image>
+                                <!---->
+                                <!---->
+                                <div>{:lang("aboutus2")}</div>
+                            </a>
+                        </span>
+                    </div>
+                    <div class="notice">
+                        <uni-text class="iconfont icon-svg45-copy"><span></span></uni-text>
+                        <div class="notice-text">
+                            <div class="uni-noticebar"
+                                 style="background-color: rgb(255, 251, 232);">
+                                <!---->
+                                <!---->
+                                <div
+                                        class="uni-noticebar__content-wrapper uni-noticebar__content-wrapper--scrollable">
+                                    <div id="Uni_7vip"
+                                         class="uni-noticebar__content uni-noticebar__content--scrollable">
+                                        <uni-text id="Uni_6foo"
+                                                  class="uni-noticebar__content-text uni-noticebar__content-text--scrollable"
+                                                  style="color: rgb(222, 140, 23); animation-play-state: running; animation-delay: -28.7s; animation-duration: 28.7s;">
+                                            <p>
+                                                {if ($Think.cookie.think_var=="ru")}
+                                                    {$noticeru}
+                                                {elseif ($Think.cookie.think_var=="es")}
+                                                    {$noticees}
+                                                {else}
+                                                    {$notice}
+                                                {/if}
+                                                
+                                            </p>
+                                        </uni-text>
+                                    </div>
+                                </div>
+                                <!---->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="earnings">
+                        <div class="earnings_Info">
+                            <div class="balance">{:lang("balance")}</div>
+                            <div class="balance_val">
+                                <uni-text class="yuanSign"><span></span></uni-text>
+                                <uni-text class="money"><span>{$user_info.balance}</span></uni-text>
+                            </div>
+                            <div class="other_val">
+                                <div>
+                                    <uni-text class="background_val"><span></span></uni-text>
+                                    <uni-text class="value_name"><span>{:lang('today')} :</span></uni-text>
+                                    <uni-text class="val"><span>{$user_info.total}</span></uni-text>
+                                </div>
+                                <div>
+                                    <uni-text class="background_val1"><span></span></uni-text>
+                                    <uni-text class="value_name"><span>{:lang('financial')} : </span></uni-text>
+                                    <uni-text class="val"><span>{$user_info.financial}</span></uni-text>
+                                </div>
+                                <div>
+                                    <uni-text class="background_val2"><span></span></uni-text>
+                                    <uni-text class="value_name"><span> {:lang("settlement2")} :</span></uni-text>
+                                    <uni-text class="val"><span>{$user_info.freeze}</span></uni-text>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--
+                    <div class="glory">
+                        <div class="title">Honor Roll</div>
+                        <div class="marquee_box gbromarquee" style="width: 100%;">
+
+                            <div class="broadcastTopBtm"
+                                 style="background: rgb(255, 255, 255); height: 576px; --scrollHeight--:-1080px; --scrollSpeed--:36s;">
+
+                                <div class="broadcastDataTopBtmDatacss_top">
+                                    <div>
+                                        <div class="new-list">
+                                            {present name="roll_list"}
+                                            {volist name="roll_list" id="vo"}
+                                            <a data-img="{$vo.img}" data-txt="                                                        {$vo.name|str_roll}
+                                                        &nbsp;&nbsp;
+                                                        {switch vo.sign}
+                                                        {case 1}Deposit is successful{/case}
+                                                        {case 2}Withdrawal is successful{/case}
+                                                        {/switch}" class="roll">
+                                                <div class="news">
+                                                    <div class="icon">
+                                                        <uni-image>
+                                                            <div style="background-image: url({$vo.img}); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                                            </div>
+                                                            <img src="{$vo.img}" draggable="true">
+
+                                                        </uni-image>
+                                                    </div>
+                                                    <div class="new-item-content" style="text-align: center;">
+                                                        {$vo.name|str_roll}
+                                                        &nbsp;&nbsp;
+                                                        {switch vo.sign}
+                                                        {case 1}Deposit is successful{/case}
+                                                        {case 2}Withdrawal is successful{/case}
+                                                        {/switch}
+                                                    </div>
+                                                    <div class="new-item-time">Rs{$vo.money}</div>
+                                                </div>
+                                            </a>
+                                            {/volist}
+                                            {/present}
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="new-list">
+                                            {present name="roll_list"}
+                                            {volist name="roll_list" id="vo"}
+                                            <a data-img="{$vo.img}" data-txt="                                                        {$vo.name|str_roll}
+                                                        &nbsp;&nbsp;
+                                                        {switch vo.sign}
+                                                        {case 1}Deposit is successful{/case}
+                                                        {case 2}Withdrawal is successful{/case}
+                                                        {/switch}" class="roll">
+                                                <div class="news">
+                                                    <div class="icon">
+                                                        <uni-image>
+                                                            <div style="background-image: url({$vo.img}); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                                            </div>
+                                                            <img src="{$vo.img}" draggable="true">
+                                                        </uni-image>
+                                                    </div>
+                                                    <div class="new-item-content" style="text-align: center;">
+                                                        {$vo.name|str_roll}
+                                                        &nbsp;&nbsp;
+                                                        {switch vo.sign}
+                                                        {case 1}Deposit is successful{/case}
+                                                        {case 2}Withdrawal is successful{/case}
+                                                        {/switch}
+                                                    </div>
+                                                    <div class="new-item-time">Rs{$vo.money}</div>
+                                                </div>
+                                            </a>
+                                            {/volist}
+                                            {/present}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    -->
+                    <div class="member-news" style="">
+                        <div class="title">{:lang("memnews")}</div>
+                        <div class="new-list">
+                            <div class="marquee_box gbromarquee" style="width: 100%;">
+                                <!---->
+                                <div class="broadcastTopBtm"
+                                     style="background: rgb(255, 255, 255); height: 576px; --scrollHeight--:-648px; --scrollSpeed--:21.6s;">
+                                    <!---->
+                                    <div class="broadcastDataTopBtmDatacss_top">
+                                        <div>
+                                            <div class="new-list">
+
+                                                {volist name="news_list" id="vo"}
+                                                <div class="news">
+                                                    <div class="icon">
+                                                        <uni-image>
+                                                            <div style="background-image: url({$vo.img}); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                                            </div>
+                                                            <img src="{$vo.img}" draggable="true">
+                                                            <!---->
+                                                        </uni-image>
+                                                    </div>
+                                                    <div class="new-item-content">
+                                                        <div>{$vo.name|news_roll}</div>
+                                                        <div class="content_text">{:lang("getacommissiontoday2")}</div>
+                                                    </div>
+                                                    <div class="new-item-price">{$vo.money}</div>
+                                                </div>
+                                                {/volist}
+
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="new-list">
+
+                                                {volist name="news_list" id="vo"}
+                                                <div class="news">
+                                                    <div class="icon">
+                                                        <uni-image>
+                                                            <div style="background-image: url({$vo.img}); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                                            </div>
+                                                            <img src="{$vo.img}" draggable="true">
+                                                            <!---->
+                                                        </uni-image>
+                                                    </div>
+                                                    <div class="new-item-content">
+                                                        <div>{$vo.name|news_roll}</div>
+                                                        <div class="content_text"> {:lang("getacommissiontoday2")}</div>
+                                                    </div>
+                                                    <div class="new-item-price">{$vo.money}</div>
+                                                </div>
+                                                {/volist}
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--<div class="contentValidity" style="padding-bottom: 3px;">-->
+                    <!--    <a href="{:Url('about_us')}" class="contentValidity-text">-->
+                    <!--        <div class="content-img"></div>-->
+                    <!--        <div class="content-text">About Us</div>-->
+                    <!--    </a>-->
+                    <!--    <a href="{:Url('about_withdrawal')}" class="contentValidity-text">-->
+                    <!--        <div class="content-img"></div>-->
+                    <!--        <div class="content-text">About Withdrawal</div>-->
+                    <!--    </a>-->
+                    <!--    <a href="{:Url('about_investment_income')}" class="contentValidity-text">-->
+                    <!--        <div class="content-img"></div>-->
+                    <!--        <div class="content-text">About order</div>-->
+                    <!--    </a>-->
+                    <!--    <a href="{:Url('about_invitation')}" class="contentValidity-text">-->
+                    <!--        <div class="content-img"></div>-->
+                    <!--        <div class="content-text">About Invitation</div>-->
+                    <!--    </a>-->
+                    <!--</div>-->
+                    <div class="partner">
+                        <div class="title">{:lang("partner2")}</div>
+                        <div class="partnerlist">
+                            <uni-image>
+                                <div
+                                        style="background-image: url(&quot;/static/index/b5ad5a56-554d-4b74-a541-2bf3dde3e31e.jpg&quot;); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                </div>
+                                <img src="/static/index/b5ad5a56-554d-4b74-a541-2bf3dde3e31e.jpg" draggable="true">
+                                <!---->
+                            </uni-image>
+                            <uni-image>
+                                <div
+                                        style="background-image: url(&quot;/static/index/ee18e9b9-1582-4455-9852-c77b8230b49b.jpg&quot;); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                </div>
+                                <img src="/static/index/ee18e9b9-1582-4455-9852-c77b8230b49b.jpg" draggable="true">
+                                <!---->
+                            </uni-image>
+                            <uni-image>
+                                <div
+                                        style="background-image: url(&quot;/static/index/d12820a7-762f-4d9a-9f7b-9264cedecd69.jpg&quot;); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                </div>
+                                <img src="/static/index/d12820a7-762f-4d9a-9f7b-9264cedecd69.jpg" draggable="true">
+                                <!---->
+                            </uni-image>
+                            <uni-image>
+                                <div
+                                        style="background-image: url(&quot;/static/index/f28146af-934a-4295-8c81-f4fea5a624c5.jpg&quot;); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                </div>
+                                <img src="/static/index/f28146af-934a-4295-8c81-f4fea5a624c5.jpg" draggable="true">
+                                <!---->
+                            </uni-image>
+                            <uni-image>
+                                <div
+                                        style="background-image: url(&quot;/static/index/559dd00b-b67f-486a-bf2f-b81422ae6a20.jpg&quot;); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                </div>
+                                <img src="/static/index/559dd00b-b67f-486a-bf2f-b81422ae6a20.jpg" draggable="true">
+                                <!---->
+                            </uni-image>
+                            <uni-image>
+                                <div
+                                        style="background-image: url(&quot;/static/index/ea3dbb3f-fd34-43ee-b856-3a80b19c188c.jpg&quot;); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                </div>
+                                <img src="/static/index/ea3dbb3f-fd34-43ee-b856-3a80b19c188c.jpg" draggable="true">
+                                <!---->
+                            </uni-image>
+                        </div>
+                    </div>
+                    <!---->
+                    <!--                    <div class="custom-modal">-->
+                    <!--                        <div class="modal-wrap">-->
+                    <!--                            <div class="modal-background"></div>-->
+                    <!--                            <div class="modal-title">Good news</div>-->
+                    <!--                            <div class="modal-content">-->
+                    <!--                                <div>-->
+                    <!--                                    <p>{$popup}</p>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
+                    <!--                            <div class="btn">-->
+                    <!--                                <div class="sure-btn">Confirm</div>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                        <div class="hidden-btn"></div>-->
+                    <!--                    </div>-->
+                    <div class="custom-modal earingModel">
+                        <div class="modal-wrap">
+                            <div class="modal-background">
+                                <uni-image>
+                                    <div
+                                            style="background-image: none; background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                    </div>
+                                    <!---->
+                                    <!---->
+                                </uni-image>
+                            </div>
+                            <div class="modal-title">{:lang("yesterday")}</div>
+                            <div class="modal-content">
+                                <div class="yestDay">
+                                    <div>{:lang("yesterdayRecharge")}</div>
+                                    <div class="money"></div>
+                                </div>
+                                <div class="yestDay">
+                                    <div>{:lang("yesterdayEarning")}</div>
+                                    <div class="money"></div>
+                                </div>
+                                <div class="yestDay">
+                                    <div>{:lang("yesterdayWithdraw")}</div>
+                                    <div class="money"></div>
+                                </div>
+                            </div>
+                            <div class="btn">
+                                <div class="sure-btn">{:lang("confirm")}</div>
+                            </div>
+                        </div>
+                        <div class="hidden-btn"></div>
+                    </div>
+                    <div class="custom-modal GloryModel">
+                        <div class="modal-wrap">
+                            <div class="modal-background"></div>
+                            <div class="modal-title">{:lang("tips")}</div>
+                            <div class="modal-content">
+                                <div>
+                                    <uni-image>
+                                        <div style="background-image: none; background-size: 100% 100%; background-repeat: no-repeat;">
+                                        </div>
+                                        <!---->
+                                        <uni-resize-sensor>
+                                            <div>
+                                                <div></div>
+                                            </div>
+                                            <div>
+                                                <div></div>
+                                            </div>
+                                        </uni-resize-sensor>
+                                    </uni-image>
+                                </div>
+                                <div class="textcontent"></div>
+                            </div>
+                            <div class="btn">
+                                <div class="sure-btn">{:lang("confirm")}</div>
+                            </div>
+                        </div>
+                        <div class="hidden-btn"></div>
+                    </div>
+                    {include file="public/footer"/}
+                </div>
+            </uni-page-body>
+        </uni-page-wrapper>
+    </uni-page>
+
+    <uni-modal style="display: none;">
+        <uni-view class="custom-modal show">
+            <uni-view class="modal-wrap">
+                <uni-view class="modal-background"></uni-view>
+                <uni-view class="modal-title">{:lang("goodNews")}</uni-view>
+                <uni-view class="modal-content">
+                    <uni-view><p id="popup"></p></uni-view>
+                </uni-view>
+                <uni-view class="btn">
+                    <uni-view class="sure-btn Confirm">{:lang("confirm")}</uni-view>
+                </uni-view>
+            </uni-view>
+            <uni-view class="hidden-btn close"></uni-view>
+        </uni-view>
+    </uni-modal>
+
+
+
+</uni-app>
+{present name="$notice"}
+<input type="hidden" id="popup_c" value="{$popup}">
+{/present}
+</body>
+</html>
+
+<script>
+    var notice = $("#popup_c").val();
+    if (notice) {
+        ;(function () {
+            $("#popup").append(notice);
+            let $modal = $("uni-modal");
+            $(".Confirm").on("click", closeModal);
+            $(".close").on("click", closeModal);
+            $modal.show();
+            function closeModal() {
+                $modal.hide();
+            }
+        }());
+    }
+</script>
+
+<script>
+    $(document).on("click", ".roll", function () {
+        var img = $(this).data('img');
+        var txt = $(this).data('txt');
+
+        var html = "<uni-img >\n" +
+            "        <uni-view class=\"custom-modal show\">\n" +
+            "            <uni-view data-v-3197bf80=\"\" class=\"modal-wrap\">\n" +
+            "                <uni-view data-v-3197bf80=\"\" class=\"modal-background\"></uni-view>\n" +
+            "                <uni-view data-v-3197bf80=\"\" class=\"modal-title\">"+txt+"</uni-view>\n" +
+            "                <uni-view data-v-3197bf80=\"\" class=\"modal-content\">\n" +
+            "                    <uni-view data-v-413e3568=\"\">\n" +
+            "                        <uni-image data-v-413e3568=\"\" style=\"height: 670px;\">\n" +
+            "                            <div style=\"background-image: url( "+img+"); background-size: 100% 100%; background-repeat: no-repeat;\"></div>\n" +
+            "                            <img src=\""+img+"\"\n" +
+            "                                 draggable=\"true\">\n" +
+            "                            <uni-resize-sensor>\n" +
+            "                                <div>\n" +
+            "                                    <div></div>\n" +
+            "                                </div>\n" +
+            "                                <div>\n" +
+            "                                    <div></div>\n" +
+            "                                </div>\n" +
+            "                            </uni-resize-sensor>\n" +
+            "                        </uni-image>\n" +
+            "                    </uni-view>\n" +
+            "                </uni-view>\n" +
+            "                <uni-view data-v-3197bf80=\"\" class=\"btn\">\n" +
+            "                    <uni-view class=\"sure-btn Confirm\">{:lang('confirm')}</uni-view>\n" +
+            "                </uni-view>\n" +
+            "            </uni-view>\n" +
+            "            <uni-view class=\"hidden-btn Confirm\"></uni-view>\n" +
+            "        </uni-view>\n" +
+            "    </uni-img>";
+        layer.open({
+            type: 5,
+            title: false,
+            closeBtn: 0, //不显示关闭按钮
+            anim: 2,
+            content: html
+        });
+
+        let $modal = $("uni-img");
+        $(".Confirm").on("click", closeModal);
+        $(".close").on("click", closeModal);
+        $modal.show();
+        layer.closeAll('iframe');
+        function closeModal() {
+            layer.closeAll();
+            $modal.hide();
+        }
+    });
+</script>
+
+<script>
+    // var mySwiper = new Swiper('.swiper-container', {
+    //     loop: true, // 循环模式选项
+    //     // 如果需要分页器
+    //     pagination: {
+    //         el: '.swiper-pagination',
+    //     },
+    // })
+    window.addEventListener('load', function () {
+        var swiper = new Swiper('.swiper-container', {
+            spaceBetween: 30,
+            centeredSlides: true,
+            autoplay: {
+                delay: 2000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+    })
+</script>

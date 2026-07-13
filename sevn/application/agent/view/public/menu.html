@@ -1,0 +1,111 @@
+<body class="index">
+<!-- 顶部开始 -->
+<div class="container">
+    <div class="logo">
+        <a href="{:Url('index/index')}">控制台</a></div>
+    <div class="left_open">
+        <a><i title="展开左侧栏" class="iconfont">&#xe699;</i></a>
+    </div>
+    <ul class="layui-nav right" lay-filter="">
+        <li class="layui-nav-item">
+            <a href="javascript:;">{$user_info.username}</a>
+            <dl class="layui-nav-child">
+                <!-- 二级菜单 -->
+                <dd>
+                    <a href="{:Url('login/logout')}">退出</a>
+                </dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item to-index">
+            <a href="{:Url('index/index')}">控制台首页</a></li>
+    </ul>
+</div>
+<!-- 顶部结束 -->
+<!-- 中部开始 -->
+<!-- 左侧菜单开始 -->
+<div class="left-nav">
+    <div id="side-nav">
+        <ul id="nav">
+            <li class="layui-nav-item"><a href="{:URL('Index/index')}">首页</a></li>
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont left-nav-li" lay-tips="会员管理">&#xe6b8;</i>
+                    <cite>会员管理</cite>
+                    <i class="iconfont nav_right">&#xe697;</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="{:URL('User/index')}"><i class="iconfont">&#xe6a7;</i>列表</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont left-nav-li" lay-tips="订单管理">&#xe723;</i>
+                    <cite>订单管理</cite>
+                    <i class="iconfont nav_right">&#xe697;</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="{:URL('Order/order_list')}"><i class="iconfont">&#xe6a7;</i>订单</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont left-nav-li" lay-tips="充值记录">&#xe6ee;</i>
+                    <cite>充值记录</cite>
+                    <i class="iconfont nav_right">&#xe697;</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="{:URL('Recharge/recharge_list')}"><i class="iconfont">&#xe6a7;</i>列表</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont left-nav-li" lay-tips="提现管理">&#xe702;</i>
+                    <cite>提现管理</cite>
+                    <i class="iconfont nav_right">&#xe697;</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="{:URL('Withdrawal/index')}"><i class="iconfont">&#xe6a7;</i>列表</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont left-nav-li" lay-tips="分组管理">&#xe6ce;</i>
+                    <cite>分组列表</cite>
+                    <i class="iconfont nav_right">&#xe697;</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="{:URL('Group/index')}"><i class="iconfont">&#xe6a7;</i>列表</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont left-nav-li" lay-tips="综合统计">&#xe610;</i>
+                    <cite>综合统计</cite>
+                    <i class="iconfont nav_right">&#xe697;</i></a>
+                <ul class="sub-menu">
+
+                    <li>
+                        <a href="{:URL('Count/statistics')}"><i class="iconfont">&#xe6a7;</i>统计</a>
+                    </li>
+                    <li>
+                        <a href="{:URL('Count/detail')}"><i class="iconfont">&#xe6a7;</i>统计--详细</a>
+                    </li>
+                </ul>
+            </li>
+
+        </ul>
+    </div>
+</div>
+<!-- <div class="x-slide_left"></div> -->
+<!-- 左侧菜单结束 -->
+<!-- 右侧主体开始 -->

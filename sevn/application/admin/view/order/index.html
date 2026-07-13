@@ -1,0 +1,91 @@
+{extend name='main'}
+
+{block name="button"}
+
+{if auth("add_users")}
+<!--<button data-modal='{:url("add_users")}' data-title="添加会员" class='layui-btn'>添加会员</button>-->
+{/if}
+
+{/block}
+
+{block name="content"}
+
+<div class="think-box-shadow">
+    {include file='users/index_search'}
+    <table class="layui-table" lay-filter="tab" lay-skin="line">
+        {notempty name='list'}
+        <thead>
+        <tr>
+            <th lay-data="{field:'id',width:80}" class='text-left nowrap'>ID</th>
+            <th lay-data="{field:'pid'}" class='text-left nowrap'>上级ID</th>
+            <th lay-data="{field:'username'}" class='text-left nowrap'>Account</th>
+            <th lay-data="{field:'phone'}" class='text-left nowrap'>Phone</th>
+            <th lay-data="{field:'invite_code'}" class='text-left nowrap'>Invite_Code</th>
+            <th lay-data="{field:'role'}" class='text-left nowrap'>Role</th>
+            <th lay-data="{field:'balance'}" class='text-left nowrap'>Balance</th>
+            <th lay-data="{field:'total'}" class='text-left nowrap'>Total</th>
+            <th lay-data="{field:'financial'}" class='text-left nowrap'>Financial</th>
+            <th lay-data="{field:'freeze'}" class='text-left nowrap'>Freeze</th>
+            <th lay-data="{field:'bank_name'}" class='text-left nowrap'>Bank_Name</th>
+            <th lay-data="{field:'holder_name'}" class='text-left nowrap'>Holder_Name</th>
+            <th lay-data="{field:'account_number'}" class='text-left nowrap'>Account_Number</th>
+            <!--<th lay-data="{field:'phone_number'}" class='text-left nowrap'>Phone_Number</th>-->
+            <!--<th lay-data="{field:'email'}" class='text-left nowrap'>Email</th>-->
+            <!--<th lay-data="{field:'ifsc'}" class='text-left nowrap'>IFSC</th>-->
+            <!--<th lay-data="{field:'upi'}" class='text-left nowrap'>UPI</th>-->
+            <th lay-data="{field:'address_name'}" class='text-left nowrap'>Address_Name</th>
+            <th lay-data="{field:'address_phone'}" class='text-left nowrap'>Address_phone</th>
+            <th lay-data="{field:'address_info'}" class='text-left nowrap'>Address_info</th>
+            <th lay-data="{field:'create_time',width:200}" class='text-left nowrap'>注册时间</th>
+            <th lay-data="{field:'edit',width:280,fixed: 'right'}" class='text-left nowrap'>操作</th>
+        </tr>
+        </thead>
+        {/notempty}
+        <tbody>
+        {foreach $list as $key=>$vo}
+        <tr>
+            <td class='text-left nowrap'>{$vo.id}</td>
+            <td class='text-left nowrap'>{$vo.pid}</td>
+            <td class='text-left nowrap'>{$vo.username}</td>
+            <td class='text-left nowrap'>{$vo.phone}</td>
+            <td class='text-left nowrap'>{$vo.invite_code}</td>
+            <td class='text-left nowrap'>{$vo.role}</td>
+            <td class='text-left nowrap'>{$vo.balance}</td>
+            <td class='text-left nowrap'>{$vo.total}</td>
+            <td class='text-left nowrap'>{$vo.financial}</td>
+            <td class='text-left nowrap'>{$vo.freeze}</td>
+            <td class='text-left nowrap'>{$vo.bank_name}</td>
+            <td class='text-left nowrap'>{$vo.holder_name}</td>
+            <td class='text-left nowrap'>{$vo.account_number}</td>
+            <!--<td class='text-left nowrap'>{$vo.phone_number}</td>-->
+            <!--<td class='text-left nowrap'>{$vo.email}</td>-->
+            <!--<td class='text-left nowrap'>{$vo.ifsc}</td>-->
+            <!--<td class='text-left nowrap'>{$vo.upi}</td>-->
+            <td class='text-left nowrap'>{$vo.address_name}</td>
+            <td class='text-left nowrap'>{$vo.address_phone}</td>
+            <td class='text-left nowrap'>{$vo.address_info}</td>
+            <td class='text-left nowrap'>{$vo.create_time|format_datetime}</td>
+            <td class='text-left nowrap'>
+                <a class="layui-btn layui-btn-xs layui-btn" data-open="{:url('push_order',['uid'=>$vo.id])}" data-value="uid#{$vo.id}" style='background:green;'>派单</a>
+            </td>
+        </tr>
+        {/foreach}
+        </tbody>
+    </table>
+
+    <script>
+        var table = layui.table;
+        //转换静态表格
+        var limit = Number('{$Think.get.limit}');
+        if(limit==0) limit=20;
+        table.init('tab', {
+            cellMinWidth:120,
+            skin: 'line,row',
+            even: false,
+            size: 'sm ',
+            limit: limit
+        });
+    </script>
+    {empty name='list'}<span class="notdata">没有记录哦</span>{else}{$pages|raw|default=''}{/empty}
+</div>
+{/block}

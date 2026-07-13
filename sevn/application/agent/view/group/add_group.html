@@ -1,0 +1,102 @@
+{include file="public/header"/}
+<body>
+<div class="layui-fluid">
+    <div class="layui-row">
+        <form class="layui-form" method="post" action="">
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>模式名称</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="name" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>支付方式</label>
+                <div class="layui-input-block">
+                    <input type="checkbox" name="pay[]" value="MarsPay" lay-skin="primary" title="MarsPay">
+                    <input type="checkbox" name="pay[]" value="SEP" lay-skin="primary" title="SEP">
+                    <input type="checkbox" name="pay[]" value="Oceanpay" lay-skin="primary" title="Oceanpay">
+                    <input type="checkbox" name="pay[]" value="GoldInd" lay-skin="primary" title="GoldInd">
+                    <input type="checkbox" name="pay[]" value="QeInd" lay-skin="primary" title="QeInd">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label"></label>
+                <button class="layui-btn" lay-filter="add" lay-submit="">确定</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{include file="public/footer"/}
+
+
+<script>layui.use(['form', 'layer', 'laydate'],
+    function () {
+        $ = layui.jquery;
+        var form = layui.form,
+            layer = layui.layer,
+            laydate = layui.laydate;
+
+        laydate.render({
+            elem: '#start'
+            , type: 'time'
+        });
+
+        laydate.render({
+            elem: '#end'
+            , type: 'time'
+        });
+
+        form.on('switch(switchImg)', function (data) {
+            if (this.checked == true) {
+                $("#img").show();
+            } else if (this.checked == false) {
+                $("#img").hide();
+            }
+        });
+
+        form.on('switch(switchLevel)', function (data) {
+            if (this.checked == true) {
+                $("#level").show();
+            } else if (this.checked == false) {
+                $("#level").hide();
+            }
+        });
+
+        form.on('switch(switchGroup)', function (data) {
+            if (this.checked == true) {
+                $("#group").show();
+            } else if (this.checked == false) {
+                $("#group").hide();
+            }
+        });
+
+        form.on('select(money)', function (data) {
+            let value = data.value
+            if (value == "1") {
+                $("#type").html('佣金比例')
+            } else if (value == "2") {
+                $("#type").html('固定值')
+            }
+        });
+
+        form.on('select(mode)', function (data) {
+            let value = data.value
+            if (value == "2") {
+                $("#order_num").show();
+                $("#order_bili").show();
+                $("#die_jia").hide();
+            } else if (value == "3") {
+                $("#order_num").hide();
+                $("#order_bili").hide();
+                $("#die_jia").show();
+            }
+        })
+
+    });
+</script>
+

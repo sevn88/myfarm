@@ -1,0 +1,156 @@
+{include file="public/header"/}
+
+<div class="layui-fluid">
+    <div class="layui-row">
+        <form class="layui-form" action="" method="post">
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>分组名
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" name="name" value="{$group_info.name}" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>支付方式</label>
+                <div class="layui-input-block">
+                    <input type="checkbox" name="pay[]" {if strpos($group_info.pay,'MarsPay') !== false } checked {/if} value="MarsPay" lay-skin="primary" title="MarsPay">
+                    <input type="checkbox" name="pay[]" {if strpos($group_info.pay,'SEP') !== false } checked {/if} value="SEP" lay-skin="primary" title="SEP">
+                    <input type="checkbox" name="pay[]" value="Oceanpay" {if strpos($group_info.pay,'Oceanpay') !== false } checked {/if} lay-skin="primary" title="Oceanpay" >
+                    <input type="checkbox" name="pay[]" value="GoldInd" {if strpos($group_info.pay,'GoldInd') !== false } checked {/if} lay-skin="primary" title="GoldInd" >
+                    <input type="checkbox" name="pay[]" value="QeInd" {if strpos($group_info.pay,'QeInd') !== false } checked {/if} lay-skin="primary" title="QeInd" >
+                </div>
+            </div>
+
+            <div class="layui-form-item" style="margin-left: 25%">
+                <input type="hidden" name="id" value="{$user_info.id}" >
+                <button  class="layui-btn" lay-filter="add" lay-submit="">提交</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>layui.use(['form', 'layer','laydate'],
+    function () {
+        $ = layui.jquery;
+        var form = layui.form,
+            layer = layui.layer,
+            laydate = layui.laydate;
+
+        laydate.render({
+            elem: '#start'
+            ,type: 'time'
+        });
+
+        laydate.render({
+            elem: '#end'
+            ,type: 'time'
+        });
+
+        form.on('select(mode)', function (data) {
+            let value = data.value
+            if (value == "2") {
+                $("#order_num").show();
+                $("#order_bili").show();
+            } else if (value != "2") {
+                $("#order_num").hide();
+                $("#order_bili").hide();
+            }
+        });
+
+        form.on('switch(switchImg)', function(data) {
+            if (this.checked == true) {
+                $("#img").show();
+            } else if (this.checked == false) {
+                $("#img").hide();
+            }
+        });
+
+        form.on('switch(switchLevel)', function(data) {
+            if (this.checked == true) {
+                $("#level").show();
+            } else if (this.checked == false) {
+                $("#level").hide();
+            }
+        });
+
+        form.on('switch(switchGroup)', function(data) {
+            if (this.checked == true) {
+                $("#group").show();
+            } else if (this.checked == false) {
+                $("#group").hide();
+            }
+        });
+
+        form.on('select(money)', function (data) {
+            let value = data.value
+            if (value == "1") {
+                $("#type").html('佣金比例')
+            } else if (value == "2") {
+                $("#type").html('固定值')
+            }
+        });
+
+        form.on('select(mode)', function (data) {
+            let value = data.value;
+            if (value == "1") {
+                $("#order_num").hide();
+                $("#order_bili").hide();
+                $("#die_jia").hide();
+            } else if (value == "2") {
+                $("#order_num").show();
+                $("#order_bili").show();
+                $("#die_jia").hide();
+            } else if (value == "3") {
+                $("#order_num").hide();
+                $("#order_bili").hide();
+                $("#die_jia").show()
+            }
+        });
+    });
+</script>
+
+<script>
+    if($('#is_windows').is(':checked')) {
+        $("#img").show();
+    }else {
+        $("#img").hide();
+    }
+
+    if($('#is_level').is(':checked')) {
+        $("#level").show();
+    }else {
+        $("#level").hide();
+    }
+
+    if($('#is_group').is(':checked')) {
+        $("#group").show();
+    }else {
+        $("#group").hide();
+    }
+
+    var grab_type = $('#grab_type option:selected').val();
+    switch (grab_type)
+    {
+        case 1:
+            $("#order_num").hide();
+            $("#order_bili").hide();
+            $("#die_jia").hide();
+            break;
+        case 2:
+            $("#order_num").show();
+            $("#order_bili").show();
+            $("#die_jia").hide();
+            break;
+        case '3':
+            $("#order_num").hide();
+            $("#order_bili").hide();
+            $("#die_jia").show();
+            break;
+    }
+
+</script>
+

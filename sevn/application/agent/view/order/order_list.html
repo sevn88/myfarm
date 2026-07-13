@@ -1,0 +1,195 @@
+{include file="public/header"/}
+{include file="public/menu"/}
+<div class="page-content">
+<div class="x-nav">
+          <span class="layui-breadcrumb">
+            <a href="{:Url('index/index')}">首页</a>
+            <a>
+              <cite>订单列表</cite></a>
+          </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
+        <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
+</div>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body ">
+                    <form class="layui-form layui-col-space5" action="">
+                        <div class="layui-input-inline layui-show-xs-block">
+                            <input style="width:240px" class="layui-input" placeholder="会员名" name="keyword">
+                        </div>
+                        <div class="layui-input-inline layui-show-xs-block">
+                            <input style="width:240px" class="layui-input" placeholder="会员ID" name="userid">
+                        </div>
+                        <div class="layui-input-inline layui-show-xs-block">
+                            <input style="width:240px" class="layui-input" placeholder="会员电话" name="usertel">
+                        </div>
+                        <div class="layui-input-inline layui-show-xs-block">
+                            <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i>搜索</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="layui-card-body ">
+                    <table class="layui-table layui-form">
+                        <thead>
+                        <tr>
+                            <th width="30">ID</th>
+                            <th width="125">订单号</th>
+                            <th width="50">用户名</th>
+                            <th width="200">商品名</th>
+                            <th width="50">商品价格</th>
+                            <th>佣金比例</th>
+                            <th>当前余额</th>
+                            <th>实际佣金</th>
+                            <th>当前单数</th>
+                            <th width="50">状态</th>
+                            <th>创建时间</th>
+                            <th width="125">状态</th>
+                        </thead>
+                        <tbody>
+                        {volist name='list' id='vo'}
+                        <tr>
+                            <td>{$vo.id}</td>
+                            <td>{$vo.order_id}</td>
+                            <td>{$vo.username}</td>
+                            <td>{$vo.goods_name}</td>
+                            <td>{$vo.goods_price}</td>
+                            <td>{$vo.order_commission}</td>
+                            <td>{$vo.p_user_balance}</td>
+                            <td>{$vo.order_earnings}</td>
+                            <td>{$vo.s_num}/{$vo.e_num}</td>
+                            {switch vo.status}
+                            {case 0}<td><span class="layui-badge layui-bg-cyan">已派单</span></td>{/case}
+                            {case 1}<td><span class="layui-badge layui-bg-blue">已完成</span></td>{/case}
+                            {case 2}<td><span class="layui-badge layui-bg-orange">待结算</span></td>{/case}
+                            {case 3}<td><span class="layui-badge">已冻结</span></td>{/case}
+                            {case 4}<td><span class="layui-badge layui-bg-green">已解冻</span></td>{/case}
+                            {case 5}<td><span class="layui-badge layui-bg-gray">待反佣</span></td>{/case}
+                            {/switch}
+                            <td>{$vo.create_time|toDate}</td>
+                            <td class="td-status">
+                                {if condition="($agent_role==3 or $agent_role==4)"}
+                                    {switch vo.status}
+                                    {case 0}
+                                    <a onclick="xadmin.open('新增订单','{:Url(\'order/order_add\',[\'oid\'=>$vo.id])}',800,600)"class="layui-btn" role="button" data-toggle="modal" >新增订单</a>
+                                    <button type="button" data-id="{$vo.id}" class="layui-btn layui-btn-danger order_del">删除</button>
+                                    {/case}
+                                    {case 1}{/case}
+                                    {case 2}{/case}
+                                    {case 3}
+                                    <button type="button" data-id="{$vo.id}" class="layui-btn layui-btn-normal rollover">续期</button>
+                                    <button type="button" data-id="{$vo.id}" class="layui-btn release">解冻</button>
+                                    {/case}
+                                    {/switch}
+                                {else /}
+                                    <button type="button" data-id="{$vo.id}" class="layui-btn layui-btn-disabled">无法操作</button>
+                                {/if}
+                            </td>
+                        </tr>
+                        {/volist}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="layui-card-body ">
+                    <div class="page">
+                        <div>
+                            <td colspan="10">{$pages|raw}</td>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{include file="public/footer"/}
+
+<script>
+    $(document).on("click", ".rollover", function (){
+        var id = $(this).data('id');
+        layer.prompt({title: '请输入续期小时数', formType: 3}, function(hour, index){
+            layer.close(index);
+            if (hour != null){
+                $.ajax({
+                    url: "{:Url('order_rollover')}",
+                    type: "post",
+                    traditional: true,
+                    data: {id:id,hour:hour} ,
+                    success: function (e) {
+                        if (e.code === 1){
+                            layer.msg(e.msg, {
+                                time: 2000,
+                                end: function () {
+                                    location.reload();
+                                }
+                            });
+                        }else {
+                            layer.msg(e.msg, function(){
+                                return false;
+                            });
+                        }
+
+                    },
+                });
+            }
+        });
+    });
+
+    $(document).on("click", ".release", function (){
+        var id = $(this).data('id');
+        layer.confirm('确定要解冻吗？', {
+            btn: ['确定','取消'] //按钮
+        }, function(){
+            $.ajax({
+                url: "{:Url('order_release')}",
+                type: "post",
+                traditional: true,
+                data: {id:id} ,
+                success: function (e) {
+                    if (e.code === 1){
+                        layer.msg(e.msg, {
+                            time: 2000,
+                            end: function () {
+                                location.reload();
+                            }
+                        });
+                    }else {
+                        layer.msg(e.msg, function(){
+                            return false;
+                        });
+                    }
+                },
+            });
+        });
+    });
+
+    $(document).on("click", ".order_del", function (){
+        var id = $(this).data('id');
+        layer.confirm('确定要删除吗？', {
+            btn: ['确定','取消'] //按钮
+        }, function(){
+            $.ajax({
+                url: "{:Url('order_del')}",
+                type: "post",
+                traditional: true,
+                data: {id:id} ,
+                success: function (e) {
+                    if (e.code === 1){
+                        layer.msg(e.msg, {
+                            time: 2000,
+                            end: function () {
+                                location.reload();
+                            }
+                        });
+                    }else {
+                        layer.msg(e.msg, function(){
+                            return false;
+                        });
+                    }
+                },
+            });
+        });
+    });
+</script>

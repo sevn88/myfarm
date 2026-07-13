@@ -1,0 +1,578 @@
+{extend name="main"}
+
+{block name="content"}
+
+{if auth('config')}
+<div class="think-box-shadow margin-bottom-15">
+    <span class="color-green font-w7 text-middle">系统参数配置：</span>
+    <a class="layui-btn layui-btn-sm" data-modal="{:url('config')}">修改系统配置</a>
+</div>
+{/if}
+{if auth('config')}
+<div class="think-box-shadow margin-bottom-15">
+    <span class="color-green font-w7 text-middle">系统僵尸数据删除：</span>
+    <!--删除<input type="number" name="where1" value="5" maxlength="2" max="31" min="0" style="border-radius:4px 0 0 4px;width:48px;height:22px;line-height:32px;font-size:12px;">天前的僵尸数据-->
+    删除 <input id="del_date"  maxlength="20px" type="text" name="where1" value="" style="height:30px;border:1px solid #e6e6e6;border-radius: 2px">之前的僵尸数据(等级：用户；未充值，未做任务）
+    <button class="layui-btn" onclick="shanchu_jiangshi()">确认删除</button>
+</div>
+<div class="think-box-shadow margin-bottom-15">
+    <span class="color-green font-w7 text-middle">系统繁冗数据删除：</span>
+    <!--删除<input type="number" name="where1" value="5" maxlength="2" max="31" min="0" style="border-radius:4px 0 0 4px;width:48px;height:22px;line-height:32px;font-size:12px;">天前的僵尸数据-->
+    删除 <input id="del_date2"  maxlength="20px" type="text" name="where2" value="" style="height:30px;border:1px solid #e6e6e6;border-radius: 2px">之前的繁冗数据(等级：用户；充值，做过任务的）
+    <button class="layui-btn" onclick="shanchu_jiangshi2()">确认删除</button>
+</div>
+<div class="think-box-shadow margin-bottom-15">
+    <span class="color-green font-w7 text-middle">充值记录数据删除：</span>
+    <!--删除<input type="number" name="where1" value="5" maxlength="2" max="31" min="0" style="border-radius:4px 0 0 4px;width:48px;height:22px;line-height:32px;font-size:12px;">天前的僵尸数据-->
+    删除 <input id="del_date3"  maxlength="20px" type="text" name="where3" value="" style="height:30px;border:1px solid #e6e6e6;border-radius: 2px">之前的充值但是<span style="color:red;">未成功</span>的数据删除
+    <button class="layui-btn" onclick="shanchu_jiangshi3()">确认删除</button>
+</div>
+<div class="think-box-shadow margin-bottom-15">
+    <span class="color-green font-w7 text-middle">充值记录数据删除：</span>
+    <!--删除<input type="number" name="where1" value="5" maxlength="2" max="31" min="0" style="border-radius:4px 0 0 4px;width:48px;height:22px;line-height:32px;font-size:12px;">天前的僵尸数据-->
+    删除 <input id="del_date4"  maxlength="20px" type="text" name="where4" value="" style="height:30px;border:1px solid #e6e6e6;border-radius: 2px">之前的充值并且<span style="color:red;">成功</span>的数据删除
+    <button class="layui-btn" onclick="shanchu_jiangshi4()">确认删除</button>
+</div>
+<div class="think-box-shadow margin-bottom-15">
+    <span class="color-green font-w7 text-middle">提现记录数据删除：</span>
+    <!--删除<input type="number" name="where1" value="5" maxlength="2" max="31" min="0" style="border-radius:4px 0 0 4px;width:48px;height:22px;line-height:32px;font-size:12px;">天前的僵尸数据-->
+    删除 <input id="del_date6"  maxlength="20px" type="text" name="where6" value="" style="height:30px;border:1px solid #e6e6e6;border-radius: 2px">之前的提现但是<span style="color:red;">未成功</span>的数据删除
+    <button class="layui-btn" onclick="shanchu_jiangshi6()">确认删除</button>
+</div>
+<div class="think-box-shadow margin-bottom-15">
+    <span class="color-green font-w7 text-middle">提现记录数据删除：</span>
+    <!--删除<input type="number" name="where1" value="5" maxlength="2" max="31" min="0" style="border-radius:4px 0 0 4px;width:48px;height:22px;line-height:32px;font-size:12px;">天前的僵尸数据-->
+    删除 <input id="del_date7"  maxlength="20px" type="text" name="where7" value="" style="height:30px;border:1px solid #e6e6e6;border-radius: 2px">之前的充值并且<span style="color:red;">成功</span>的数据删除
+    <button class="layui-btn" onclick="shanchu_jiangshi7()">确认删除</button>
+</div>
+<div class="think-box-shadow margin-bottom-15">
+    <span class="color-green font-w7 text-middle">代理数据删除：</span>
+    <!--删除<input type="number" name="where1" value="5" maxlength="2" max="31" min="0" style="border-radius:4px 0 0 4px;width:48px;height:22px;line-height:32px;font-size:12px;">天前的僵尸数据-->
+    删除名称为 <input id="del_date5"  maxlength="20px" type="text" name="where5" value="" style="height:30px;border:1px solid #e6e6e6;border-radius: 2px">的代理信息以及子信息
+    <button class="layui-btn" onclick="shanchu_jiangshi5()">确认删除</button>
+</div>
+{/if}
+
+<div class="think-box-shadow margin-bottom-15">
+    <span class="color-green font-w7 text-middle">文件存储引擎：</span>
+    {foreach ['local'=>'本地服务器存储','qiniu'=>'七牛云对象存储','oss'=>'阿里云OSS存储'] as $k=>$v}
+    {if sysconf('storage_type') eq $k}
+    {if auth('file')}<a data-modal="{:url('file')}?type={$k}" class="layui-btn layui-btn-sm">{$v}</a>{else}<a
+        class="layui-btn layui-btn-sm">{$v}</a>{/if}
+    {elseif auth('file')}<a data-modal="{:url('file')}?type={$k}"
+                            class="layui-btn layui-btn-sm layui-btn-primary">{$v}</a>{/if}
+    {/foreach}
+</div>
+
+<div class="think-box-shadow padding-40">
+    <div class="layui-form-item">
+        <span class="color-green font-w7">前台应用名称 App_name</span>
+        <label class="relative block">
+            <input readonly value="{:sysconf('app_name')}" class="layui-input layui-bg-gray">
+            <a data-copy="{:sysconf('app_name')}" class="fa fa-copy right-btn"></a>
+        </label>
+        <p class="help-block">网站名称及网站图标，将显示在浏览器的标签上</p>
+    </div>
+
+    <div class="layui-form-item">
+        <span class="color-green font-w7">后台管理名称 Site_name</span>
+        <label class="relative block">
+            <input readonly placeholder="请输入程序名称" value="{:sysconf('site_name')}" class="layui-input layui-bg-gray">
+            <a data-copy="{:sysconf('site_name')}" class="fa fa-copy right-btn"></a>
+        </label>
+        <p class="help-block">管理程序名称，将显示在后台左上角标题</p>
+    </div>
+    <div class="layui-form-item">
+        <span class="color-green font-w7">管理程序版本 Version</span>
+        <label class="relative block">
+            <input readonly value="{:sysconf('app_version')}" class="layui-input layui-bg-gray">
+            <a data-copy="{:sysconf('app_version')}" class="fa fa-copy right-btn"></a>
+        </label>
+        <p class="help-block">管理程序版本，将显示在后台左上角标题</p>
+    </div>
+
+    <div class="layui-form-item">
+        <span class="color-green font-w7">首页公告内容（英语）</span>
+        <label class="relative block">
+            <input readonly value="{:sysconf('notice')}" class="layui-input layui-bg-gray">
+            <a data-copy="{:sysconf('notice')}" class="fa fa-copy right-btn"></a>
+        </label>
+    </div>
+    <div class="layui-form-item">
+        <span class="color-green font-w7">首页公告内容（俄语）</span>
+        <label class="relative block">
+            <input readonly value="{:sysconf('noticeru')}" class="layui-input layui-bg-gray">
+            <a data-copy="{:sysconf('noticeru')}" class="fa fa-copy right-btn"></a>
+        </label>
+    </div>
+    <div class="layui-form-item">
+        <span class="color-green font-w7">首页公告内容（西班牙语）</span>
+        <label class="relative block">
+            <input readonly value="{:sysconf('noticees')}" class="layui-input layui-bg-gray">
+            <a data-copy="{:sysconf('noticees')}" class="fa fa-copy right-btn"></a>
+        </label>
+    </div>
+    <div class="layui-form-item">
+        <span class="color-green font-w7">首页弹窗内容(为空不弹)</span>
+        <label class="relative block">
+            <input readonly value="{:sysconf('popup')}" class="layui-input layui-bg-gray">
+            <a data-copy="{:sysconf('popup')}" class="fa fa-copy right-btn"></a>
+        </label>
+    </div>
+
+    <div class="layui-form-item">
+        <span class="color-green font-w7">起充金额(元)</span>
+        <label class="relative block">
+            <input readonly value="{:sysconf('start_recharge')}" class="layui-input layui-bg-gray">
+            <a data-copy="{:sysconf('start_recharge')}" class="fa fa-copy right-btn"></a>
+        </label>
+    </div>
+
+    <div class="layui-form-item">
+        <span class="color-green font-w7">起提金额(元)</span>
+        <label class="relative block">
+            <input readonly value="{:sysconf('start_withdrawal')}" class="layui-input layui-bg-gray">
+            <a data-copy="{:sysconf('start_withdrawal')}" class="fa fa-copy right-btn"></a>
+        </label>
+    </div>
+
+    <div class="layui-form-item">
+        <span class="color-green font-w7">最低收费(元)</span>
+        <label class="relative block">
+            <input readonly value="{:sysconf('min_money')}" class="layui-input layui-bg-gray">
+            <a data-copy="{:sysconf('min_money')}" class="fa fa-copy right-btn"></a>
+        </label>
+    </div>
+
+    <div class="layui-form-item">
+        <span class="color-green font-w7">提现手续费(%)</span>
+        <label class="relative block">
+            <input readonly value="{:sysconf('service_tx')}" class="layui-input layui-bg-gray">
+            <a data-copy="{:sysconf('service_tx')}" class="fa fa-copy right-btn"></a>
+        </label>
+        <p class="help-block">按需设置</p>
+    </div>
+
+    <div class="layui-form-item">
+        <span class="color-green font-w7">充值手续费(%)</span>
+        <label class="relative block">
+            <input readonly value="{:sysconf('service_cz')}" class="layui-input layui-bg-gray">
+            <a data-copy="{:sysconf('service_cz')}" class="fa fa-copy right-btn"></a>
+        </label>
+        <p class="help-block">按需设置</p>
+    </div>
+    <div class="layui-form-item">
+        <span class="color-green font-w7">trc20地址</span>
+        <label class="relative block">
+            <input readonly value="{:sysconf('trc')}" class="layui-input layui-bg-gray">
+            <a data-copy="{:sysconf('trc')}" class="fa fa-copy right-btn"></a>
+        </label>
+    </div>
+    <div class="layui-form-item">
+        <span class="color-green font-w7">erc20地址</span>
+        <label class="relative block">
+            <input readonly value="{:sysconf('erc')}" class="layui-input layui-bg-gray">
+            <a data-copy="{:sysconf('erc')}" class="fa fa-copy right-btn"></a>
+        </label>
+    </div>
+    <div class="layui-form-item">
+        <span class="color-green font-w7">trc20充值流程图</span>
+        <label class="relative block">
+            <img alt="icon" data-tips-image style="height:auto;max-height:42px;min-width:42px" src="{:sysconf('trc_img')}"/>
+        </label>
+    </div>
+    <div class="layui-form-item">
+        <span class="color-green font-w7">统计用-充值手续费（小数形式）</span>
+        <label class="relative block">
+            <input readonly value="{:sysconf('tongji_chongzhi')}" class="layui-input layui-bg-gray">
+            <a data-copy="{:sysconf('tongji_chongzhi')}" class="fa fa-copy right-btn"></a>
+        </label>
+    </div>
+    <div class="layui-form-item">
+        <span class="color-green font-w7">统计用-提现手续费比例（小数形式）</span>
+        <label class="relative block">
+            <input readonly value="{:sysconf('tongji_tixian1')}" class="layui-input layui-bg-gray">
+            <a data-copy="{:sysconf('tongji_tixian1')}" class="fa fa-copy right-btn"></a>
+        </label>
+    </div>
+    
+    <!--<div class="layui-form-item">-->
+    <!--    <span class="color-green font-w7">统计用-提现手续费比例2（小数形式）</span>-->
+    <!--    <label class="relative block">-->
+    <!--        <input readonly value="{:sysconf('tongji_tixian2')}" class="layui-input layui-bg-gray">-->
+    <!--        <a data-copy="{:sysconf('tongji_tixian2')}" class="fa fa-copy right-btn"></a>-->
+    <!--    </label>-->
+    <!--</div>-->
+    <div class="layui-form-item">
+        <span class="color-green font-w7">统计用-单笔提现手续费</span>
+        <label class="relative block">
+            <input readonly value="{:sysconf('tongji_tixian3')}" class="layui-input layui-bg-gray">
+            <a data-copy="{:sysconf('tongji_tixian3')}" class="fa fa-copy right-btn"></a>
+        </label>
+    </div>
+    <div class="layui-form-item">
+        <span class="color-green font-w7">注册送多少钱。例如60.00（小数形式）</span>
+        <label class="relative block">
+            <input readonly value="{:sysconf('zhuce_zengsong')}" class="layui-input layui-bg-gray">
+            <a data-copy="{:sysconf('zhuce_zengsong')}" class="fa fa-copy right-btn"></a>
+        </label>
+    </div>
+    
+    <!--第一个线下的信息 start-->
+     <div class="layui-form-item">
+        <span class="color-green font-w7">线下收款银行卡号-jazzcash</span>
+        <label class="relative block">
+            <input readonly value="{:sysconf('offline_bank_number')}" class="layui-input layui-bg-gray">
+            <a data-copy="{:sysconf('offline_bank_number')}" class="fa fa-copy right-btn"></a>
+        </label>
+    </div>
+    <div class="layui-form-item">
+        <span class="color-green font-w7">线下收款人-jazzcash</span>
+        <label class="relative block">
+            <input readonly value="{:sysconf('offline_bank_user')}" class="layui-input layui-bg-gray">
+            <a data-copy="{:sysconf('offline_bank_user')}" class="fa fa-copy right-btn"></a>
+        </label>
+    </div>
+    <div class="layui-form-item">
+        <span class="color-green font-w7">线下所属银行-jazzcash</span>
+        <label class="relative block">
+            <input readonly value="{:sysconf('offline_bank_name')}" class="layui-input layui-bg-gray">
+            <a data-copy="{:sysconf('offline_bank_name')}" class="fa fa-copy right-btn"></a>
+        </label>
+    </div>
+    <div class="layui-form-item">
+        <span class="color-green font-w7">线下开户行-jazzcash</span>
+        <label class="relative block">
+            <input readonly value="{:sysconf('offline_bank_name_kai')}" class="layui-input layui-bg-gray">
+            <a data-copy="{:sysconf('offline_bank_name_kai')}" class="fa fa-copy right-btn"></a>
+        </label>
+    </div>
+    <!--第一个线下的信息 end-->
+    
+    
+    <!--第2个线下的信息 start-->
+     <div class="layui-form-item">
+        <span class="color-green font-w7">线下收款银行卡号-sadapay</span>
+        <label class="relative block">
+            <input readonly value="{:sysconf('offline_bank_number2')}" class="layui-input layui-bg-gray">
+            <a data-copy="{:sysconf('offline_bank_number2')}" class="fa fa-copy right-btn"></a>
+        </label>
+    </div>
+    <div class="layui-form-item">
+        <span class="color-green font-w7">线下收款人-sadapay</span>
+        <label class="relative block">
+            <input readonly value="{:sysconf('offline_bank_user2')}" class="layui-input layui-bg-gray">
+            <a data-copy="{:sysconf('offline_bank_user2')}" class="fa fa-copy right-btn"></a>
+        </label>
+    </div>
+    <div class="layui-form-item">
+        <span class="color-green font-w7">线下所属银行-sadapay</span>
+        <label class="relative block">
+            <input readonly value="{:sysconf('offline_bank_name2')}" class="layui-input layui-bg-gray">
+            <a data-copy="{:sysconf('offline_bank_name2')}" class="fa fa-copy right-btn"></a>
+        </label>
+    </div>
+    <div class="layui-form-item">
+        <span class="color-green font-w7">线下开户行-sadapay</span>
+        <label class="relative block">
+            <input readonly value="{:sysconf('offline_bank_name_kai2')}" class="layui-input layui-bg-gray">
+            <a data-copy="{:sysconf('offline_bank_name_kai2')}" class="fa fa-copy right-btn"></a>
+        </label>
+    </div>
+    <!--第2个线下的信息 end-->
+    
+    <!--第3个线下的信息 start-->
+     <div class="layui-form-item">
+        <span class="color-green font-w7">线下收款银行卡号-easypaisa</span>
+        <label class="relative block">
+            <input readonly value="{:sysconf('offline_bank_number3')}" class="layui-input layui-bg-gray">
+            <a data-copy="{:sysconf('offline_bank_number3')}" class="fa fa-copy right-btn"></a>
+        </label>
+    </div>
+    <div class="layui-form-item">
+        <span class="color-green font-w7">线下收款人-easypaisa</span>
+        <label class="relative block">
+            <input readonly value="{:sysconf('offline_bank_user3')}" class="layui-input layui-bg-gray">
+            <a data-copy="{:sysconf('offline_bank_user3')}" class="fa fa-copy right-btn"></a>
+        </label>
+    </div>
+    <div class="layui-form-item">
+        <span class="color-green font-w7">线下所属银行-easypaisa</span>
+        <label class="relative block">
+            <input readonly value="{:sysconf('offline_bank_name3')}" class="layui-input layui-bg-gray">
+            <a data-copy="{:sysconf('offline_bank_name3')}" class="fa fa-copy right-btn"></a>
+        </label>
+    </div>
+    <div class="layui-form-item">
+        <span class="color-green font-w7">线下开户行-easypaisa</span>
+        <label class="relative block">
+            <input readonly value="{:sysconf('offline_bank_name_kai3')}" class="layui-input layui-bg-gray">
+            <a data-copy="{:sysconf('offline_bank_name_kai3')}" class="fa fa-copy right-btn"></a>
+        </label>
+    </div>
+    <!--第3个线下的信息 end-->
+    
+    <!--第4个线下的信息 start-->
+     <div class="layui-form-item">
+        <span class="color-green font-w7">线下收款银行卡号-bankcard</span>
+        <label class="relative block">
+            <input readonly value="{:sysconf('offline_bank_number4')}" class="layui-input layui-bg-gray">
+            <a data-copy="{:sysconf('offline_bank_number4')}" class="fa fa-copy right-btn"></a>
+        </label>
+    </div>
+    <div class="layui-form-item">
+        <span class="color-green font-w7">线下收款人-bankcard</span>
+        <label class="relative block">
+            <input readonly value="{:sysconf('offline_bank_user4')}" class="layui-input layui-bg-gray">
+            <a data-copy="{:sysconf('offline_bank_user4')}" class="fa fa-copy right-btn"></a>
+        </label>
+    </div>
+    <div class="layui-form-item">
+        <span class="color-green font-w7">线下所属银行-bankcard</span>
+        <label class="relative block">
+            <input readonly value="{:sysconf('offline_bank_name4')}" class="layui-input layui-bg-gray">
+            <a data-copy="{:sysconf('offline_bank_name4')}" class="fa fa-copy right-btn"></a>
+        </label>
+    </div>
+    <div class="layui-form-item">
+        <span class="color-green font-w7">线下开户行-bankcard</span>
+        <label class="relative block">
+            <input readonly value="{:sysconf('offline_bank_name_kai4')}" class="layui-input layui-bg-gray">
+            <a data-copy="{:sysconf('offline_bank_name_kai4')}" class="fa fa-copy right-btn"></a>
+        </label>
+    </div>
+    <!--第4个线下的信息 end-->
+    
+    
+    <div class="layui-form-item">
+       <span class="color-green font-w7">USDT汇率 (1:?)</span>
+            <label class="relative block">
+                 <input readonly value="{:sysconf('usdt_huilv')}" class="layui-input layui-bg-gray">
+            <a data-copy="{:sysconf('usdt_huilv')}" class="fa fa-copy right-btn"></a>
+            </label>
+        </div>
+</div>
+{/block}
+
+{block name='style'}
+<style>
+    .right-btn {
+        top: 0;
+        right: 0;
+        width: 38px;
+        height: 38px;
+        display: inline-block;
+        position: absolute;
+        text-align: center;
+        line-height: 38px;
+    }
+</style>
+<script>
+
+    window.form.render();
+    layui.use('laydate', function () {
+        var laydate = layui.laydate;
+        laydate.render({elem: '#del_date', theme: 'molv', type: 'date'})
+        laydate.render({elem: '#del_date2', theme: 'molv', type: 'date'})
+        laydate.render({elem: '#del_date3', theme: 'molv', type: 'date'})
+        laydate.render({elem: '#del_date4', theme: 'molv', type: 'date'})
+        laydate.render({elem: '#del_date6', theme: 'molv', type: 'date'})
+        laydate.render({elem: '#del_date7', theme: 'molv', type: 'date'})
+    })
+</script>
+<script>
+    function clearData() {
+        $.msg.confirm('确定要清理吗？', function (index) {
+            //history.back();
+            $.msg.close(index);
+            var chk_value = [];
+            $('input[name="clear"]:checked').each(function () {
+                chk_value.push($(this).val());
+            });
+
+            console.log(chk_value)
+            console.log(JSON.stringify(chk_value))
+            $.ajax({
+                type: 'POST',
+                url: "{:url('clear')}",
+                data: {
+                    'id': 2,
+                    'data': JSON.stringify(chk_value),
+                    '_csrf_': "{:systoken('admin/config/clear')}"
+                },
+                success: function (res) {
+                    layer.msg(res.info, {time: 2500});
+                    //location.reload();
+                }
+            });
+
+
+        }, function () {
+            return false;
+        });
+
+
+    }
+    function shanchu_jiangshi(){
+        $.msg.confirm('确定要清理吗？', function (index) {
+            //history.back();
+            $.msg.close(index);
+            var days = $('input[name="where1"]').val();
+            console.log("days",days);
+            $.ajax({
+                type: 'POST',
+                url: "{:url('clear2')}",
+                data: {'id': days,},
+                success: function (res) {
+                    layer.msg("删除"+res+"条僵尸数据", {time: 2500});
+                    //location.reload();
+                    // console.log(res)
+                }
+            });
+
+
+        }, function () {
+            
+            return false;
+        });
+    }
+    function shanchu_jiangshi2(){
+        $.msg.confirm('确定要清理吗？请谨慎使用！', function (index) {
+            //history.back();
+            $.msg.close(index);
+            var days = $('input[name="where2"]').val();
+            console.log("days",days);
+            $.ajax({
+                type: 'POST',
+                url: "{:url('clear3')}",
+                data: {'id': days,},
+                success: function (res) {
+                    layer.msg("删除"+res+"条僵尸数据", {time: 2500});
+                    //location.reload();
+                    // console.log(res)
+                }
+            });
+
+
+        }, function () {
+            
+            return false;
+        });
+    }
+     function shanchu_jiangshi3(){
+        $.msg.confirm('确定要清理吗？请谨慎使用！', function (index) {
+            //history.back();
+            $.msg.close(index);
+            var days = $('input[name="where3"]').val();
+            console.log("days",days);
+            $.ajax({
+                type: 'POST',
+                url: "{:url('clear4')}",
+                data: {'id': days,},
+                success: function (res) {
+                    layer.msg("删除"+res+"条僵尸数据", {time: 2500});
+                    //location.reload();
+                    // console.log(res)
+                }
+            });
+
+
+        }, function () {
+            
+            return false;
+        });
+    }
+     function shanchu_jiangshi4(){
+        $.msg.confirm('确定要清理吗？请谨慎使用！', function (index) {
+            //history.back();
+            $.msg.close(index);
+            var days = $('input[name="where4"]').val();
+            console.log("days",days);
+            $.ajax({
+                type: 'POST',
+                url: "{:url('clear5')}",
+                data: {'id': days,},
+                success: function (res) {
+                    layer.msg("删除"+res+"条僵尸数据", {time: 2500});
+                    //location.reload();
+                    // console.log(res)
+                }
+            });
+
+
+        }, function () {
+            
+            return false;
+        });
+    }
+    function shanchu_jiangshi5(){
+        $.msg.confirm('确定要清理吗？请谨慎使用！', function (index) {
+            //history.back();
+            $.msg.close(index);
+            var days = $('input[name="where5"]').val();
+            console.log("days",days);
+            $.ajax({
+                type: 'POST',
+                url: "{:url('clear6')}",
+                data: {'id': days,},
+                success: function (res) {
+                    layer.msg(res, {time: 2500});
+                    //location.reload();
+                    // console.log(res)
+                }
+            });
+
+
+        }, function () {
+            
+            return false;
+        });
+    }
+     function shanchu_jiangshi6(){
+        $.msg.confirm('确定要清理吗？请谨慎使用！', function (index) {
+            //history.back();
+            $.msg.close(index);
+            var days = $('input[name="where6"]').val();
+            console.log("days",days);
+            $.ajax({
+                type: 'POST',
+                url: "{:url('clear7')}",
+                data: {'id': days,},
+                success: function (res) {
+                    layer.msg("删除"+res+"条数据", {time: 2500});
+                    //location.reload();
+                    // console.log(res)
+                }
+            });
+
+
+        }, function () {
+            
+            return false;
+        });
+    }
+     function shanchu_jiangshi7(){
+        $.msg.confirm('确定要清理吗？请谨慎使用！', function (index) {
+            //history.back();
+            $.msg.close(index);
+            var days = $('input[name="where7"]').val();
+            console.log("days",days);
+            $.ajax({
+                type: 'POST',
+                url: "{:url('clear8')}",
+                data: {'id': days,},
+                success: function (res) {
+                    layer.msg("删除"+res+"条数据", {time: 2500});
+                    //location.reload();
+                    // console.log(res)
+                }
+            });
+
+
+        }, function () {
+            
+            return false;
+        });
+    }
+</script>
+{/block}

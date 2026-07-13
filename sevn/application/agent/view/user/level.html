@@ -1,0 +1,40 @@
+{include file="public/header"/}
+
+<div class="layui-fluid">
+    <div class="layui-row">
+        <form class="layui-form" action="" method="post">
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>等级</label>
+                <div class="layui-input-inline">
+                    <select name="level" class="form-control">
+                        <option value="0" >SVIP0</option>
+                        {volist name="level_info" id="vo"}
+                        {if condition="($user_info.level == $vo.id)"}
+                        <option value="{$vo.id}" selected="selected" >{$vo.name}</option>
+                        {else /}
+                        <option value="{$vo.id}" >{$vo.name}</option>
+                        {/if}
+                        {/volist}
+                    </select>
+                </div>
+            </div>
+
+            <div class="layui-form-item" style="margin-left: 25%">
+                {if condition="($user_info.agent_role==3 or $user_info.agent_role==4)"}
+                <input type="hidden" name="id" value="{$user_info.id}" >
+                <button  class="layui-btn" lay-filter="add" lay-submit="">提交</button>
+                {/if}
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    layui.use(['form', 'layer'],
+    );
+</script>
+
+
+

@@ -1,0 +1,78 @@
+<form class="layui-form layui-card" action="{:request()->url()}" data-auto="true" method="post" autocomplete="off">
+    <div class="layui-card-body">
+        <div class="layui-form-item">
+            <label class="layui-form-label label-required">用户名称</label>
+            <div class="layui-input-block">
+                
+                {$list.username}
+                <input type="hidden" name="_csrf_" value="{:systoken('admin/users/edit_customer')}">
+                <input type="hidden" name="id" value="{$list.id}">
+                <input type="hidden" name="uid" value="{$list.uid}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label label-required">用户等级</label>
+            <div class="layui-input-block">
+                
+                {if $list.role==4}
+                    总代
+                {elseif $list.role==3}
+                    经理
+                {elseif $list.role==2}
+                    代理
+                {else}
+                    不可能出现
+                {/if}
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">客服名称</label>
+            <div class="layui-input-block">
+                <input name="name" placeholder="请输入" value="{$list.name}" class="layui-input">
+            </div>
+        </div>
+        
+
+        
+        <div class="layui-form-item">
+            <label class="layui-form-label">链接</label>
+            <div class="layui-input-block">
+                <input name="link" placeholder="请输入" value="{$list.link}" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">WhatsApp/Telegram</label>
+            <div class="layui-input-block">
+                <select name="WhatsappTelegram">
+                    <option value='0' {if $list.WhatsappTelegram==0} selected{/if}>WhatsApp</option>
+                    <option value='1' {if $list.WhatsappTelegram==1} selected{/if}>Telegram</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">时间范围</label>
+            <div class="layui-input-inline">
+                <input data-time-range type="text" class="layui-input" name='time' id="time" value="{$list.btime}:00 - {$list.etime}:00" placeholder=" - ">
+            </div>
+        </div>
+    </div>
+
+    <div class="hr-line-dashed"></div>
+
+    <div class="layui-form-item text-center">
+        <button class="layui-btn" type='submit'>提交</button>
+        <button class="layui-btn layui-btn-danger" type='button' data-close>取消</button>
+    </div>
+
+    <script>window.form.render();</script>
+    <script>
+    laydate.render({ 
+    elem: '#time'
+    ,type: 'time'
+    ,range:'-'
+    ,done: function(value, date, endDate){
+        console.log(value); //得到日期生成的值，如：2017-08-18
+    }
+    });
+    </script>
+</form>

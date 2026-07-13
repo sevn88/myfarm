@@ -1,0 +1,533 @@
+{extend name='main'}
+
+{block name="button"}
+
+{if auth("add_users")}
+<!--<button data-modal='{:url("add_users")}' data-title="添加会员" class='layui-btn'>添加会员</button>-->   
+{/if}
+
+{/block}
+
+{block name="content"}
+
+<div class="think-box-shadow">
+    {include file='withdrawal/index_search'}
+    <table class="layui-table" lay-filter="tab" lay-skin="line">
+        {notempty name='list'}5
+        <thead>
+        <tr>
+            <th lay-data="{field:'order_id',width:150}" class='text-left nowrap'>订单号</th>
+            <th lay-data="{field:'pusername'}" class='text-left nowrap'>上级账号</th>
+            <th lay-data="{field:'uid',width:70}" class='text-left nowrap'>用户ID</th>
+            <th lay-data="{field:'username'}" class='text-left nowrap'>账号</th>
+            <th lay-data="{field:'phone'}" class='text-left nowrap'>账号手机</th>
+            <th lay-data="{field:'apply_money'}" class='text-left nowrap'>申请金额</th>
+            <th lay-data="{field:'service_money'}" class='text-left nowrap'>收服务费</th>
+            <th lay-data="{field:'actual_money'}" class='text-left nowrap'>应付金额</th>
+            <th lay-data="{field:'status'}" class='text-left nowrap'>状态</th>
+            <th lay-data="{field:'bank_name'}" class='text-left nowrap'>Bank_Name</th>
+            <th lay-data="{field:'ifsc'}" class='text-left nowrap'>开户行</th>
+            <th lay-data="{field:'holder_name'}" class='text-left nowrap'>Holder_Name</th>
+            <th lay-data="{field:'account_number'}" class='text-left nowrap'>Account_Number</th>
+            <!--<th lay-data="{field:'phone_number'}" class='text-left nowrap'>Phone_Number</th>-->
+            <!--<th lay-data="{field:'email'}" class='text-left nowrap'>Email</th>-->
+            
+            <!--<th lay-data="{field:'upi'}" class='text-left nowrap'>UPI</th>-->
+            <th lay-data="{field:'create_time',width:200}" class='text-left nowrap'>申请时间</th>
+            <th lay-data="{field:'edit',width:380,fixed: 'right'}" class='text-left nowrap'>操作</th>
+        </tr>
+        </thead>
+        {/notempty}
+        <tbody>
+        {foreach $list as $key=>$vo}
+        <tr>
+            <td class='text-left nowrap'>{$vo.order_id}</td>
+            <td class='text-left nowrap'>{$vo.pusername}</td>
+            <td class='text-left nowrap'>{$vo.uid}</td>
+            <td class='text-left nowrap'>{$vo.username}</td>
+            <td class='text-left nowrap'>{$vo.phone}</td>
+            <td class='text-left nowrap'>{$vo.apply_money}</td>
+            <td class='text-left nowrap'>{$vo.service_money}</td>
+            <td class='text-left nowrap'>{$vo.actual_money}</td>
+            {switch vo.status}
+            {case 0}<td class='text-left nowrap'><span class="color-blue">等待处理</span></td>{/case}
+            {case 1}<td class='text-left nowrap'><span class="color-green">已完成支付</span></td>{/case}
+            {case 2}<td class='text-left nowrap'><span class="color-red">管理已拒绝支付</span></td>{/case}
+            {case 3}<td class='text-left nowrap'><span class="color-desc">处理中</span></td>{/case}
+            {case 4}<td class='text-left nowrap'><span class="color-red">代理已拒绝支付</span></td>{/case}
+            {case 5}<td class='text-left nowrap'><span class="color-red">打款失败</span></td>{/case}
+             {case 6}<td class='text-left nowrap'><span class="color-red">虚拟支付</span></td>{/case}
+            {/switch}
+            <td class='text-left nowrap'>{$vo.bank_name}</td>
+            <td class='text-left nowrap'>{$vo.ifsc}</td>
+            <td class='text-left nowrap'>{$vo.holder_name}</td>
+            <td class='text-left nowrap'>{$vo.account_number}</td>
+            <!--<td class='text-left nowrap'>{$vo.phone_number}</td>-->
+            <!--<td class='text-left nowrap'>{$vo.email}</td>-->
+            <!--<td class='text-left nowrap'>{$vo.ifsc}</td>-->
+            <!--<td class='text-left nowrap'>{$vo.upi}</td>-->
+            <td class='text-left nowrap'>{$vo.create_time|format_datetime}</td>
+            <td class='text-left nowrap'>
+                
+                {if auth("Withdrawal_handle")}
+                {if ($vo.status == 0) and auth("Withdrawal_handle")}
+                <!--<button type="button" onClick="pass({$vo.id})" class="layui-btn layui-btn-xs">51Pay 支付</button>-->
+                <!--<button type="button" onClick="pass2({$vo.id})" class="layui-btn layui-btn-xs">UZPAY 支付</button>-->
+                <!-- <button type="button" onClick="pass3({$vo.id})" class="layui-btn layui-btn-xs">FASTPAY 支付</button>-->
+                  <!--<button type="button" onClick="pass6({$vo.id})" class="layui-btn layui-btn-xs">SUNPAY 支付</button>-->
+                  <!--<button type="button" onClick="pass7({$vo.id})" class="layui-btn layui-btn-xs">FASTPAY 支付</button>-->
+                  <!--<button type="button" onClick="pass8({$vo.id})" class="layui-btn layui-btn-xs">LEPAY 支付</button>-->
+                  <button type="button" onClick="pass12({$vo.id})" class="layui-btn layui-btn-xs">BD线上支付</button>
+                  <button type="button" onClick="pass9({$vo.id})" class="layui-btn layui-btn-xs">HTPAY 支付</button>
+                  <button type="button" onClick="pass20({$vo.id})" class="layui-btn layui-btn-xs">INRPAY 支付</button>
+                  <button type="button" onClick="pass21({$vo.id})" class="layui-btn layui-btn-xs">ONEPAY 支付</button>
+                  <button type="button" onClick="pass17({$vo.id})" class="layui-btn layui-btn-xs">线下支付</button>
+                  <button type="button" onClick="pass10({$vo.id})" class="layui-btn layui-btn-xs">虚拟支付</button>
+                <button type="button" onClick="refuse({$vo.id})" class="layui-btn layui-btn-danger layui-btn-xs" >拒绝支付</button>
+                {elseif ($vo.status==1)}
+                <button type="button" class="layui-btn layui-btn-xs layui-btn-disabled">支付完成</button>
+                {elseif ($vo.status==2)}
+                <button type="button" class="layui-btn layui-btn-xs layui-btn-disabled">管理已拒绝支付</button>
+                {elseif ($vo.status==4)}
+                <button type="button" class="layui-btn layui-btn-xs layui-btn-disabled">代理已拒绝支付</button>
+                {elseif ($vo.status==6)}
+                <button type="button" class="layui-btn layui-btn-xs layui-btn-disabled">虚拟支付</button>
+                {elseif ($vo.status==5)}
+                <button type="button" onClick="refuse({$vo.id})" class="layui-btn layui-btn-danger layui-btn-xs" >拒绝支付</button>
+                {else /}
+                <button type="button" class="layui-btn layui-btn-xs layui-btn-disabled">处理中</button>
+                {/if}
+                {/if}
+            </td>
+        </tr>
+        {/foreach}
+        </tbody>
+    </table>
+
+    <script>
+        function pass(id){
+            var lock = false;
+            layer.confirm('确定调用"支付一 51Pay"进行支付?',{btn:['确定','取消']},function(index){
+                if(!lock) {
+                    //加锁防止多次回调
+                    lock =true;
+                    layer.load(2);
+                    $.ajax({
+                        url: "{:Url('withdrawal_pass')}",
+                        type: "post",
+                        traditional: true,
+                        data: {id:id},
+                        success: function (e) {
+                            console.log(e)
+                            layer.closeAll('loading');
+                            if (e.code === 1){
+                                layer.msg(e.msg, {
+                                    time: 2000,
+                                    end: function () {
+                                        location.reload();
+                                    }
+                                });
+                            }else {
+                                layer.msg(e.msg, function(){});
+                                return false;
+                            }
+                        },
+                    });
+                }
+            });
+        }
+        function pass2(id){
+            var lock = false;
+            layer.confirm('确定调用"支付二 UZPAY"进行支付?',{btn:['确定','取消']},function(index){
+                if(!lock) {
+                    //加锁防止多次回调
+                    lock =true;
+                    layer.load(2);
+                    $.ajax({
+                        url: "{:Url('withdrawal_pass2')}",
+                        type: "post",
+                        traditional: true,
+                        data: {id:id},
+                        success: function (e) {
+                            console.log(e)
+                            layer.closeAll('loading');
+                            if (e.code === 1){
+                                layer.msg(e.msg, {
+                                    time: 2000,
+                                    end: function () {
+                                        location.reload();
+                                    }
+                                });
+                            }else {
+                                layer.msg(e.msg, function(){});
+                                return false;
+                            }
+                        },
+                    });
+                }
+            });
+        }
+        function pass3(id){
+            var lock = false;
+            layer.confirm('确定调用"支付三 FASTPAY"进行支付?',{btn:['确定','取消']},function(index){
+                if(!lock) {
+                    //加锁防止多次回调
+                    lock =true;
+                    layer.load(2);
+                    $.ajax({
+                        url: "{:Url('withdrawal_pass3')}",
+                        type: "post",
+                        traditional: true,
+                        data: {id:id},
+                        success: function (e) {
+                            console.log(e)
+                            layer.closeAll('loading');
+                            if (e.code === 1){
+                                layer.msg(e.msg, {
+                                    time: 2000,
+                                    end: function () {
+                                        location.reload();
+                                    }
+                                });
+                            }else {
+                                layer.msg(e.msg, function(){});
+                                return false;
+                            }
+                        },
+                    });
+                }
+            });
+        }
+        
+        function pass6(id){
+            var lock = false;
+            layer.confirm('确定调用"支付 SUNPAY"进行支付?',{btn:['确定','取消']},function(index){
+                if(!lock) {
+                    //加锁防止多次回调
+                    lock =true;
+                    layer.load(2);
+                    $.ajax({
+                        url: "{:Url('withdrawal_pass6')}",
+                        type: "post",
+                        traditional: true,
+                        data: {id:id},
+                        success: function (e) {
+                            console.log(e)
+                            layer.closeAll('loading');
+                            if (e.code === 1){
+                                layer.msg(e.msg, {
+                                    time: 2000,
+                                    end: function () {
+                                        location.reload();
+                                    }
+                                });
+                            }else {
+                                layer.msg(e.msg, function(){});
+                                return false;
+                            }
+                        },
+                    });
+                }
+            });
+        }
+        
+        function pass7(id){
+            var lock = false;
+            layer.confirm('确定调用"支付 FASTPAY"进行支付?',{btn:['确定','取消']},function(index){
+                if(!lock) {
+                    //加锁防止多次回调
+                    lock =true;
+                    layer.load(2);
+                    $.ajax({
+                        url: "{:Url('withdrawal_pass7')}",
+                        type: "post",
+                        traditional: true,
+                        data: {id:id},
+                        success: function (e) {
+                            console.log(e)
+                            layer.closeAll('loading');
+                            if (e.code === 1){
+                                layer.msg(e.msg, {
+                                    time: 2000,
+                                    end: function () {
+                                        location.reload();
+                                    }
+                                });
+                            }else {
+                                layer.msg(e.msg, function(){});
+                                return false;
+                            }
+                        },
+                    });
+                }
+            });
+        }
+        
+        function pass8(id){
+            var lock = false;
+            layer.confirm('确定调用"支付 LEPAY"进行支付?',{btn:['确定','取消']},function(index){
+                if(!lock) {
+                    //加锁防止多次回调
+                    lock =true;
+                    layer.load(2);
+                    $.ajax({
+                        url: "{:Url('withdrawal_pass8')}",
+                        type: "post",
+                        traditional: true,
+                        data: {id:id},
+                        success: function (e) {
+                            console.log(e)
+                            layer.closeAll('loading');
+                            if (e.code === 1){
+                                layer.msg(e.msg, {
+                                    time: 2000,
+                                    end: function () {
+                                        location.reload();
+                                    }
+                                });
+                            }else {
+                                layer.msg(e.msg, function(){});
+                                return false;
+                            }
+                        },
+                    });
+                }
+            });
+        }
+        function pass9(id){
+            var lock = false;
+            layer.confirm('确定调用"支付 HTPAY"进行支付?',{btn:['确定','取消']},function(index){
+                if(!lock) {
+                    //加锁防止多次回调 
+                    lock =true;
+                    layer.load(2);
+                    $.ajax({
+                        url: "{:Url('withdrawal_pass9')}",
+                        type: "post",
+                        traditional: true,
+                        data: {id:id},
+                        success: function (e) {
+                            console.log(e)
+                            layer.closeAll('loading');
+                            if (e.code === 1){
+                                layer.msg(e.msg, {
+                                    time: 2000,
+                                    end: function () {
+                                        location.reload();
+                                    }
+                                });
+                            }else {
+                                layer.msg(e.msg, function(){});
+                                return false;
+                            }
+                        },
+                    });
+                }
+            });
+        }
+         function pass10(id){
+            var lock = false;
+            layer.confirm('确定调用"虚拟支付"进行支付?',{btn:['确定','取消']},function(index){
+                if(!lock) {
+                    //加锁防止多次回调
+                    lock =true;
+                    layer.load(2);
+                    $.ajax({
+                        url: "{:Url('withdrawal_pass10')}",
+                        type: "post",
+                        traditional: true,
+                        data: {id:id},
+                        success: function (e) {
+                            console.log(e)
+                            layer.closeAll('loading');
+                            if (e.code === 1){
+                                layer.msg(e.msg, {
+                                    time: 2000,
+                                    end: function () {
+                                        location.reload();
+                                    }
+                                });
+                            }else {
+                                layer.msg(e.msg, function(){});
+                                return false;
+                            }
+                        },
+                    });
+                }
+            });
+        }
+        function pass12(id){
+            var lock = false;
+            layer.confirm('确定调用"BD线上支付"进行支付?',{btn:['确定','取消']},function(index){
+                if(!lock) {
+                    //加锁防止多次回调
+                    lock =true;
+                    layer.load(2);
+                    $.ajax({
+                        url: "{:Url('withdrawal_pass12')}",
+                        type: "post",
+                        traditional: true,
+                        data: {id:id},
+                        success: function (e) {
+                            console.log(e)
+                            layer.closeAll('loading');
+                            if (e.code === 1){
+                                layer.msg(e.msg, {
+                                    time: 2000,
+                                    end: function () {
+                                        location.reload();
+                                    }
+                                });
+                            }else {
+                                layer.msg(e.msg, function(){});
+                                return false;
+                            }
+                        },
+                    });
+                }
+            });
+        }
+        function pass20(id){
+            var lock = false;
+            layer.confirm('确定调用"INR线上支付"进行支付?',{btn:['确定','取消']},function(index){
+                if(!lock) {
+                    //加锁防止多次回调
+                    lock =true;
+                    layer.load(2);
+                    $.ajax({
+                        url: "{:Url('withdrawal_pass20')}",
+                        type: "post",
+                        traditional: true,
+                        data: {id:id},
+                        success: function (e) {
+                            console.log(e)
+                            layer.closeAll('loading');
+                            if (e.code === 1){
+                                layer.msg(e.msg, {
+                                    time: 2000,
+                                    end: function () {
+                                        location.reload();
+                                    }
+                                });
+                            }else {
+                                layer.msg(e.msg, function(){});
+                                return false;
+                            }
+                        },
+                    });
+                }
+            });
+        }
+         function pass21(id){
+            var lock = false;
+            layer.confirm('确定调用"ONEPAY线上支付"进行支付?',{btn:['确定','取消']},function(index){
+                if(!lock) {
+                    //加锁防止多次回调
+                    lock =true;
+                    layer.load(2);
+                    $.ajax({
+                        url: "{:Url('withdrawal_pass21')}",
+                        type: "post",
+                        traditional: true,
+                        data: {id:id},
+                        success: function (e) {
+                            console.log(e)
+                            layer.closeAll('loading');
+                            if (e.code === 1){
+                                layer.msg(e.msg, {
+                                    time: 2000,
+                                    end: function () {
+                                        location.reload();
+                                    }
+                                });
+                            }else {
+                                layer.msg(e.msg, function(){});
+                                return false;
+                            }
+                        },
+                    });
+                }
+            });
+        }
+        function pass17(id){
+            var lock = false;
+            layer.confirm('确定调用"线下"进行支付?',{btn:['确定','取消']},function(index){
+                if(!lock) {
+                    //加锁防止多次回调
+                    lock =true;
+                    layer.load(2);
+                    $.ajax({
+                        url: "{:Url('withdrawal_pass17')}",
+                        type: "post",
+                        traditional: true,
+                        data: {id:id},
+                        success: function (e) {
+                            console.log(e)
+                            layer.closeAll('loading');
+                            if (e.code === 1){
+                                layer.msg(e.msg, {
+                                    time: 2000,
+                                    end: function () {
+                                        location.reload();
+                                    }
+                                });
+                            }else {
+                                layer.msg(e.msg, function(){});
+                                return false;
+                            }
+                        },
+                    });
+                }
+            });
+        }
+    </script>
+
+    <script>
+        function refuse(id){
+            var lock = false;
+            layer.confirm('确定拒绝支付?',{btn:['确定','取消']},function(index){
+                if(!lock) {
+                    //加锁防止多次回调
+                    lock =true;
+                    layer.load(2);
+                    $.ajax({
+                        url: "{:Url('withdrawal_refuse')}",
+                        type: "post",
+                        traditional: true,
+                        data: {id:id},
+                        success: function (e) {
+                            layer.closeAll('loading');
+                            if (e.code === 1){
+                                layer.msg(e.msg, {
+                                    time: 2000,
+                                    end: function () {
+                                        location.reload();
+                                    }
+                                });
+                            }else {
+                                layer.msg(e.msg, function(){});
+                                return false;
+                            }
+                        },
+                    });
+                }
+            });
+        }
+    </script>
+
+    <script>
+        var table = layui.table;
+        //转换静态表格
+        var limit = Number('{$Think.get.limit}');
+        if(limit==0) limit=20;
+        table.init('tab', {
+            cellMinWidth:120,
+            skin: 'line,row',
+            even: false,
+            size: 'sm ',
+            limit: limit
+        });
+    </script>
+    {empty name='list'}<span class="notdata">没有记录哦</span>{else}{$pages|raw|default=''}{/empty}
+</div>
+{/block}

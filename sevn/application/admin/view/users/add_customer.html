@@ -1,0 +1,131 @@
+<style>
+    /* 样式化 a 标签，使其看起来像按钮 */
+        .button-like {
+            display: inline-block;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007BFF;
+            border: 1px solid #007BFF;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* 鼠标悬停时改变颜色 */
+        .button-like:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+</style>
+<form class="layui-form layui-card" action="{:request()->url()}" data-auto="true" method="post" autocomplete="off">
+    <div class="layui-card-body">
+        <div class="layui-form-item">
+            <label class="layui-form-label label-required">用户名称</label>
+            <div class="layui-input-block">
+                <input name="username" id="username" required placeholder="请输入用户名称,然后点击查询" value="" class="layui-input" >
+                <a href="#" onclick="do_search()" class="button-like">查询</a>
+                <span id="msg" style="margin:10px;display:none;">准确找到</span>
+                <input type="hidden" name="_csrf_" value="{:systoken('admin/users/add_customer')}">
+                <input type="hidden" name="id" value="">
+                <input type="hidden" name="uid" id="uid" value="">
+                <input type="hidden" name="role" id="role" value="">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label label-required">用户等级</label>
+            <div class="layui-input-block role">
+                &nbsp;
+                
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">客服名称</label>
+            <div class="layui-input-block">
+                <input name="name" placeholder="请输入" value="" class="layui-input">
+            </div>
+        </div>
+        
+
+        
+        <div class="layui-form-item">
+            <label class="layui-form-label">链接</label>
+            <div class="layui-input-block">
+                <input name="link" placeholder="请输入" value="" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">WhatsApp/Telegram</label>
+            <div class="layui-input-block">
+                <select name="WhatsappTelegram">
+                    <option value='0' >WhatsApp</option>
+                    <option value='1' >Telegram</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">时间范围</label>
+            <div class="layui-input-inline">
+                <input data-time-range type="text" class="layui-input" name='time' id="time" value="00:00:00 - 23:59:00" placeholder=" - ">
+            </div>
+        </div>
+    </div>
+
+    <div class="hr-line-dashed"></div>
+
+    <div class="layui-form-item text-center">
+        <button class="layui-btn" type='submit' id="aa">提交</button>
+        <button class="layui-btn layui-btn-danger" type='button' data-close>取消</button>
+    </div>
+
+    <script>window.form.render();</script>
+    <script>
+    $('#aa').prop("disabled",true)
+    laydate.render({ 
+    elem: '#time'
+    ,type: 'time'
+    ,range:'-'
+    ,done: function(value, date, endDate){
+        console.log(value); //得到日期生成的值，如：2017-08-18
+    }
+    });
+    function do_search(){
+        event.preventDefault();
+        
+        var username = $('#username').val();
+        
+        $.ajax({
+            type:'POST',
+            url:"{:url('get_userinfo')}",
+            data:{
+                'username':username
+            },
+            success:function(res){
+                if (res['code']==1){
+                    console.log(res['data'])
+                    $('#msg').show()
+                    $('#msg').html("找到数据，可以设置这个人的代理信息了")
+                    $('#aa').prop("disabled",false)
+                    $('#uid').val(res['data']['id'])
+                    if (res['data']['role']==4){
+                        $(".role").html("管理")
+                    }else if (res['data']['role']==3){
+                        $(".role").html("总代")
+                    }else if (res['data']['role']==2){
+                        $(".role").html("代理")
+                    }else if (res['data']['role']==1){
+                        $(".role").html("客户")
+                    
+                    }
+                    $('#role').val(res['data']['role'])
+                    
+                }else{
+                    $('#msg').show()
+                    $('#msg').html("没有找到数据，不能设置这个人的代理信息")
+                }
+            }
+        })
+        return false
+    }
+    </script>
+</form>

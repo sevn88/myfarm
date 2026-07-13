@@ -1,0 +1,310 @@
+{include file="public/header"/}
+    <style>.container{overflow:scroll;background:#f7f7f7;-webkit-box-sizing:border-box;box-sizing:border-box;padding:0 15px 15px}.container .bg{padding-bottom:65px;padding-bottom:calc(65px + constant(safe-area-inset-bottom));padding-bottom:calc(65px + env(safe-area-inset-bottom))}.container .form-input-placeholder{color:#ddd}.container .accountTitle{font-size:23px;font-family:Myriad Pro;font-weight:700;margin-top:15px}.container .tipAccount{color:#a8a8a8;margin:4px 0;font-weight:400;line-height:20px}.container .items{background:#fff;border-radius:5px;padding:15px 15px 1px 15px}.container .items .item:after{content:"";width:100%;height:1px;background:#f2f2f2;position:absolute;bottom:0;left:0}.container .items .item:last-child:after{height:0}.container .items .item{display:-webkit-box;display:-webkit-flex;display:flex;-webkit-box-align:center;-webkit-align-items:center;align-items:center;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;border-bottom:2px solid #ddd;margin-bottom:10px;position:relative}.container .items .item .evan-form-item-container__label{color:#000;width:100%;font-size:14px}.container .items .item .evan-form-item-container{border:none;width:100%;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;flex-direction:column}.container .items .item .evan-form-item-container__main{width:100%;height:100%}.container .items .item .form-input{width:100%;padding-left:5px;height:100%}.container .items .item .iconArrow{display:inline-block;width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:6px solid #333;position:absolute;bottom:20%;right:15px}.container .items .item .input{width:calc(100% - 80px);padding-right:10px;-webkit-box-sizing:border-box;box-sizing:border-box}.container .items .item .input uni-input{width:100%;height:100%}.container .save{color:#fff;background:-webkit-gradient(linear,left top,right top,from(var(--color1)),to(var(--color2)));background:-webkit-linear-gradient(left,var(--color1),var(--color2));background:linear-gradient(90deg,var(--color1),var(--color2));border-radius:20px;text-align:center;padding:10px 0;margin:30px 0}.container .card{font-size:13px;background:#fff;padding:15px;border-radius:5px}.container .card .title{margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid #f2f2f2}.container .card .tip{color:#999}
+    .evan-form-item-container{border-bottom:0.5px solid #eee}.evan-form-item-container__label{font-size:14px;color:#666;line-height:20px;padding:12px 0;display:inline-block}.evan-form-item-container__label.showAsteriskRect::before{content:"";color:#f56c6c;width:10px;display:inline-block}.evan-form-item-container__label.isRequired::before{content:"*"}.evan-form-item-container__main{-webkit-box-flex:1;-webkit-flex:1;flex:1;min-height:45px;display:-webkit-box;display:-webkit-flex;display:flex;-webkit-box-align:center;-webkit-align-items:center;align-items:center;overflow:hidden}.evan-form-item-container--left{display:-webkit-box;display:-webkit-flex;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-webkit-flex-direction:row;flex-direction:row;-webkit-box-align:start;-webkit-align-items:flex-start;align-items:flex-start}.evan-form-item-container--top .evan-form-item-container__label{padding-bottom:5px}
+    </style>
+
+
+<body>
+<uni-app class="uni-app--maxwidth">
+    <uni-page data-page="pages/card/index">
+        <uni-page-wrapper>
+            <uni-page-body>
+                <div class="container">
+                    <div class="top-page"
+                         style="height: 44px; background: linear-gradient(to right, rgb(255, 255, 255), rgb(255, 255, 255));">
+                        <div class="apex"
+                             style="height: 44px; line-height: 44px; background: linear-gradient(to right, rgb(255, 255, 255), rgb(255, 255, 255)); color: rgb(0, 0, 0); position: fixed;">
+                            <a href="javascript:history.go(-1)" class="left">
+                                <uni-text class="iconfont icon-fanhui1"
+                                          style="font-size: 16px; color: rgb(0, 0, 0);"><span></span></uni-text>
+                            </a>
+                            <a href="{:Url('account/usdt')}"><div class="center" style="font-size: 17px;"> {:lang("BindUSDT")}</div></a>
+                            <a href="{:Url('account/card')}"><div class="center" style="font-size: 17px;color: blue;">{:lang("BindBankCard")}</div></a>
+                            
+                            <div class="right"></div>
+                        </div>
+                        <div class="placeholder" style="height: 44px; line-height: 44px;"></div>
+                    </div>
+                    <div class="accountTitle">{:lang("AccountInformation")}</div>
+                    <div class="tipAccount">{:lang("MakeCorrectInfor")}</div>
+                    <div class="evan-form-container items">
+                        <div class="item">
+                            <div class="evan-form-item-container evan-form-item-container--left"
+                                 style="border-width: 0.5px;">
+                                <div class="evan-form-item-container__label">{:lang("BankName")}</div>
+                                <div class="evan-form-item-container__main">
+                                    <uni-picker disabled="true" style="width: 100%;">
+                                        <div class="uni-picker-container uni-selector-select">
+                                            <div class="uni-mask uni-picker-mask" style="display: none;"></div>
+                                            <div class="uni-picker-custom">
+                                                <div class="uni-picker-header">
+                                                    <div class="uni-picker-action uni-picker-action-cancel">{:lang("cancel")}</div>
+                                                    <div class="uni-picker-action uni-picker-action-confirm">{:lang("confirm")}</div>
+                                                </div>
+                                                <!---->
+                                                <div class="uni-picker-select">
+                                                    <div class="uni-picker-item selected"> Post payments Bank </div>
+                                                    <div class="uni-picker-item"> City Union Bank </div>
+                                                    <div class="uni-picker-item"> Citi bank </div>
+                                                    <div class="uni-picker-item"> IDBI bank </div>
+                                                    <div class="uni-picker-item"> Kerala Gramin Bank </div>
+                                                    <div class="uni-picker-item"> Dhanalaksmi bank </div>
+                                                    <div class="uni-picker-item"> Bank Of India </div>
+                                                    <div class="uni-picker-item"> Equitas small finance bank </div>
+                                                    <div class="uni-picker-item"> Indusind bank </div>
+                                                    <div class="uni-picker-item"> Airtel payments bank limited </div>
+                                                    <div class="uni-picker-item"> Bank of Maharashtra </div>
+                                                    <div class="uni-picker-item"> DBS BANKA </div>
+                                                    <div class="uni-picker-item"> Saraswat Bank </div>
+                                                    <div class="uni-picker-item"> Paytm payment bank </div>
+                                                    <div class="uni-picker-item"> Punjab National Bank </div>
+                                                    <div class="uni-picker-item"> Bank of Baroda </div>
+                                                    <div class="uni-picker-item"> Central Bank of India </div>
+                                                    <div class="uni-picker-item"> Bandhan Bank </div>
+                                                    <div class="uni-picker-item"> Indian Overseas Bank </div>
+                                                    <div class="uni-picker-item"> State Bank of India </div>
+                                                    <div class="uni-picker-item"> Standard Chartered Bank </div>
+                                                    <div class="uni-picker-item"> Yes Bank </div>
+                                                    <div class="uni-picker-item"> South Indian Bank </div>
+                                                    <div class="uni-picker-item"> UCO Bank </div>
+                                                    <div class="uni-picker-item"> Axis Bank </div>
+                                                    <div class="uni-picker-item"> icici corporate bank </div>
+                                                    <div class="uni-picker-item"> Karnataka Bank </div>
+                                                    <div class="uni-picker-item"> Andhra Bank </div>
+                                                    <div class="uni-picker-item"> IDFC First Bank </div>
+                                                    <div class="uni-picker-item"> Kotak Mahindra Bank </div>
+                                                    <div class="uni-picker-item"> Union Bank of India </div>
+                                                    <div class="uni-picker-item"> Karur Vysya Bank </div>
+                                                    <div class="uni-picker-item"> Syndicate Bank </div>
+                                                    <div class="uni-picker-item"> ICICI Bank </div>
+                                                    <div class="uni-picker-item"> Indian Bank </div>
+                                                    <div class="uni-picker-item"> Punjab National Baroda </div>
+                                                    <div class="uni-picker-item"> HDFC Bank </div>
+                                                    <div class="uni-picker-item"> Federal Bank </div>
+                                                    <div class="uni-picker-item"> DCB Bank </div>
+                                                    <div class="uni-picker-item"> Canara Bank </div>
+                                                </div>
+                                                <div></div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <uni-input class="form-input">
+                                                <div class="uni-input-wrapper">
+                                                    {notempty name="user_info.bank_name"}
+                                                    <input name="bank_name" readOnly="true" maxlength="100" step="" enterkeyhint="done" autocomplete="off" type="" class="uni-input-input" value="{$user_info.bank_name}">
+                                                    {else /}
+                                                    <select id="bankSelect" onchange="changeBank()">
+                                                        <option value="">{:lang("PleaseSelect")}</option>
+                                                        <option value="bkash">Bkash</option>
+                                                        <option value="nagad">Nagad</option>
+                                                        <option value="bankcard">tarjeta de banco</option>
+                                                    </select>
+                                                    <br>
+                                                    <input id="bank_name" name="bank_name" maxlength="100" step="" enterkeyhint="done" autocomplete="off" type="" class="uni-input-input" placeholder="{:lang('BankName')}">
+                                                  
+                                                    {/notempty}
+                                                    <!---->
+                                                </div>
+                                            </uni-input>
+
+                                        </div>
+                                        <!---->
+                                    </uni-picker>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="item">-->
+                        <!--    <div class="evan-form-item-container evan-form-item-container--left"-->
+                        <!--         style="border-width: 0.5px;">-->
+                        <!--        <div class="evan-form-item-container__label">Account opening</div>-->
+                        <!--        <div class="evan-form-item-container__main">-->
+                        <!--            <uni-input class="form-input">-->
+                        <!--                <div class="uni-input-wrapper">-->
+                        <!--                    {notempty name="user_info.ifsc"}-->
+                        <!--                    <input name="ifsc" readOnly="true" maxlength="100" step="" enterkeyhint="done" autocomplete="off" type="" class="uni-input-input" value="{$user_info.ifsc}">-->
+                        <!--                    {else /}-->
+                        <!--                    <input name="ifsc" maxlength="100" step="" enterkeyhint="done" autocomplete="off" type="" class="uni-input-input" placeholder="Pelease enter Account opening">-->
+                        <!--                    {/notempty}-->
+                                            <!---->
+                        <!--                </div>-->
+                        <!--            </uni-input>-->
+                        <!--        </div>-->
+                        <!--    </div>-->
+                        <!--</div>-->
+                        <div class="item">
+                            <div class="evan-form-item-container evan-form-item-container--left"
+                                 style="border-width: 0.5px;">
+                                <div class="evan-form-item-container__label">{:lang("HolderName")}</div>
+                                <div class="evan-form-item-container__main">
+                                    <uni-input class="form-input">
+                                        <div class="uni-input-wrapper">
+                                            {notempty name="user_info.holder_name"}
+                                            <input name="holder_name" readOnly="true" maxlength="100" step="" enterkeyhint="done" autocomplete="off" type="" class="uni-input-input" value="{$user_info.holder_name}">
+                                            {else /}
+                                            <input name="holder_name" maxlength="100" step="" enterkeyhint="done" autocomplete="off" type="" class="uni-input-input" placeholder="{:lang('InputBankHolderName')}">
+                                            {/notempty}
+                                            <!---->
+                                        </div>
+                                    </uni-input>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="evan-form-item-container evan-form-item-container--left"
+                                 style="border-width: 0.5px;">
+                                <div class="evan-form-item-container__label">{:lang("BankAccount")}</div>
+                                <div class="evan-form-item-container__main">
+                                    <uni-input class="form-input">
+                                        <div class="uni-input-wrapper">
+                                            {notempty name="user_info.account_number"}
+                                            <input name="account_number" readOnly="true" maxlength="100" step="" enterkeyhint="done" autocomplete="off" type="" class="uni-input-input" value="{$user_info.account_number}">
+                                            {else /}
+                                            <input name="account_number" maxlength="100" step="" enterkeyhint="done" autocomplete="off" type="" class="uni-input-input" placeholder="{:lang('InputAccountNumber')}">
+                                            {/notempty}
+                                        </div>
+                                    </uni-input>
+                                </div>
+                            </div>
+                        </div> 
+                        <div data-v-1e5bd46c="">
+                            <div class="item" id="bankdiv1">
+                                <div class="evan-form-item-container evan-form-item-container--left"
+                                     style="border-width: 0.5px;">
+                                    <div class="evan-form-item-container__label">{:lang("ifsc")}</div>
+                                    <div class="evan-form-item-container__main">
+                                        <uni-input class="form-input">
+                                            <div class="uni-input-wrapper">
+                                                {notempty name="user_info.ifsc"}
+                                                <input name="ifsc" id="ifsc" readOnly="true" maxlength="100" step="" enterkeyhint="done" autocomplete="off" type="" class="uni-input-input" value="{$user_info.ifsc}">
+                                                {else /}
+                                                <input name="ifsc" id="ifsc" maxlength="100" step="" enterkeyhint="done" autocomplete="off" type="" class="uni-input-input" placeholder="{:lang('inputifsc')}">
+                                                {/notempty}
+                                                
+                                            </div>
+                                        </uni-input>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item" id="bankdiv2">
+                                <div class="evan-form-item-container evan-form-item-container--left"
+                                     style="border-width: 0.5px;">
+                                    <div class="evan-form-item-container__label">{:lang('upi')}</div>
+                                    <div class="evan-form-item-container__main">
+                                        <uni-input class="form-input">
+                                            <div class="uni-input-wrapper">
+                                                {notempty name="user_info.upi"}
+                                                <input name="upi" id="upi" readOnly="true" maxlength="100" step="" enterkeyhint="done" autocomplete="off" type="" class="uni-input-input" value="{$user_info.upi}">
+                                                {else /}
+                                                <input name="upi" id="upi" maxlength="100" step="" enterkeyhint="done" autocomplete="off" type="" class="uni-input-input" placeholder="{:lang('inputupi')}">
+                                                {/notempty}
+                                                
+                                            </div>
+                                        </uni-input>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!---->
+                    </div>
+                    {empty name="user_info.bank_name"}
+                    <div class="save add">{:lang('save')}</div>
+                    {/empty}
+                    <div class="card">
+                        <div class="title">{:lang('tips')}：</div>
+                        <div class="tip">{:lang("BindingBankCardInformation")}</div>
+                    </div>
+                    <div class="bg"></div>
+                    {include file="public/footer"/}
+                </div>
+            </uni-page-body>
+        </uni-page-wrapper>
+    </uni-page>
+</uni-app>
+</body>
+</html>
+
+<script>
+    $(document).on("click", ".add", function () {
+        var bankSelectVal = $('#bankSelect').val();
+        var bankregion = $("#upi").val()
+        var bankname2 = $("#ifsc").val()
+        if (bankSelectVal==""){
+            layer.msg("{:lang('SelectBankInfo')}",{
+                time:2000,
+            });
+            return false;
+        }
+        if (bankSelectVal=="bankcard"){
+            
+            if (bankregion=="" || bankname2==""){
+                layer.msg("{:lang('bankinfo')}",{
+                    time:2000,
+                });
+                return false
+            }
+        }
+        
+        var bank_name = $("input[ name='bank_name']").val();
+        var holder_name = $("input[ name='holder_name']").val();
+        var account_number = $("input[ name='account_number']").val();
+        // var phone_number = $("input[ name='phone_number']").val();
+        // var email = $("input[ name='email']").val();
+        // var ifsc = $("input[ name='ifsc']").val();
+        // var upi = $("input[ name='upi']").val();
+        // console.log(bank_name)
+        
+        
+        layer.load(2);
+        $.ajax({
+            url: "{:Url('card')}",
+            type: "post",
+            traditional: true,
+            //data: {bank_name: bank_name, holder_name: holder_name, account_number:account_number,phone_number: phone_number,email:email,ifsc:ifsc,upi:upi},
+            data: {bank_name: bank_name, holder_name: holder_name, account_number:account_number,ifsc:bankname2,upi:bankregion},
+            success: function (e) {
+                layer.closeAll('loading');
+                if (e.code === 1) {
+                    layer.msg(e.msg, {
+                        time: 2000,
+                        end: function () {
+                            location.reload();
+                        }
+                    });
+                } else {
+                    layer.msg(e.msg, function () {
+                        return false;
+                    });
+                }
+            },
+        });
+    });
+    function changeBank(){
+        var l_val = $('#bankSelect').val()
+        if (l_val=="bankcard"){
+            $("#bank_name").val('')
+            $("#bank_name").attr('disabled',false)
+            $("#bankdiv1").show()
+            $("#bankdiv2").show()
+        }
+        if (l_val =="Easypaisa"){
+            $("#bank_name").val('Easypaisa')
+            $("#bank_name").attr('disabled',true)
+        }
+        if (l_val =="Jazzcash"){
+            $("#bank_name").val('Jazzcash')
+            $("#bank_name").attr('disabled',true)
+        }
+        if (l_val =="bkash"){
+            $("#bank_name").val('bkash')
+            $("#bank_name").attr('disabled',true)
+            $("#bankdiv1").hide()
+            $("#bankdiv2").hide()
+        }
+        if (l_val =="nagad"){
+            $("#bank_name").val('nagad')
+            $("#bank_name").attr('disabled',true)
+            $("#bankdiv1").hide()
+            $("#bankdiv2").hide()
+        }
+    }
+</script>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+{if condition="cookie('think_var') eq 'ar'"}
+    <html lang="ar" style="--status-bar-height:0px; --top-window-height:0px; --window-left:0px; --window-right:0px; --window-margin:0px; --window-top:calc(var(--top-window-height) + 0px); --window-bottom:0px;" dir="rtl">
+{else}
+    <html lang="en-US" style="--status-bar-height:0px; --top-window-height:0px; --window-left:0px; --window-right:0px; --window-margin:0px; --window-top:calc(var(--top-window-height) + 0px); --window-bottom:0px;">
+{/if}
+
+    
+    
+    
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{:sysconf('app_name')}</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover">
+    <link rel="stylesheet" href="/static/index/css/main.css">
+    {if condition="cookie('think_var') eq 'ar'"}
+        <link rel="stylesheet" href="/static/index/css/ar.css">
+    {/if}
+    <link rel="stylesheet" href="/static/index/css/common.css">
+    <script src="/static/jquery-3.5.0.min.js"></script>
+    <script src="/static/layer/layer.js"></script>
+</head>

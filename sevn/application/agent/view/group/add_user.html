@@ -1,0 +1,68 @@
+{include file="public/header"/}
+<link rel="stylesheet" href="/static/layui-v2.6.8/layui/css/layui.css">
+<body>
+<div class="layui-fluid">
+    <div class="layui-row">
+        <div class="layui-form-item">
+            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;margin-left: -30px">
+                <legend>选择用户添加进分组</legend>
+            </fieldset>
+
+            <div id="test1" class="demo-transfer"></div>
+
+        <input type="hidden" id="group_id" value="{$id}">
+    </div>
+    </div>
+</div>
+{include file="public/footer"/}
+
+<script src="/static/layui-v2.6.8/layui/layui.js" charset="utf-8"></script>
+
+<script>
+    layui.use(['transfer', 'layer', 'util'], function(){
+        var $ = layui.$
+            ,transfer = layui.transfer
+            ,layer = layui.layer
+            ,util = layui.util;
+
+        var group_id = $("#group_id").val();
+        $.ajax({
+            url: "{:Url('get_pid')}",
+            type: "post",
+            data:{group_id:group_id},
+            traditional: true,
+            success: function (e) {
+                transfer.render({
+                    elem: '#test1'
+                    ,data: e.z
+                    ,value: e.y
+                    ,title: ['所有用户', '当前组名:{$group_info.name}']
+                    ,showSearch: true
+                    ,onchange: function(obj, index){
+                        var data = JSON.stringify(obj);
+                        $.ajax({
+                            url: "{:Url('add_user')}",
+                            type: "post",
+                            traditional: true,
+                            data:{group_id:group_id,type:index,data:data},
+                            success: function (e) {
+                                if (e.code === 1){
+                                    layer.msg(e.msg, {
+                                        time: 2000,
+                                        end: function () {
+                                            location.reload();
+                                        }
+                                    });
+                                }else {
+                                    layer.msg(e.msg, function(){
+                                        return false;
+                                    });
+                                }
+                            },
+                        });
+                    }
+                });
+            },
+        });
+    });
+</script>

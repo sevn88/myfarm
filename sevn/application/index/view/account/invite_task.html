@@ -1,0 +1,53 @@
+{include file="public/header"/}
+<style>
+    .container1 { -webkit-box-sizing: border-box; box-sizing: border-box; height: calc(100vh - 44px) !important; } .container1 .miss { height: 110px; background: #1294f9; padding: 50px 0 0; -webkit-box-align: center; -webkit-align-items: center; align-items: center } .container1 .miss .no1 { font-size: 48px; font-family: Rubik-Bold, Rubik; font-weight: 700; color: #fff; margin-left: 26px; display: -webkit-inline-box; display: -webkit-inline-flex; display: inline-flex } .container1 .miss .no2 { font-family: Rubik-Regular; font-weight: 400; color: #fff; font-size: 14px; margin: 32px 8px 13px; display: -webkit-inline-box; display: -webkit-inline-flex; display: inline-flex } .container1 .miss .no4 { -webkit-box-orient: vertical; -webkit-box-direction: normal; -webkit-flex-direction: column; flex-direction: column; -webkit-align-self: flex-end; align-self: flex-end; display: block; font-size: 12px; font-family: Rubik-Regular; font-weight: 400; color: #fff; opacity: .4; margin-left: 26px; margin-top: 10px } .container1 .record-tabbar { display: -webkit-box; display: -webkit-flex; display: flex; padding: 20px } .container1 .record-tabbar .list { font-size: 16px; font-family: Rubik-Regular; font-weight: 600; color: #131415; opacity: .4 } .container1 .record-tabbar>.list~.list { margin-left: 14px } .container1 .record-tabbar .action { opacity: 1 } .container1 .missList .missList-item { padding: 18px 15px } .container1 .missList .missList-item .data1 { display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-align: center; -webkit-align-items: center; align-items: center; -webkit-box-pack: justify; -webkit-justify-content: space-between; justify-content: space-between } .container1 .missList .missList-item .data1 .data_1 { position: relative } .container1 .missList .missList-item .data1 .data_1 .reward { font-size: 14px; font-family: Rubik-Regular; font-weight: 400; color: #333; margin-left: 50px; margin-right: 6px } .container1 .missList .missList-item .data1 .data_1 .moneySymbol { font-size: 11px; font-family: Rubik-Regular; font-weight: 500; color: #fb5 } .container1 .missList .missList-item .data1 .data_1 uni-image { width: 36px; height: 36px; vertical-align: middle; position: absolute; top: 0; left: 0 } .container1 .missList .missList-item .data1 .data_1 .text2 { font-size: 12px; font-family: Rubik-Regular; font-weight: 400; color: #000; margin-left: 50px } .container1 .missList .missList-item .data1 .w2 { width: 64px; height: 26px; line-height: 26px; text-align: center; background: #ff6464; border-radius: 31px; font-size: 11px; font-family: Rubik-Regular; font-weight: 500; color: #fff; border: 5px solid #ff6464 } .container1 .missList .missList-item .data1 .w3 { width: 64px; height: 26px; line-height: 26px; text-align: center; background: #ff6464; border-radius: 31px; font-size: 11px; font-family: Rubik-Regular; font-weight: 500; color: #fff; border: 5px solid #ff6464 } .container1 .details-empty { -webkit-box-sizing: border-box; box-sizing: border-box; padding: 50px; display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -webkit-flex-direction: column; flex-direction: column; -webkit-box-pack: center; -webkit-justify-content: center; justify-content: center; -webkit-box-align: center; -webkit-align-items: center; align-items: center } .container1 .details-empty .empty-img { width: 252px; height: 180px } .container1 .details-empty .empty-text { font-size: 14px; color: #999 } .container1 .mescroll-wrap { height: calc(100vh - 209px); -webkit-box-sizing: border-box; box-sizing: border-box }
+  </style>
+
+
+<body>
+  <uni-app class="uni-app--maxwidth">
+    <uni-page data-page="pages/profile/invitationTask">
+      <!---->
+      <!---->
+      <uni-page-wrapper>
+        <uni-page-body>
+          <div class="container1">
+            <div class="top-page"
+              style="height: 44px; background: linear-gradient(to right, rgb(18, 148, 249), rgb(18, 148, 249)); color: rgb(255, 255, 255);">
+              <div class="apex"
+                style="height: 44px; line-height: 44px; background: linear-gradient(to right, rgb(18, 148, 249), rgb(18, 148, 249)); color: rgb(255, 255, 255); position: fixed;">
+                <a href="javascript:window.history.go(-1)" class="left">
+                  <uni-text class="iconfont icon-fanhui1"
+                    style="font-size: 16px; color: rgb(255, 255, 255);"><span></span></uni-text>
+                </a>
+                <div class="center" style="font-size: 17px;">{:lang("InviteMission")}</div>
+                <div class="right"></div>
+              </div>
+              <div class="placeholder" style="height: 44px; line-height: 44px;"></div>
+            </div>
+            <div class="miss">
+              <div class="no1"></div>
+              <div class="no2">{:lang("TotalPeople")}</div>
+              <div class="no3"></div>
+              <div class="no4">{:lang("UpgradeTask")}</div>
+            </div>
+            <!---->
+            <div class="details-empty">
+              <uni-image class="empty-img">
+                <div
+                  style="background-image: url(&quot;/static/index/01.png&quot;); background-position: center center; background-size: contain; background-repeat: no-repeat;">
+                </div><img src="/static/index/01.png" draggable="true">
+                <!---->
+              </uni-image>
+              <div class="empty-text">{:lang("NoTask")}</div>
+            </div>
+            <div class="bg"></div>
+            {include file="public/footer"/}
+          </div>
+        </uni-page-body>
+      </uni-page-wrapper>
+    </uni-page>
+  </uni-app>
+</body>
+
+</html>

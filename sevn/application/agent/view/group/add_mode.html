@@ -1,0 +1,388 @@
+{include file="public/header"/}
+<body>
+
+<div class="layui-fluid">
+    <div class="layui-row">
+        <form class="layui-form">
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>模式名称</label>
+                <div class="layui-input-inline">
+                    <input type="text" disabled="disabled" value="{$group_info.name}" class="layui-input"></div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>支付方式</label>
+                <div class="layui-input-block">
+                    <input type="checkbox" disabled="disabled" {if strpos($group_info.pay,'MarsPay') !== false } checked
+                    {/if} value="MarsPay" lay-skin="primary" title="MarsPay">
+                    <input type="checkbox" disabled="disabled" {if strpos($group_info.pay,'SEP') !== false } checked
+                    {/if} value="SEP" lay-skin="primary" title="SEP">
+                    <input type="checkbox" disabled="disabled" value="Oceanpay" {if strpos($group_info.pay,'Oceanpay')
+                    !== false } checked {/if} lay-skin="primary" title="Oceanpay" >
+                    <input type="checkbox" disabled="disabled" value="GoldInd" {if strpos($group_info.pay,'GoldInd') !==
+                    false } checked {/if} lay-skin="primary" title="GoldInd" >
+                    <input type="checkbox" disabled="disabled" value="QeInd" {if strpos($group_info.pay,'QeInd') !==
+                    false } checked {/if} lay-skin="primary" title="QeInd" >
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>抢单模式</label>
+                <div class="layui-input-inline">
+                    <select name="grab_type" lay-filter="mode">
+                        <option value=""></option>
+                        <option value="1" selected="">默认模式</option>
+<!--                        <option value="2">随机模式</option>-->
+                        <option value="3">叠加模式</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+
+                <div class="layui-inline">
+                    <label class="layui-form-label">
+                        <span class="x-red">*</span>开启弹窗</label>
+                    <div class="layui-input-block" style="margin-top: 5px">
+                        <input type="checkbox" name="is_windows" value="1" lay-skin="switch" lay-filter="switchImg" title="开启弹窗">
+                    </div>
+                </div>
+
+                <div class="layui-inline">
+                    <label class="layui-form-label">
+                        <span class="x-red">*</span>触发等级</label>
+                    <div class="layui-input-block" style="margin-top: 5px">
+                        <input type="checkbox" name="is_level" value="1" lay-skin="switch" lay-filter="switchLevel" title="触发等级">
+                    </div>
+                </div>
+
+                <div class="layui-inline">
+                    <label class="layui-form-label">
+                        <span class="x-red">*</span>触发分组</label>
+                    <div class="layui-input-block" style="margin-top: 5px">
+                        <input type="checkbox" name="is_group" value="1" lay-skin="switch" lay-filter="switchGroup" title="触发分组">
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-form-item" id="img" style="display: none">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>选择弹窗图片</label>
+                <div class="layui-input-inline">
+                    <select name="windows_img" lay-filter="img">
+                        <option value="0" selected=""></option>
+                        <option value="xin10000">xin10000</option>
+                        <option value="xin5000">xin5000</option>
+                        <option value="9800">9800</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="layui-form-item" id="level" style="display: none">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>选择等级</label>
+                <div class="layui-input-inline">
+                    <select name="level" lay-filter="level">
+                        <option value="0" selected=""></option>
+                        {volist name="level_info" id="vo"}
+                        <option value="{$vo.name}">{$vo.name}</option>
+                        {/volist}
+                    </select>
+                </div>
+            </div>
+
+            <div class="layui-form-item" id="group" style="display: none">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>选择分组</label>
+                <div class="layui-input-inline">
+                    <select name="group" lay-filter="group">
+                        <option value="0" selected=""></option>
+                        {volist name="my_group" id="vo"}
+                        <option value="{$vo.name}">{$vo.name}</option>
+                        {/volist}
+                    </select>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>指定单数</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="odd_num" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+                    <span class="x-red">(必须从 1 开始,否则派不出单)</span>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>佣金模式</label>
+                <div class="layui-input-inline">
+                    <select name="pay_mode" lay-filter="money">
+                        <option value="1" selected="">比例</option>
+                        <option value="2">固定</option>
+                    </select>
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+                    <span class="x-red">(比例填小数,如果:0.2 固定填整数,如:103)</span>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label" id="type"><span class="x-red">*</span>佣金值</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="pay_value" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+                    <span class="x-red">(示例:0.2 = 20% 固定:103元 = 103元)</span>
+                </div>
+            </div>
+
+
+            <div class="layui-form-item" id="order_num" style="display: none">
+                <label class="layui-form-label"><span class="x-red">*</span>随机单数</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="rand_num" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item" id="order_bili" style="display: none">
+                <label class="layui-form-label"><span class="x-red">*</span>随机比例</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="rand_bili" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">(单位 %)</div>
+            </div>
+
+
+
+            <div class="layui-form-item" id="die_jia" style="display: none">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>叠加比例
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" name="addition" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+                    <span class="x-red">(示例:0.3,0.2,0.5)逗号分割</span>
+                </div>
+            </div>
+
+
+            {present name="group_mode"}
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">模板列表</label>
+                <div class="layui-input-block">
+                    <table class="layui-table">
+                        <tbody>
+                        {volist name="group_mode" id="vo"}
+                        <tr>
+                            <td>{$vo.odd_num}单</td>
+                            {switch vo.pay_mode}
+                            {case 1}<td>比例:{$vo.pay_value}</td>{/case}
+                            {case 2}<td>固定:{$vo.pay_value}</td>{/case}
+                            {/switch}
+                            {switch vo.is_windows}
+                            {case 1}<td>弹窗:{$vo.windows_img}</td>{/case}
+                            {/switch}
+                            {switch vo.is_level}
+                            {case 1}<td>等级:{$vo.level}</td>{/case}
+                            {/switch}
+                            {switch vo.is_group}
+                            {case 1}<td>分组:{$vo.group}</td>{/case}
+                            {/switch}
+                            {if $vo.addition != null}
+                            <td>叠加:{$vo.addition}</td>
+                            {/if}
+                            <td>
+                                <button type="button" data-id="{$vo.id}" class="layui-btn layui-btn-danger del_mode">
+                                    <i class="layui-icon"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        {/volist}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {/present}
+
+            <input type="hidden" name="group_id" value="{$group_info.id}">
+
+            <div class="layui-form-item">
+                <label class="layui-form-label"></label>
+                <button type="button" class="layui-btn layui-btn-normal save">保存</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{include file="public/footer"/}
+
+<script type="text/javascript">
+    $(document).on("click", ".save", function () {
+        var group_id = $("[name='group_id']").val();
+        var grab_type = $("[name='grab_type']").val();
+        var is_windows = $("input:checkbox[name='is_windows']:checked").val();
+        var windows_img = $("[name='windows_img'] option:selected").val();
+
+        var is_level = $("input:checkbox[name='is_level']:checked").val();
+        var level = $("[name='level'] option:selected").val();
+
+        var is_group = $("input:checkbox[name='is_group']:checked").val();
+        var group = $("[name='group'] option:selected").val();
+
+        var odd_num = $("[name='odd_num']").val();
+
+        var pay_mode = $("[name='pay_mode'] option:selected").val();
+        var pay_value = $("[name='pay_value']").val();
+
+        var rand_num = $("[name='rand_num']").val();
+        var rand_bili = $("[name='rand_bili']").val();
+
+        var addition = $("[name='addition']").val();
+
+        layer.load(2);
+        $.ajax({
+            url: "{:Url('mode_save')}",
+            type: "post",
+            traditional: true,
+            data: {
+                group_id:group_id,
+                grab_type:grab_type,
+                is_windows:is_windows,
+                windows_img:windows_img,
+                is_level:is_level,
+                level:level,
+                is_group:is_group,
+                group:group,
+                odd_num:odd_num,
+                pay_mode:pay_mode,
+                pay_value:pay_value,
+                rand_num:rand_num,
+                rand_bili:rand_bili,
+                addition:addition,
+                  },
+            success: function (e) {
+                layer.closeAll('loading');
+                if (e.code === 1) {
+                    layer.msg(e.msg, {
+                        time: 1000,
+                        end: function () {
+                            location.reload();
+                        }
+                    });
+                } else {
+                    layer.msg(e.msg, function () {
+                        return false;
+                    });
+                }
+            },
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).on("click", ".del_mode", function () {
+        var id = $(this).data('id');
+        layer.load(2);
+        $.ajax({
+            url: "{:Url('del_mode')}",
+            type: "post",
+            traditional: true,
+            data: {id:id,},
+            success: function (e) {
+                layer.closeAll('loading');
+                if (e.code === 1) {
+                    layer.msg(e.msg, {
+                        time: 1000,
+                        end: function () {
+                            location.reload();
+                        }
+                    });
+                } else {
+                    layer.msg(e.msg, function () {
+                        return false;
+                    });
+                }
+            },
+        });
+    });
+</script>
+
+<script>layui.use(['form', 'layer', 'laydate'],
+    function () {
+        $ = layui.jquery;
+        var form = layui.form,
+            layer = layui.layer,
+            laydate = layui.laydate;
+
+        laydate.render({
+            elem: '#start'
+            , type: 'time'
+        });
+
+        laydate.render({
+            elem: '#end'
+            , type: 'time'
+        });
+
+        form.on('switch(switchImg)', function (data) {
+            if (this.checked == true) {
+                $("#img").show();
+            } else if (this.checked == false) {
+                $("#img").hide();
+            }
+        });
+
+        form.on('switch(switchLevel)', function (data) {
+            if (this.checked == true) {
+                $("#level").show();
+            } else if (this.checked == false) {
+                $("#level").hide();
+            }
+        });
+
+        form.on('switch(switchGroup)', function (data) {
+            if (this.checked == true) {
+                $("#group").show();
+            } else if (this.checked == false) {
+                $("#group").hide();
+            }
+        });
+
+        form.on('select(money)', function (data) {
+            let value = data.value
+            if (value == "1") {
+                $("#type").html('佣金比例')
+            } else if (value == "2") {
+                $("#type").html('固定值')
+            }
+        });
+
+        form.on('select(mode)', function (data) {
+            let value = data.value;
+            if (value == "1") {
+                $("#order_num").hide();
+                $("#order_bili").hide();
+                $("#die_jia").hide();
+            } else if (value == "2") {
+                $("#order_num").show();
+                $("#order_bili").show();
+                $("#die_jia").hide();
+            }else if (value == "3") {
+                $("#order_num").hide();
+                $("#order_bili").hide();
+                $("#die_jia").show();
+            }
+        })
+
+    });
+</script>
+
+

@@ -1,0 +1,6 @@
+.env
+.env.local
+runtime/
+uploads/
+uploads/*
+!uploads/.gitkeep

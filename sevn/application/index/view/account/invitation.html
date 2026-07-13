@@ -1,0 +1,502 @@
+{include file="public/header"/}
+<style>.container1 {
+    height: 100vh !important;
+    background: url(/static/index/InvitationBG.aa214283.png) no-repeat;
+    background-size: cover;
+    overflow-y: auto
+}
+
+.container1 .container-content {
+    padding-bottom: 10px
+}
+
+.container1 .invitation {
+    padding: 0 !important
+}
+
+.container1 .invitation .invitation-title {
+    padding: 60px 16px 0;
+    position: relative;
+    height: 218px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.container1 .invitation .invitation-title div {
+    font-size: 24px;
+    color: #fee8b9;
+    text-align: center;
+    font-family: HFVoyager-Regular;
+    line-height: 37px
+}
+
+.container1 .invitation .invitation-title .inivte-phone {
+    font-size: 15px;
+    font-family: Rubik-Regular, Rubik;
+    font-weight: 400;
+    height: 32px;
+    line-height: 32px;
+    color: #b9193c;
+    position: absolute;
+    bottom: 36px;
+    padding: 0 10px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    white-space: nowrap;
+    border-radius: 32px;
+    background-color: #ffd4ba
+}
+
+.container1 .invitation .invitation-code {
+    margin: 0 16px;
+    height: 56px;
+    line-height: 56px;
+    background: #fff;
+    border-radius: 8px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    margin-bottom: 16px;
+    position: relative
+}
+
+.container1 .invitation .invitation-code .code-title {
+    height: 56px;
+    line-height: 56px;
+    -webkit-box-flex: 2;
+    -webkit-flex: 2;
+    flex: 2;
+    font-size: 14px;
+    font-family: Rubik-Regular, Rubik;
+    font-weight: 400;
+    text-align: center;
+    position: relative
+}
+
+.container1 .invitation .invitation-code .code-title::after {
+    height: 50%;
+    width: 0.5px;
+    background-color: #ededed;
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%)
+}
+
+.container1 .invitation .invitation-code .code {
+    -webkit-box-flex: 2;
+    -webkit-flex: 2;
+    flex: 2;
+    font-size: 15px;
+    font-family: Rubik-Medium, Rubik;
+    font-weight: 500;
+    color: #000;
+    padding-left: 16px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.container1 .invitation .invitation-code .copy {
+    position: absolute;
+    right: 16px;
+    width: 56px;
+    height: 24px;
+    line-height: 24px;
+    background: #e73329;
+    border-radius: 16px;
+    text-align: center;
+    font-size: 12px;
+    font-family: Rubik-Medium, Rubik;
+    font-weight: 500;
+    color: #feead1;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%)
+}
+
+.container1 .invitation .erwei-code {
+    margin: 0 16px 37px;
+    height: 312px;
+    background: #fff;
+    border-radius: 16px;
+    border: 1px solid #979797;
+    position: relative
+}
+
+.container1 .invitation .erwei-code uni-image {
+    width: 175px;
+    height: 175px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    border: 1px dashed #979797
+}
+
+.container {
+    height: 100vh !important;
+    overflow: hidden;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f76458), to(#b6173c));
+    background: -webkit-linear-gradient(top, #f76458, #b6173c);
+    background: linear-gradient(180deg, #f76458, #b6173c)
+}
+
+.container .container-content {
+    min-height: 100vh;
+    height: 100%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    position: relative;
+    overflow: auto
+}
+
+.container .container-content .invitation-title {
+    padding-top: 10px
+}
+
+.container .container-content .invitation-title div {
+    font-size: 24px;
+    color: #ffe35e;
+    text-align: center;
+    font-family: HFVoyager-Regular;
+    line-height: 37px
+}
+
+.container .container-content .invitation-title .inivte-phone {
+    font-size: 15px;
+    font-family: Rubik-Regular, Rubik;
+    font-weight: 400;
+    color: #ffd4ba
+}
+
+.container .container-content .invitation-code {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    height: 56px;
+    background: rgba(0, 0, 0, .1);
+    -webkit-box-shadow: 0 6px 16px 0 rgba(255, 100, 100, .5);
+    box-shadow: 0 6px 16px 0 rgba(255, 100, 100, .5);
+    border-radius: 8px;
+    text-align: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+    padding: 0 16px;
+    margin: 15px 0
+}
+
+.container .container-content .invitation-code .code-title {
+    font-size: 14px;
+    font-family: Rubik-Regular, Rubik;
+    font-weight: 400;
+    color: #fff;
+    opacity: .6;
+    border-right: 2px solid #fff;
+    padding: 0 10px
+}
+
+.container .container-content .invitation-code .code {
+    font-family: Rubik-Medium, Rubik;
+    font-weight: 500;
+    color: #fff;
+    font-size: 15px;
+    letter-spacing: 1px
+}
+
+.container .container-content .invitation-code .copy {
+    background: #fff;
+    border-radius: 16px;
+    width: 56px;
+    height: 24px;
+    line-height: 24px;
+    font-size: 12px;
+    font-family: Rubik-Medium, Rubik;
+    font-weight: 500;
+    color: #de2a12
+}
+
+.container .container-content .erwei-code {
+    background: url(/static/index/invite.1c5f8d37.png) no-repeat 50%;
+    width: 340px;
+    height: 340px;
+    text-align: center;
+    margin: 30px 0
+}
+
+.container .container-content .erwei-code uni-image {
+    width: 125px;
+    height: 125px;
+    margin-top: 20%
+}
+
+.copy-link {
+    background: #fb0;
+    width: 100%;
+    font-size: 16px;
+    font-family: Rubik-Medium, Rubik;
+    font-weight: 500;
+    color: #fff;
+    position: fixed;
+    bottom: 50px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    z-index: 999999;
+    text-align: center;
+    border-radius: 5px;
+    height: 37px;
+    line-height: 37px
+}
+
+.container1 {
+    height: 100vh !important;
+    background: url(/static/index/InvitationBG.aa214283.png) no-repeat;
+    background-size: cover;
+    overflow-y: auto
+}
+
+.container1 .container-content {
+    padding-bottom: 10px
+}
+
+.container1 .invitation {
+    padding: 0 !important
+}
+
+.container1 .invitation .invitation-title {
+    padding: 60px 16px 0;
+    position: relative;
+    height: 218px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.container1 .invitation .invitation-title div {
+    font-size: 24px;
+    color: #fee8b9;
+    text-align: center;
+    font-family: HFVoyager-Regular;
+    line-height: 37px
+}
+
+.container1 .invitation .invitation-title .inivte-phone {
+    font-size: 15px;
+    font-family: Rubik-Regular, Rubik;
+    font-weight: 400;
+    height: 32px;
+    line-height: 32px;
+    color: #b9193c;
+    position: absolute;
+    bottom: 36px;
+    padding: 0 10px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    white-space: nowrap;
+    border-radius: 32px;
+    background-color: #ffd4ba
+}
+
+.container1 .invitation .invitation-code {
+    margin: 0 16px;
+    height: 56px;
+    line-height: 56px;
+    background: #fff;
+    border-radius: 8px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    margin-bottom: 16px;
+    position: relative
+}
+
+.container1 .invitation .invitation-code .code-title {
+    height: 56px;
+    line-height: 56px;
+    -webkit-box-flex: 2;
+    -webkit-flex: 2;
+    flex: 2;
+    font-size: 14px;
+    font-family: Rubik-Regular, Rubik;
+    font-weight: 400;
+    text-align: center;
+    position: relative
+}
+
+.container1 .invitation .invitation-code .code-title::after {
+    height: 50%;
+    width: 0.5px;
+    background-color: #ededed;
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%)
+}
+
+.container1 .invitation .invitation-code .code {
+    -webkit-box-flex: 2;
+    -webkit-flex: 2;
+    flex: 2;
+    font-size: 15px;
+    font-family: Rubik-Medium, Rubik;
+    font-weight: 500;
+    color: #000;
+    padding-left: 16px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.container1 .invitation .invitation-code .copy {
+    position: absolute;
+    right: 16px;
+    width: 56px;
+    height: 24px;
+    line-height: 24px;
+    background: #e73329;
+    border-radius: 16px;
+    text-align: center;
+    font-size: 12px;
+    font-family: Rubik-Medium, Rubik;
+    font-weight: 500;
+    color: #feead1;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%)
+}
+
+.container1 .invitation .erwei-code {
+    margin: 0 16px 37px;
+    height: 312px;
+    background: #fff;
+    border-radius: 16px;
+    border: 1px solid #979797;
+    position: relative
+}
+
+.container1 .invitation .erwei-code uni-image {
+    width: 175px;
+    height: 175px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    border: 1px dashed #979797
+}
+</style>
+
+
+<body>
+<uni-app class="uni-app--maxwidth">
+    <uni-page data-page="pages/invitation/index">
+        <uni-page-wrapper>
+            <uni-page-body>
+                <div class="container1">
+                    <div class="top-page"
+                         style="height: 44px; background: linear-gradient(to right, rgb(255, 255, 255), rgb(255, 255, 255));">
+                        <div class="apex"
+                             style="height: 44px; line-height: 44px; background: linear-gradient(to right, rgb(255, 255, 255), rgb(255, 255, 255)); color: rgb(0, 0, 0); position: fixed;">
+                            <a href="javascript:history.go(-1)" class="left">
+                                <uni-text class="iconfont icon-fanhui1"
+                                          style="font-size: 16px; color: rgb(0, 0, 0);"><span></span></uni-text>
+                            </a>
+                            <div class="center" style="font-size: 17px;">{:lang("InviteFriend")}</div>
+                            <div class="right"></div>
+                        </div>
+                        <div class="placeholder" style="height: 44px; line-height: 44px;"></div>
+                    </div>
+                    <div class="container-content">
+                        <div class="invitation" style="padding: 0px 22px;">
+                            <div class="invitation-title">
+                                <div>{:lang("InviteFriendEarnMoney")}</div>
+                                <div class="inivte-phone"> {:lang("YouCanWorkByPhone")}</div>
+                            </div>
+                            <div class="invitation-code">
+                                <div class="code-title">{:lang("InvitationCode")}</div>
+                                <div class="code">{$user_info.invite_code}</div>
+                                <div class="copy">{:lang("copy")}</div>
+                            </div>
+                           
+                            <div class="copy-link">
+                                <uni-text><span>{:lang("InviteNow")}</span></uni-text>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg"></div>
+                    {include file="public/footer"/}
+                </div>
+            </uni-page-body>
+        </uni-page-wrapper>
+    </uni-page>
+    <uni-modal style="display: none;">
+        <div class="uni-mask"></div>
+        <div class="uni-modal">
+            <div class="uni-modal__hd"><strong class="uni-modal__title">{:lang("copyLink")}</strong></div>
+            <div class="uni-modal__bd">{$invite_url}{$user_info.invite_code}</div>
+            <div class="uni-modal__ft">
+                <div class="uni-modal__btn uni-modal__btn_default cancel" style="color: rgb(0, 0, 0);"> {:lang("cancel")}</div>
+                <div class="uni-modal__btn uni-modal__btn_primary clip_copy"
+                     data-clipboard-text="{$invite_url}{$user_info.invite_code}"
+                     style="color: rgb(0, 122, 255);"> {:lang("copy")}
+                </div>
+            </div>
+        </div><!----></uni-modal>
+</uni-app>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+<script>
+    ;(function () {
+        let $modal = $("uni-modal")
+        $(".copy,.copy-link").on('click', showModal)
+        $(".cancel").on("click", closeModal)
+        $(".clip_copy").on("click", copy)
+
+        function showModal() {
+            $modal.show();
+        }
+
+        function closeModal() {
+            $modal.hide();
+        }
+
+        function copy() {
+            var clipboard = new ClipboardJS('.clip_copy');
+
+            clipboard.on('success', function (e) {
+                console.info('Action:', e.action);
+                console.info('Text:', e.text);
+                console.info('Trigger:', e.trigger);
+
+                e.clearSelection();
+                closeModal()
+            });
+
+            clipboard.on('error', function (e) {
+                console.error('Action:', e.action);
+                console.error('Trigger:', e.trigger);
+            });
+        }
+    }())
+
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,131 @@
+{include file="public/header"/}
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body ">
+                    <form class="layui-form layui-col-space5">
+                        <div class="layui-inline layui-show-xs-block">
+                            <input type="text" name="goods_name" placeholder="请输入商品名" autocomplete="off"
+                                   class="layui-input">
+                        </div>
+
+                        <div class="layui-input-inline layui-show-xs-block">
+                            <input class="layui-input" placeholder="商品最小价格" name="money_min"> &nbsp;-&nbsp;
+                            <input class="layui-input" placeholder="商品最大价格" name="money_max">
+                        </div>
+
+                        <div class="layui-inline layui-show-xs-block">
+                            <button class="layui-btn" lay-submit="" lay-filter="sreach"><i
+                                    class="layui-icon">&#xe615;</i></button>
+                        </div>
+                    </form>
+                </div>
+                <div class="layui-card-body ">
+                    <button class="layui-btn layui-btn-danger" onclick="add()">添加</button>
+                </div>
+                <div class="layui-card-body ">
+                    <table class="layui-table layui-form">
+                        <thead>
+                        <tr>
+                            <th>
+                                <input type="checkbox" lay-filter="checkall" name="" lay-skin="primary">
+                            </th>
+                            <th>ID</th>
+                            <th>商品名称</th>
+                            <th>商品价格</th>
+                            <th>商品图片</th>
+                        </thead>
+                        <tbody>
+                        {volist name="datalist" id="vo"}
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="id" value="{$vo.id}" lay-skin="primary">
+                            </td>
+                            <td>{$vo.id}</td>
+                            <td>{$vo.goods_name}</td>
+                            <td>{$vo.goods_price}</td>
+                            <td><img src="{$vo.goods_pic}"></td>
+                        </tr>
+                        {/volist}
+                        </tbody>
+                    </table>
+                </div>
+                <input type="hidden" id="oid" value="{$oid}">
+                <div class="layui-card-body ">
+                    <div class="page">
+                        <div>
+                            <td colspan="10">{$pages|raw}</td>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    layui.use(['laydate', 'form'], function () {
+        var laydate = layui.laydate;
+        var form = layui.form;
+
+        // 监听全选
+        form.on('checkbox(checkall)', function (data) {
+
+            if (data.elem.checked) {
+                $('tbody input').prop('checked', true);
+            } else {
+                $('tbody input').prop('checked', false);
+            }
+            form.render('checkbox');
+        });
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#start' //指定元素
+        });
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#end' //指定元素
+        });
+    });
+
+    function add(argument) {
+        var gid = [];
+        // 获取选中的id
+        $('tbody input').each(function (index, el) {
+            if ($(this).prop('checked')) {
+                gid.push($(this).val())
+            }
+        });
+        var goods_id = gid.toString();
+        var oid = $("#oid").val();
+        layer.confirm('确认要添加这些商品吗？', function (index) {
+            $.ajax({
+                url: "{:Url('add')}",
+                type: "post",
+                traditional: true,
+                data: {oid: oid, goods_id: goods_id},
+                success: function (e) {
+                    if (e.code === 1) {
+                        layer.msg(e.msg, {
+                            time: 2000,
+                            end: function () {
+                                location.reload();
+                            }
+                        });
+                    } else {
+                        layer.msg(e.msg, function () {
+                            return false;
+                        });
+                    }
+
+                },
+            });
+        });
+    }
+</script>
+
+</html>

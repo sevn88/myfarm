@@ -1,0 +1,41 @@
+<form class="layui-form layui-card" action="{:request()->url()}" data-auto="true" method="post" autocomplete="off">
+    <div class="layui-card-body">
+        <div class="layui-form-item">
+            <label class="layui-form-label">接口名称</label>
+            <div class="layui-input-block">
+                <input name="name" placeholder="请输入用户名" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label label-required">是否启用</label>
+            <div class="layui-input-block">
+                <select class="layui-select" lay-filter="upgrade" name="status">
+                    <option selected value="1">启用</option>
+                    <option value="2">禁用</option>
+                </select>
+            </div>
+        </div>
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label label-required">是否启用</label>
+            <div class="layui-input-block">
+                <div class="layui-badge" style="border-radius:1px;top: 5px!important;">
+                    特别注意:添加前请技术先做好接口,否则添加的无效.
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="hr-line-dashed"></div>
+
+    <div class="layui-form-item text-center">
+        <button class="layui-btn" type='submit'>提交</button>
+        <button class="layui-btn layui-btn-danger" type='button' data-close>取消</button>
+    </div>
+
+    <script>window.form.render();</script>
+
+</form>

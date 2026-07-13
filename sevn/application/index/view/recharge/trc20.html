@@ -1,0 +1,130 @@
+<html>
+    <head>
+        <title></title>
+    </head>
+    <style>
+    
+        .all{
+            background: #E3BA6B;
+            height:100%;
+            width: 100%;
+            text-align: center;
+        }
+        .tou{
+            
+            margin-top: 10%;
+            border-radius:60px;
+            width: 80%;
+            height: 15%;
+            background: #FFFFFF;
+        }
+        .tis{
+            border-top-left-radius: 60px;
+            border-top-right-radius: 60px;
+            width: 100%;
+            height: 50%; 
+            background: #DDDDDD;
+            color: red;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            flex-direction: column;
+            font-size: 35;
+            
+        }
+        
+        .fz{
+            border: none;
+            float: left;
+            width: 90%;
+            font-size: 30;
+             border-radius:60px;
+             margin-left: 5%;
+        }
+        
+        .anniu{
+            width:90%;
+            margin-top: 5%;
+            height: 5%;
+            background: #1e7eee;
+            border-radius:15px;
+            line-height: 3;
+            font-size: 30px;
+            font-family: Rubik-Bold, Rubik;
+            font-weight: 700;
+            color: #fff;
+            text-align: center;
+            overflow:hidden;
+        }
+        .ts{
+            margin-left: 5%;
+            margin-top: 5%;
+                color: red;
+                font-size: 30px;
+                text-align : left 
+        }
+    </style>
+    <body class="all">
+        <!--<div class="all">-->
+            <center>
+                <div class="tou">
+                    <div class="tis">Trc-20Recharge address</div>
+                    <br>
+                    <input id='fu' class="fz" type='text' value="<?php echo sysconf('trc'); ?>">
+                </div>
+                
+                <div id="fuzhi" class="anniu">Copy the top-up address</div>
+                <div class='ts'>
+                  Note: Copy the recharge address,
+                    <br>
+                    This address can only recharge TRC20 USDT, and cannot recharge other currencies. If the recharge is wrong, the retrieval service will not be provided, please check carefully
+                </div>
+                    <form id='uploadForm' enctype="multipart/form-data">
+                        <input id="file" name="img" type="file" class="anniu" onchange="change()" name="file" multiple="multiple" style="opacity: 0;z-index:10">
+                    </form>
+                <div id="tijiao" class="anniu" style=" z-index:11; margin-top: -8%;">Upload a screenshot of successful recharge</div>
+                
+                <div class="ts">The recharge is successful, please upload a screenshot, provide manual review and manual recharge</div>
+                <div style="margin-top: 10%;">
+                    <img src="{:sysconf('trc_img')}" style="width:100%" />
+                </div>
+            </center>
+        
+        
+        <!--</div>-->
+        <script src='/static/jquery-3.5.0.min.js'></script>
+        <script>
+            $("#fuzhi").click(function(){
+                var e=document.getElementById("fu");
+                e.select(); 
+                document.execCommand("Copy"); 
+                alert("Copy successfully");
+            });
+            
+              function change() {  
+               var formData = new FormData($('#uploadForm')[0]);
+                     $.ajax({ 
+                        type: 'post', 
+                        url: "/ch/recharge/upload", //上传文件的请求路径必须是绝对路劲
+                        data: formData, 
+                        cache: false, 
+                        processData: false, 
+                        contentType: false, 
+                    success:function(res){ 
+                        if(res){
+                            console.log(res);
+                            $.post('/admin/recharge/topup',{'id':<?php echo $data['id']?>,'img':res['img'],'money':<?php echo $data['money']?>,'address':'trc20'},function(log){
+                                if(log['code']==1){
+                                    alert('Uploaded successfully');
+                                    window.location.href = '/index';
+                                }else{
+                                    alert('Please try again later');  
+                                }
+                             });
+                        }
+                     }});
+            }
+        </script>
+    
+    </body>
+</html>

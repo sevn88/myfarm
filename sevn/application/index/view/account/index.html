@@ -1,0 +1,523 @@
+{include file="public/header"/}
+<style>
+    .container1 {
+        background: #70e6cc;
+        height: 100% !important
+    }
+
+    .container1 .mine .top {
+        background: rgba(220, 233, 252, .1);
+        padding: 20px 16px;
+        height: 60px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center
+    }
+
+    .container1 .mine .top .top-left {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: start;
+        -webkit-justify-content: flex-start;
+        justify-content: flex-start;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center
+    }
+
+    .container1 .mine .top .top-left .mine-info {
+        -webkit-align-self: start;
+        align-self: start;
+        margin-left: 10px
+    }
+
+    .container1 .mine .top .top-left .mine-info .telphoneandvip .username {
+        font-size: 20px;
+        font-family: Rubik-Bold, Rubik;
+        font-weight: 700;
+        color: #2e3e5c
+    }
+
+    .container1 .mine .top .top-left .mine-info .telphoneandvip .vip {
+        padding: 5px 10px;
+        background: #2e3e5c;
+        border-radius: 10px;
+        font-size: 14px;
+        font-family: Rubik-Bold, Rubik;
+        font-weight: 400;
+        color: #fff;
+        margin-left: 12px
+    }
+
+    .container1 .mine .top .top-left .mine-info .code {
+        display: block;
+        margin-top: 20px;
+        font-size: 14px;
+        font-weight: 400
+    }
+
+    .container1 .mine .top .top-left .mine-info .code uni-text {
+        font-size: 14px;
+        font-family: Rubik-Bold, Rubik;
+        font-weight: 700;
+        color: #000;
+        margin-left: 5px
+    }
+
+    .container1 .mine .top .top-left uni-image {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: 2px solid #fff
+    }
+
+    .container1 .mine .top .top-right .copy {
+        background: hsla(0, 0%, 100%, .4);
+        border-radius: 13px;
+        border: 1px solid #fff;
+        padding: 6px 10px
+    }
+
+    .container1 .mine .account {
+        padding: 0 16px
+    }
+
+    .container1 .mine .account .pos {
+        height: 146px;
+        background: url(/static/index/img/balanceBG.683da52a.png) 50% no-repeat;
+        background-size: cover;
+        border-radius: 11px;
+        border: 2px solid #fff
+    }
+
+    .container1 .mine .account .pos .balance {
+        margin-left: 20px;
+        margin-top: 17px
+    }
+
+    .container1 .mine .account .pos .balance .label {
+        font-size: 15px;
+        font-family: Rubik-Medium, Rubik;
+        font-weight: 500;
+        color: #000
+    }
+
+    .container1 .mine .account .pos .balance .amount {
+        font-size: 28px;
+        font-family: PingFangSC-Semibold, PingFang SC;
+        font-weight: 600;
+        color: #000;
+        letter-spacing: 1px
+    }
+
+    .container1 .mine .account .pos .opertion {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: end;
+        -webkit-justify-content: flex-end;
+        justify-content: flex-end;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        margin: 20px 16px
+    }
+
+    .container1 .mine .account .pos .opertion .withdrawal {
+        background: rgba(87, 133, 246, .1);
+        border-radius: 18px;
+        border: 1px solid #fff;
+        font-size: 14px;
+        font-family: Rubik-Medium, Rubik;
+        font-weight: 500;
+        color: #5785f6;
+        padding: 10px;
+        margin-right: 16px
+    }
+
+    .container1 .mine .account .pos .opertion .recharge {
+        background: #5785f6;
+        border-radius: 18px;
+        font-size: 14px;
+        font-family: Rubik-Medium, Rubik;
+        font-weight: 500;
+        color: #fff;
+        padding: 10px
+    }
+
+    .container1 .mine .card {
+        margin: 18px 16px;
+        height: 108px;
+        background: #fff;
+        border-radius: 16px
+    }
+
+    .container1 .mine .card .itemlist {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        padding: 16px 8px
+    }
+
+    .container1 .mine .card .itemlist .item {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        flex-direction: column
+    }
+
+    .container1 .mine .card .itemlist .item uni-image {
+        width: 32px;
+        height: 32px
+    }
+
+    .container1 .mine .card .itemlist .item .value {
+        font-size: 14px;
+        font-family: Rubik-Medium, Rubik;
+        font-weight: 700;
+        color: #000
+    }
+
+    .container1 .mine .card .itemlist .item .name {
+        margin: 4px 0
+    }
+
+    .container1 .mine .person {
+        margin: 20px 16px;
+        height: 209px;
+        background: #fff;
+        border-radius: 12px
+    }
+
+    .container1 .mine .person .title {
+        font-size: 15px;
+        font-family: Rubik-Medium, Rubik;
+        font-weight: 700;
+        color: #000;
+        padding: 16px
+    }
+
+    .container1 .mine .person .itemlist {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        padding: 0 12px
+    }
+
+    .container1 .mine .person .itemlist .item {
+        position: relative
+    }
+
+    .container1 .mine .person .itemlist .item .icon-div {
+        text-align: center
+    }
+
+    .container1 .mine .person .itemlist .item uni-image {
+        width: 32px;
+        height: 32px
+    }
+
+    .container1 .mine .person .itemlist .item .name {
+        font-family: Rubik-Regular, Rubik;
+        font-weight: 400;
+        color: #23292e
+    }
+
+    .container1 .mine .person > .itemlist ~ .itemlist {
+        margin-top: 20px
+    }
+</style>
+
+<body>
+<uni-app class="uni-app--maxwidth">
+    <uni-page data-page="pages/account/index">
+        <!---->
+        <!---->
+        <uni-page-wrapper>
+            <uni-page-body>
+                <div class="container1">
+                    <div class="top-page"
+                         style="height: 44px; background: linear-gradient(to right, rgb(237, 243, 251), rgb(237, 243, 251));">
+                        <div class="apex"
+                             style="height: 44px; line-height: 44px; background: linear-gradient(to right, rgb(237, 243, 251), rgb(237, 243, 251)); color: rgb(0, 0, 0); position: fixed;">
+                            <a href="javascript:window.history.go(-1)" class="left">
+                                <uni-text class="iconfont icon-fanhui1"
+                                          style="font-size: 16px; color: rgb(0, 0, 0);"><span></span></uni-text>
+                            </a>
+                            <div class="center" style="font-size: 17px;">{:lang("AccountDetails")}</div>
+                            <div class="right"></div>
+                        </div>
+                        <div class="placeholder" style="height: 44px; line-height: 44px;"></div>
+                    </div>
+                    <div class="mine">
+                        <div class="top">
+                            <div class="top-left">
+                                <div>
+                                    <!---->
+                                    <!---->
+                                    <uni-image>
+                                        <div style="background-image: url(/static/index/img/user1.jpg); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                        </div>
+                                        <img src="/static/index/img/user1.jpg" draggable="true">
+                                        <!---->
+                                    </uni-image>
+                                </div>
+                                <div class="mine-info">
+                                    <div class="telphoneandvip">
+                                        <uni-text class="username"><span>{$user_info.username}</span></uni-text>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                    <uni-text class="code">
+                                        <span>{:lang("InvitationCode")}：<uni-text><span>{$user_info.invite_code}</span></uni-text></span>
+                                    </uni-text>
+                                </div>
+                            </div>
+                            <div class="top-right">
+                                <div class="copy">{:lang("CopyLink")}</div>
+                            </div>
+                        </div>
+                        <div class="account">
+                            <div class="pos flex-row">
+                                <div class="balance">
+                                    <uni-text class="label"><span>{:lang("balance")}</span></uni-text>
+                                    <div class="amount">{$user_info.balance}</div>
+                                </div>
+                                <div class="opertion">
+                                    <a href="{:Url('withdrawal/index')}" class="withdrawal">{:lang("withdrawal2")}</a>
+                                    <a href="{:Url('recharge/index')}" class="recharge">{:lang("recharge2")}</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="itemlist">
+                                <a href="{:Url('details/index')}?type=4" class="item">
+                                    <uni-image>
+                                        <div
+                                                style="background-image: url(&quot;/static/index/img/Total.b59dacfd.png&quot;); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                        </div>
+                                        <img src="/static/index/img/Total.b59dacfd.png" draggable="true">
+                                        <!---->
+                                    </uni-image>
+                                    <uni-text class="name"><span>{:lang("Total")}</span></uni-text>
+                                    <uni-text class="value"><span>{$user_info.total}</span></uni-text>
+                                </a>
+<!--                                <a href="financial.html" class="item">-->
+<!--                                    <uni-image>-->
+<!--                                        <div-->
+<!--                                                style="background-image: url(&quot;/static/index/img/Financial.0502d770.png&quot;); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">-->
+<!--                                        </div>-->
+<!--                                        <img src="/static/index/img/Financial.0502d770.png" draggable="true">-->
+<!--                                        &lt;!&ndash;&ndash;&gt;-->
+<!--                                    </uni-image>-->
+<!--                                    <uni-text class="name"><span>Financial</span></uni-text>-->
+<!--                                    <uni-text class="value"><span>{$user_info.financial}</span></uni-text>-->
+<!--                                </a>-->
+                                <a href="{:Url('details/index')}?type=1" class="item">
+                                    <uni-image>
+                                        <div style="background-image: url(/static/index/img/Details.png); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                        </div>
+                                        <img src="/static/index/img/Details.png" draggable="true">
+                                        <!---->
+                                    </uni-image>
+                                    <uni-text class="name"><span>{:lang("Details")}</span></uni-text>
+                                    <uni-text class="value"><span>-- --</span></uni-text>
+                                </a>
+                                <a href="{:Url('account/freeze')}" class="item">
+                                    <uni-image>
+                                        <div style="background-image: url(/static/index/img/Freeze.ac7ad703.png); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                        </div>
+                                        <img src="/static/index/img/Freeze.ac7ad703.png" draggable="true">
+                                        <!---->
+                                    </uni-image>
+                                    <uni-text class="name"><span>{:lang("settlement2")}</span></uni-text>
+                                    <uni-text class="value"><span>{$user_info.freeze}</span></uni-text>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="person">
+                            <div class="title"> {:lang("ServiceCenter")}</div>
+                            <div class="itemlist">
+                                <a href="{:Url('account/personal')}" class="item">
+                                    <div class="icon-div b1">
+                                        <uni-image>
+                                            <div style="background-image: url(/static/index/img/presonal.png); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                            </div>
+                                            <img src="/static/index/img/presonal.png" draggable="true">
+                                            <!---->
+                                        </uni-image>
+                                    </div>
+                                    <uni-text class="name"><span> {:lang("Personal")} </span></uni-text>
+                                </a>
+                                <a href="{:Url('account/team')}" class="item">
+                                    <div class="icon-div b2">
+                                        <uni-image>
+                                            <div style="background-image: url(/static/index/img/Team_report.png); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                            </div>
+                                            <img src="/static/index/img/Team_report.png" draggable="true">
+                                            <!---->
+                                        </uni-image>
+                                    </div>
+                                    <uni-text class="name"><span style="display:flex;text-align:center;">{:lang("TeamReport")}</span></uni-text>
+                                </a>
+                                <a href="{:Url('account/invitation')}" class="item">
+                                    <div class="icon-div b3">
+                                        <uni-image>
+                                            <div style="background-image: url(/static/index/img/Invitie_Friend.png); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                            </div>
+                                            <img src="/static/index/img/Invitie_Friend.png" draggable="true">
+                                            <!---->
+                                        </uni-image>
+                                    </div>
+                                    <uni-text class="name"><span style="display:flex;text-align:center;">{:lang("InviteFriend")}</span></uni-text>
+                                </a>
+                                <a href="{:Url('account/message')}" class="item">
+                                    <div class="icon-div b4">
+                                        <uni-image>
+                                            <div style="background-image: url(/static/index/img/Message1.png); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                            </div>
+                                            <img src="/static/index/img/Message1.png" draggable="true">
+                                            <!---->
+                                        </uni-image>
+                                    </div>
+                                    <uni-text class="name"><span>{:lang("Message")}</span></uni-text>
+                                    <!---->
+                                </a>
+                            </div>
+                            <div class="itemlist">
+                                <a href="{:Url('account/address')}" class="item">
+                                    <div class="icon-div b5">
+                                        <uni-image>
+                                            <div style="background-image: url(/static/index/img/Address1.png); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                            </div>
+                                            <img src="/static/index/img/Address1.png" draggable="true">
+                                            <!---->
+                                        </uni-image>
+                                    </div>
+                                    <uni-text class="name"><span>{:lang("Address")} </span></uni-text>
+                                </a>
+                                <a href="{:Url('account/aboutus')}" class="item">
+                                    <div class="icon-div b8">
+                                        <uni-image>
+                                            <div style="background-image: url(/static/index/img/About_us.png); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                            </div>
+                                            <img src="/static/index/img/About_us.png" draggable="true">
+                                            <!---->
+                                        </uni-image>
+                                    </div>
+                                    <uni-text class="name"><span>{:lang("aboutus2")}</span></uni-text>
+                                </a>
+                                <a href="{:Url('account/invite_task')}" class="item">
+                                    <div class="icon-div b6">
+                                        <uni-image>
+                                            <div style="background-image: url(/static/index/img/Invitie_Task.png); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                            </div>
+                                            <img src="/static/index/img/Invitie_Task.png" draggable="true">
+                                            <!---->
+                                        </uni-image>
+                                    </div>
+                                    <uni-text class="name"><span>{:lang("InviteTask")}</span></uni-text>
+                                </a>
+                                <a href="{:Url('account/safe')}" class="item">
+                                    <div class="icon-div b7">
+                                        <uni-image>
+                                            <div style="background-image: url(/static/index/img/Security.png); background-position: 0% 0%; background-size: 100% 100%; background-repeat: no-repeat;">
+                                            </div>
+                                            <img src="/static/index/img/Security.png" draggable="true">
+                                            <!---->
+                                        </uni-image>
+                                    </div>
+                                    <uni-text class="name"><span>{:lang("Security")}</span></uni-text>
+                                </a>
+                            </div>
+                            <!---->
+                        </div>
+                    </div>
+                    <div class="bg"></div>
+                    {include file="public/footer"/}
+                </div>
+            </uni-page-body>
+        </uni-page-wrapper>
+    </uni-page>
+    <uni-modal style="display: none;">
+        <div class="uni-mask"></div>
+        <div class="uni-modal">
+            <div class="uni-modal__hd"><strong class="uni-modal__title">{:lang("CopyLink")}</strong></div>
+            <div class="uni-modal__bd">{$invite_url}{$user_info.invite_code}</div>
+            <div class="uni-modal__ft">
+                <div class="uni-modal__btn uni-modal__btn_default cancel" style="color: rgb(0, 0, 0);"> {:lang("cancel")}</div>
+                <div class="uni-modal__btn uni-modal__btn_primary clip_copy"
+                     data-clipboard-text="{$invite_url}{$user_info.invite_code}"
+                     style="color: rgb(0, 122, 255);"> {:lang("copy")}
+                </div>
+            </div>
+        </div>
+    </uni-modal>
+</uni-app>
+</body>
+</html>
+
+<script src="/static/index/js/clipboard.min.js"></script>
+
+<script>
+    ;(function () {
+        let $modal = $("uni-modal");
+        $(".copy").on('click', showModal);
+        $(".cancel").on("click", closeModal);
+        $(".clip_copy").on("click", copy);
+
+        function showModal() {
+            $modal.show();
+        }
+
+        function closeModal() {
+            $modal.hide();
+        }
+
+        function copy() {
+            var clipboard = new ClipboardJS('.clip_copy');
+
+            clipboard.on('success', function (e) {
+                console.info('Action:', e.action);
+                console.info('Text:', e.text);
+                console.info('Trigger:', e.trigger);
+
+                e.clearSelection();
+                closeModal()
+            });
+
+            clipboard.on('error', function (e) {
+                console.error('Action:', e.action);
+                console.error('Trigger:', e.trigger);
+            });
+        }
+    }())
+</script>

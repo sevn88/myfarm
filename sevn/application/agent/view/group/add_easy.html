@@ -1,0 +1,124 @@
+{include file="public/header"/}
+<body>
+<div class="layui-fluid">
+    <div class="layui-row">
+        <form class="layui-form" method="post" action="">
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>模式名称</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="name" autocomplete="off" class="layui-input"></div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>支付方式</label>
+                <div class="layui-input-block">
+                    <input type="checkbox" name="pay[]" value="MarsPay" lay-skin="primary" title="MarsPay">
+                    <input type="checkbox" name="pay[]" value="SEP" lay-skin="primary" title="SEP">
+                    <input type="checkbox" name="pay[]" value="Oceanpay" lay-skin="primary" title="Oceanpay" >
+                    <input type="checkbox" name="pay[]" value="GoldInd" lay-skin="primary" title="GoldInd" >
+                    <input type="checkbox" name="pay[]" value="QeInd" lay-skin="primary" title="QeInd" >
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>抢单模式</label>
+                <div class="layui-input-inline">
+                    <select name="grab_type" lay-filter="mode">
+                        <option value=""></option>
+                        <option value="1" selected="">默认模式</option>
+                        <option value="2">随机模式</option>
+                        <option value="3">叠加模式</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>开始时间</label>
+                <div class="layui-input-block" style="width: 190px">
+                    <input type="text" name="start_time" autocomplete="off" class="layui-input" id="start" placeholder="HH:mm:ss">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>结束时间</label>
+                <div class="layui-input-block" style="width: 190px">
+                    <input type="text" name="end_time" autocomplete="off" class="layui-input" id="end" placeholder="HH:mm:ss">
+                </div>
+            </div>
+
+            <div class="layui-form-item" id="order_num"  style="display: none">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>随机单数</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="rand_num" autocomplete="off" class="layui-input"></div>
+            </div>
+
+            <div class="layui-form-item" id="order_bili"  style="display: none">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>随机比例</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="rand_bili" autocomplete="off" class="layui-input"></div>
+            </div>
+
+            <div class="layui-form-item" id="die_jia" style="display: none">
+                <label class="layui-form-label" ><span class="x-red">*</span>叠加模式</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="die_jia" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">(多个叠加逗号隔开,示例:0.2,0.3,0.5)</div>
+            </div>
+
+            <div class="layui-form-item" >
+                <label class="layui-form-label" ><span class="x-red">*</span>次数</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="order_num" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">(整数)</div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label"></label>
+                <button class="layui-btn" lay-filter="add" lay-submit="">确定</button>
+            </div>
+        </form>
+    </div>
+</div>
+{include file="public/footer"/}
+<script>layui.use(['form', 'layer','laydate'],
+    function () {
+        $ = layui.jquery;
+        var form = layui.form,
+            layer = layui.layer,
+            laydate = layui.laydate;
+
+        laydate.render({
+            elem: '#start'
+            ,type: 'time'
+        });
+
+        laydate.render({
+            elem: '#end'
+            ,type: 'time'
+        });
+
+        form.on('select(mode)', function (data) {
+            let value = data.value
+            if (value == "2") {
+                $("#order_num").show();
+                $("#order_bili").show();
+                $("#die_jia").hide();
+            } else if (value == "3") {
+                $("#order_num").hide();
+                $("#order_bili").hide();
+                $("#die_jia").show();
+            }
+        })
+
+    });
+</script>
+

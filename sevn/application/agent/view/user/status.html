@@ -1,0 +1,62 @@
+{include file="public/header"/}
+
+<div class="layui-fluid">
+    <div class="layui-row">
+        <form class="layui-form" action="" method="post">
+            <div class="layui-form-item">
+                <span>编辑《{$user_info.username}》信息</span>
+            </div>
+            <!--<div class="layui-form-item">-->
+                
+            <!--    <label class="layui-form-label">-->
+            <!--        <span class="x-red">*</span>状态</label>-->
+            <!--    <div class="layui-input-inline">-->
+            <!--        {if condition="($user_info.status==1)"}-->
+            <!--            <input type="radio" name="status" value="1" checked> 启用-->
+            <!--        {else /}-->
+            <!--            <input type="radio" name="status" value="1"> 启用-->
+            <!--        {/if}-->
+                        
+            <!--     </div>-->
+            <!--       <div class="layui-input-inline">-->
+            <!--        {if condition="($user_info.status==2)"}-->
+            <!--            <input type="radio" name="status" value="2" checked> 禁用-->
+            <!--        {else /}-->
+            <!--            <input type="radio" name="status" value="2"> 禁用-->
+            <!--        {/if}-->
+                    
+            <!--    </div>-->
+            <!--</div>-->
+            
+            
+            
+
+            <div class="layui-form-item" style="margin-left: 35%">
+                {if condition="($user_info.status==1)"}
+                    <input type="hidden" name='status' value='2'>
+                {else/}
+                    <input type="hidden" name='status' value='1'>
+                {/if}
+                {if condition="($user_info.agent_role==3 or $user_info.agent_role==4)"}
+                <input type="hidden" name="id" value="{$user_info.id}" >
+                    
+                <button  class="layui-btn" lay-filter="add" lay-submit="">
+                    {if condition="($user_info.status==1)"}
+                        禁用
+                    {else /}
+                        启用
+                    {/if}
+                </button>
+                {/if}
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    layui.use(['form', 'layer'],
+    );
+</script>
+
+
+

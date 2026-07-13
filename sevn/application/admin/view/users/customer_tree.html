@@ -1,0 +1,111 @@
+{extend name='main'}
+
+{block name="button"}
+
+{if auth("add_cs")}
+<button data-modal='{:url("add_customer")}' data-title="添加客服(新)" class='layui-btn'>添加客服</button>
+{/if}
+
+{/block}
+
+{block name="content"}
+
+<div class="think-box-shadow">
+    {include file='users/customer_search'}
+    <table class="layui-table margin-top-15" lay-filter="tab" lay-skin="line">
+        {notempty name='list'}
+        <thead>
+        <tr>
+            <th lay-data="{field:'id',width:30}" class='text-left nowrap'>ID</th>
+            <th lay-data="{field:'username'}" class='text-left nowrap'>用户名</th>
+            <th lay-data="{field:'uid',width:70}" class='text-left nowrap'>用户ID</th>
+            <th lay-data="{field:'role',width:100}" class='text-left nowrap'>用户等级</th>
+            <th lay-data="{field:'name'}" class='text-left nowrap'>名称</th>
+            <th lay-data="{field:'link'}" class='text-left nowrap'>链接</th>
+            <th lay-data="{field:'WhatsappTelegram'}" class='text-left nowrap'>WhatsApp/Telegram</th>
+            <th lay-data="{field:'addtime',width:200}" class='text-left nowrap'>添加时间</th>
+            <th lay-data="{field:'btime',width:100}" class='text-left nowrap'>上班时间</th>
+            <th lay-data="{field:'etime',width:100}" class='text-left nowrap'>下班时间</th>
+            <th lay-data="{field:'edit',width:180,fixed: 'right'}" class='text-left nowrap'>操作</th>
+        </tr>
+        </thead>
+        {/notempty}
+        <tbody>
+        {foreach $list as $key=>$vo}
+        <tr>
+
+            <td class='text-left nowrap'>{$vo.id}</td>
+            <td class='text-left nowrap'>{$vo.username}</td>
+            <td class='text-left nowrap'>{$vo.uid}</td>
+            <td class='text-left nowrap'>
+                {if ($vo.role==4)}
+                    管理
+                {elseif $vo.role==3}
+                    总代
+                {elseif $vo.role==2}
+                    代理
+                {else}
+                    错误
+                {/if}
+            </td>
+            <td class='text-left nowrap'>{$vo.name}</td>
+            <td class='text-left nowrap'>{$vo.link}</td>
+            <td class="text-left nowrap">
+                {if $vo.WhatsappTelegram==0}
+                    WhatsApp
+                {else}
+                    Telegram
+                {/if}
+            </td>
+            <td class='text-left nowrap'>
+                {$vo.addtime|format_datetime}
+            </td>
+            <td class='text-left nowrap'>{$vo.btime}</td>
+            <td class='text-left nowrap'>{$vo.etime}</td>
+            <td class='text-left nowrap'>
+            {if auth("edit_cs")}
+                <a data-dbclick class="layui-btn layui-btn-xs" data-title="编辑客服（新）" data-modal='{:url("admin/users/edit_customer")}?id={$vo.id}'>编 辑</a>
+                <a class="layui-btn layui-btn-xs layui-btn" onClick="del_customer({$vo.id})" style='background:red;'>删除</a>
+            {/if}
+            {if ($vo.status == 1) and auth("edit_cs_status")}
+                <a class="layui-btn layui-btn-xs layui-btn-warm" data-csrf="{:systoken('admin/users/edit_customer_status')}" data-action="{:url('edit_customer_status',['status'=>2,'id'=>$vo.id])}" data-value="id#{$vo.id};status#2" style='background:red;'>禁用</a>
+            {elseif ($vo.status == 2) and auth("edit_cs_status") /}
+                <a class="layui-btn layui-btn-xs layui-btn-warm" data-csrf="{:systoken('admin/users/edit_customer_status')}" data-action="{:url('edit_customer_status',['status'=>1,'id'=>$vo.id])}" data-value="id#{$vo.id};status#1" style='background:green;'>启用</a>
+            {/if}
+            </td>
+        </tr>
+        {/foreach}
+        </tbody>
+    </table>
+    <script>
+        var table = layui.table;
+        //转换静态表格
+        var limit = Number('{$Think.get.limit}');
+        if(limit==0) limit=20;
+        table.init('tab', {
+                cellMinWidth:120,
+                skin: 'line,row',
+                size: 'lg',
+                limit: limit
+            }); 
+    </script>
+    {empty name='list'}<span class="notdata">没有记录哦</span>{else}{$pagehtml|raw|default=''}{/empty}
+<script>
+    function del_customer(id){
+            layer.confirm("确认要删除吗，删除后不能恢复",{ title: "删除确认" },function(index){
+                $.ajax({
+                    type: 'POST',
+                    url: "{:url('del_customer')}",
+                    data: {
+                        'id': id,
+                    },
+                    success:function (e) {
+                        layer.msg(e.msg,{time:2500});
+                        location.reload();
+                    }
+                });
+            },function(){});
+        }
+</script>
+</div>
+{/block}

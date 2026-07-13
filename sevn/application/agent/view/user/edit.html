@@ -1,0 +1,289 @@
+{include file="public/header"/}
+
+
+<div class="layui-fluid">
+    <div class="layui-row">
+        <form class="layui-form" action="" method="post">
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>用户名
+                </label>
+                <div class="layui-input-inline">
+
+                    <input type="text" value="{$user_info.username}" class="layui-input" readOnly="true" disabled>
+
+
+                </div>
+            </div>
+            
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>手机号
+                </label>
+                <div class="layui-input-inline">
+                    {if condition="($user_info.agent_role==3 or $user_info.agent_role==4)"}
+                    <input name="phone" type="text" value="{$user_info.phone}" class="layui-input" >
+                    {else /}
+                    <input  type="text" value="{$user_info.phone}" class="layui-input" readonly disabled>
+                    {/if}
+                </div>
+            </div>
+            {if condition="($user_info.agent_role==4)"}
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>代理费
+                </label>
+                <div class="layui-input-inline">
+                   
+                    <input name="agent_rate" type="text" value="{$user_info.agent_rate}" class="layui-input" >
+                   
+                    
+                </div>
+            </div>
+            {/if}
+            <div class="layui-form-item">
+                <label class="layui-form-label label-required">role</label>
+                <div class="layui-input-block">
+                    <select name="role" id="">
+                        {if condition="($user_info.agent_role==4 or $user_info.agent_role==3 )"}
+                            <option value="1" <?php echo $user_info['role']==1 ? 'selected': ''; ?> >普通</option>
+                        {/if}
+                        {if condition="($user_info.agent_role==4 or $user_info.agent_role==3)"}
+                        
+                            <option value="2" <?php echo $user_info['role']==2 ? 'selected': ''; ?> >代理</option>
+                        {/if}
+                        
+                        {if condition="($user_info.agent_role==4)"}
+                            <option value="3" <?php echo $user_info['role']==3 ? 'selected': ''; ?> >总代</option>
+                        {/if}
+                    </select>
+                </div>
+            </div>
+           
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>等级</label>
+                <div class="layui-input-inline">
+                  <?php if ($user_info['agent_role']==2 || $user_info['agent_role']==3 || $user_info['agent_role']==4){?>
+                    <select name="level" class="form-control" >
+                        <option value="0" >SVIP0</option>
+                        {volist name="level_info" id="vo"}
+                        {if condition="($user_info.level == $vo.id)"}
+                        <option value="{$vo.id}" selected="selected" >{$vo.name}</option>
+                        {else /}
+                        <option value="{$vo.id}" >{$vo.name}</option>
+                        {/if}
+                        {/volist}
+                    </select>
+                    <?php } else {?>
+                    <select name="level" class="form-control" disabled>
+                        <option value="0" >SVIP0</option>
+                        {volist name="level_info" id="vo"}
+                        {if condition="($user_info.level == $vo.id)"}
+                        <option value="{$vo.id}" selected="selected" >{$vo.name}</option>
+                        {else /}
+                        <option value="{$vo.id}" >{$vo.name}</option>
+                        {/if}
+                        {/volist}
+                    </select>
+                    <?php } ?>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>余额
+                </label>
+                <div class="layui-input-inline">
+                    {if condition="($user_info.agent_role==3 or $user_info.agent_role==4)"}
+                    <input name="balance" type="text" value="{$user_info.balance}" class="layui-input" readOnly="true"  disabled>
+                    {else /}
+                    <input  type="text" value="{$user_info.balance}" class="layui-input" readOnly="true" >
+                    {/if}
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>冻结资金
+                </label>
+                <div class="layui-input-inline">
+                    {if condition="($user_info.agent_role==2 or $user_info.agent_role==3 or $user_info.agent_role==4)"}
+                    <input name="freeze" type="text" value="{$user_info.freeze}" class="layui-input" >
+                    {else /}
+                    <input  type="text" value="{$user_info.freeze}" class="layui-input" readOnly="true">
+                    {/if}
+                </div>
+            </div>
+
+
+            <div class="layui-form-item">
+                <label  class="layui-form-label">
+                    <span class="x-red">*</span>登录时间
+                </label>
+                <div class="layui-input-inline">
+                    {if condition="( $user_info.agent_role==3 or $user_info.agent_role==4)"}
+                    <input type="text" value="{$user_info.last_time|toDate}"  class="layui-input">
+                    {else /}
+                    <input  type="text" value="{$user_info.last_time|toDate}"  class="layui-input"  readOnly="true">
+                    {/if}
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+                    <span class="x-red">*</span>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>注册时间
+                </label>
+                <div class="layui-input-inline">
+                    {if condition="($user_info.agent_role==3 or $user_info.agent_role==4)"}
+                    <input type="text" value="{$user_info.create_time|toDate}"  class="layui-input">
+                    {else /}
+                    <input type="text" value="{$user_info.create_time|toDate}"  class="layui-input" readOnly="true" >
+                    {/if}
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+                    <span class="x-red">*</span>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>Bank_Name
+                </label>
+                <div class="layui-input-inline">
+                    {if condition="($user_info.agent_role==3 or $user_info.agent_role==4)"}
+                    <input name="bank_name"  type="text" value="{$user_info.bank_name}" class="layui-input" >
+                    {else /}
+                    <input type="text" value="{$user_info.bank_name}" class="layui-input" readOnly="true" >
+                    {/if}
+                </div>
+            </div>
+            
+             <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>开户行
+                </label>
+                <div class="layui-input-inline">
+                    {if condition="($user_info.agent_role==2)"}
+                    <input type="text" value="{$user_info.ifsc}" class="layui-input" readOnly="true">
+                    {else /}
+                    <input name="ifsc" type="text" value="{$user_info.ifsc}" class="layui-input" >
+                    {/if}
+                </div>
+            </div>
+            
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>Holder_Name
+                </label>
+                <div class="layui-input-inline">
+                    {if condition="( $user_info.agent_role==3 or $user_info.agent_role==4)"}
+                    <input name="holder_name"  type="text" value="{$user_info.holder_name}" class="layui-input">
+                    {else /}
+                    <input name="holder_name" type="text" value="{$user_info.holder_name}" class="layui-input"  readOnly="true">
+                    {/if}
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>Account_Number
+                </label>
+                <div class="layui-input-inline">
+                    {if condition="( $user_info.agent_role==3 or $user_info.agent_role==4)"}
+                    <input name="account_number" type="text" value="{$user_info.account_number}" class="layui-input" >
+                    {else /}
+                    <input  type="text" value="{$user_info.account_number}" class="layui-input" readOnly="true" >
+                    {/if}
+                </div>
+            </div>
+
+            <!--<div class="layui-form-item">-->
+            <!--    <label class="layui-form-label">-->
+            <!--        <span class="x-red">*</span>Phone_Number-->
+            <!--    </label>-->
+            <!--    <div class="layui-input-inline">-->
+            <!--        {if condition="($user_info.agent_role==2)"}-->
+            <!--        <input type="text" value="{$user_info.phone_number}" class="layui-input" readOnly="true">-->
+            <!--        {else /}-->
+            <!--        <input name="phone_number" type="text" value="{$user_info.phone_number}" class="layui-input">-->
+            <!--        {/if}-->
+            <!--    </div>-->
+            <!--</div>-->
+
+            <!--<div class="layui-form-item">-->
+            <!--    <label class="layui-form-label">-->
+            <!--        <span class="x-red">*</span>Email-->
+            <!--    </label>-->
+            <!--    <div class="layui-input-inline">-->
+            <!--        {if condition="($user_info.agent_role==2)"}-->
+            <!--        <input type="text" value="{$user_info.email}" class="layui-input" readOnly="true">-->
+            <!--        {else /}-->
+            <!--        <input name="email" type="text" value="{$user_info.email}" class="layui-input" >-->
+            <!--        {/if}-->
+            <!--    </div>-->
+            <!--</div>-->
+
+            <!--<div class="layui-form-item">-->
+            <!--    <label class="layui-form-label">-->
+            <!--        <span class="x-red">*</span>Ifsc-->
+            <!--    </label>-->
+            <!--    <div class="layui-input-inline">-->
+            <!--        {if condition="($user_info.agent_role==2)"}-->
+            <!--        <input type="text" value="{$user_info.ifsc}" class="layui-input" readOnly="true">-->
+            <!--        {else /}-->
+            <!--        <input name="ifsc" type="text" value="{$user_info.ifsc}" class="layui-input" >-->
+            <!--        {/if}-->
+            <!--    </div>-->
+            <!--</div>-->
+
+            <!--<div class="layui-form-item">-->
+            <!--    <label class="layui-form-label">-->
+            <!--        <span class="x-red">*</span>Upi-->
+            <!--    </label>-->
+            <!--    <div class="layui-input-inline">-->
+            <!--        {if condition="($user_info.agent_role==2)"}-->
+            <!--        <input type="text" value="{$user_info.upi}" class="layui-input" readOnly="true">-->
+            <!--        {else /}-->
+            <!--        <input name="upi" type="text" value="{$user_info.upi}" class="layui-input" >-->
+            <!--        {/if}-->
+            <!--    </div>-->
+            <!--</div>-->
+            {if condition="($user_info.agent_role==3  or $user_info.agent_role==4)"}
+            <div class="layui-form-item">
+                <label class="layui-form-label">登录密码</label>
+                <div class="layui-input-block">
+                    <input name="password" placeholder="留空不修改密码" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">支付密码</label>
+                <div class="layui-input-block">
+                    <input name="payment" placeholder="留空不修改密码" class="layui-input">
+                </div>
+            </div>
+            {/if}
+
+            <div class="layui-form-item" style="margin-left: 25%">
+                {if condition="($user_info.agent_role==3  or $user_info.agent_role==4)"}
+                <input type="hidden" name="id" value="{$user_info.id}" >
+                <button  class="layui-btn" lay-filter="add" lay-submit="">提交</button>
+                {/if}
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    layui.use(['form', 'layer'],
+    );
+</script>
+
+
+

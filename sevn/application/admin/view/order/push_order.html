@@ -1,0 +1,80 @@
+{extend name='main'}
+
+{block name="button"}
+
+    {if auth("add_goods")}
+    <button data-open='{:url("/admin/goods/goods_add")}' data-title="添加公告" class='layui-btn'>添加商品</button>
+    {/if}
+
+{/block}
+
+{block name="content"}
+
+<div class="think-box-shadow">
+    {include file='order/push_search'}
+    <table class="layui-table margin-top-15" lay-skin="line">
+        {notempty name='list'}
+        <thead>
+        <tr>
+            <th class='text-left nowrap'>商品ID</th>
+            <th class='text-left nowrap'>商品名称</th>
+            <th class='text-left nowrap'>商品图片</th>
+            <th class='text-left nowrap'>商品价格</th>
+            <th class='text-left nowrap'>添加时间</th>
+            <th class='text-left nowrap'>状态</th>
+        </tr>
+        </thead>
+        {/notempty}
+        <tbody>
+        {foreach $list as $key=>$vo}
+        <tr>
+            <td class='text-left nowrap'>{$vo.id}</td>
+            <td class='text-left nowrap'>{$vo.goods_name}</td>
+            <td class='text-left nowrap'><img src="{$vo.goods_pic}" alt="" style="width: 80px"></td>
+            <td class='text-left nowrap'>¥{$vo.goods_price}</td>
+            <td class='text-left nowrap'>{$vo.create_time|toDate}</td>
+            <td class='text-left nowrap'>
+                <a class="layui-btn layui-btn-xs layui-btn" onClick="push_goods({$vo.id})">Push</a>
+            </td>
+        </tr>
+        {/foreach}
+        </tbody>
+    </table>
+    <input type="hidden" id="uid" value="{$uid}">
+    {empty name='list'}<span class="notdata">没有记录哦</span>{else}{$pages|raw|default=''}{/empty}
+
+</div>
+<script>
+    function push_goods(id){
+        var uid = $("#uid").val();
+        var lock = false;
+        layer.confirm('确定Push此商品吗?',{btn:['确定','取消']},function(index){
+            if(!lock) {
+                //加锁防止多次回调
+                lock =true;
+                layer.load(2);
+                $.ajax({
+                    url: "{:Url('push_goods')}",
+                    type: "post",
+                    traditional: true,
+                    data: {uid:uid,id:id},
+                    success: function (e) {
+                        layer.closeAll('loading');
+                        if (e.code === 1){
+                            layer.msg(e.msg, {
+                                time: 2000,
+                                end: function () {
+                                    window.location.href = "admin.html#/admin/order/index.html?spm=m-95-96-97";
+                                }
+                            });
+                        }else {
+                            layer.msg(e.msg, function(){});
+                            return false;
+                        }
+                    },
+                });
+            }
+        });
+    }
+</script>
+{/block}

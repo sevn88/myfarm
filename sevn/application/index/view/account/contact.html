@@ -1,0 +1,424 @@
+{include file="public/header"/}
+<style>
+    .container1 {
+        background: #70e6cc;
+        height: 100% !important
+    }
+
+    .container1 .mine .top {
+        background: rgba(220, 233, 252, .1);
+        padding: 20px 16px;
+        height: 60px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center
+    }
+
+    .container1 .mine .top .top-left {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: start;
+        -webkit-justify-content: flex-start;
+        justify-content: flex-start;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center
+    }
+
+    .container1 .mine .top .top-left .mine-info {
+        -webkit-align-self: start;
+        align-self: start;
+        margin-left: 10px
+    }
+
+    .container1 .mine .top .top-left .mine-info .telphoneandvip .username {
+        font-size: 20px;
+        font-family: Rubik-Bold, Rubik;
+        font-weight: 700;
+        color: #2e3e5c
+    }
+
+    .container1 .mine .top .top-left .mine-info .telphoneandvip .vip {
+        padding: 5px 10px;
+        background: #2e3e5c;
+        border-radius: 10px;
+        font-size: 14px;
+        font-family: Rubik-Bold, Rubik;
+        font-weight: 400;
+        color: #fff;
+        margin-left: 12px
+    }
+
+    .container1 .mine .top .top-left .mine-info .code {
+        display: block;
+        margin-top: 20px;
+        font-size: 14px;
+        font-weight: 400
+    }
+
+    .container1 .mine .top .top-left .mine-info .code uni-text {
+        font-size: 14px;
+        font-family: Rubik-Bold, Rubik;
+        font-weight: 700;
+        color: #000;
+        margin-left: 5px
+    }
+
+    .container1 .mine .top .top-left uni-image {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: 2px solid #fff
+    }
+
+    .container1 .mine .top .top-right .copy {
+        background: hsla(0, 0%, 100%, .4);
+        border-radius: 13px;
+        border: 1px solid #fff;
+        padding: 6px 10px
+    }
+
+    .container1 .mine .account {
+        padding: 0 16px
+    }
+
+    .container1 .mine .account .pos {
+        height: 146px;
+        background: url(/static/index/img/balanceBG.683da52a.png) 50% no-repeat;
+        background-size: cover;
+        border-radius: 11px;
+        border: 2px solid #fff
+    }
+
+    .container1 .mine .account .pos .balance {
+        margin-left: 20px;
+        margin-top: 17px
+    }
+
+    .container1 .mine .account .pos .balance .label {
+        font-size: 15px;
+        font-family: Rubik-Medium, Rubik;
+        font-weight: 500;
+        color: #000
+    }
+
+    .container1 .mine .account .pos .balance .amount {
+        font-size: 28px;
+        font-family: PingFangSC-Semibold, PingFang SC;
+        font-weight: 600;
+        color: #000;
+        letter-spacing: 1px
+    }
+
+    .container1 .mine .account .pos .opertion {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: end;
+        -webkit-justify-content: flex-end;
+        justify-content: flex-end;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        margin: 20px 16px
+    }
+
+    .container1 .mine .account .pos .opertion .withdrawal {
+        background: rgba(87, 133, 246, .1);
+        border-radius: 18px;
+        border: 1px solid #fff;
+        font-size: 14px;
+        font-family: Rubik-Medium, Rubik;
+        font-weight: 500;
+        color: #5785f6;
+        padding: 10px;
+        margin-right: 16px
+    }
+
+    .container1 .mine .account .pos .opertion .recharge {
+        background: #5785f6;
+        border-radius: 18px;
+        font-size: 14px;
+        font-family: Rubik-Medium, Rubik;
+        font-weight: 500;
+        color: #fff;
+        padding: 10px
+    }
+
+    .container1 .mine .card {
+        margin: 18px 16px;
+        height: 108px;
+        background: #fff;
+        border-radius: 16px
+    }
+
+    .container1 .mine .card .itemlist {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        padding: 16px 8px
+    }
+
+    .container1 .mine .card .itemlist .item {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        flex-direction: column
+    }
+
+    .container1 .mine .card .itemlist .item uni-image {
+        width: 32px;
+        height: 32px
+    }
+
+    .container1 .mine .card .itemlist .item .value {
+        font-size: 14px;
+        font-family: Rubik-Medium, Rubik;
+        font-weight: 700;
+        color: #000
+    }
+
+    .container1 .mine .card .itemlist .item .name {
+        margin: 4px 0
+    }
+
+    .container1 .mine .person {
+        margin: 20px 16px;
+        height: 309px;
+        background: #fff;
+        border-radius: 12px
+    }
+
+    .container1 .mine .person .title {
+        font-size: 15px;
+        font-family: Rubik-Medium, Rubik;
+        font-weight: 700;
+        color: #000;
+        padding: 16px
+    }
+
+    .container1 .mine .person .itemlist {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        padding: 0 12px
+    }
+
+    .container1 .mine .person .itemlist .item {
+        position: relative
+    }
+
+    .container1 .mine .person .itemlist .item .icon-div {
+        text-align: center
+    }
+
+    .container1 .mine .person .itemlist .item uni-image {
+        width: 32px;
+        height: 32px
+    }
+
+    .container1 .mine .person .itemlist .item .name {
+        font-family: Rubik-Regular, Rubik;
+        font-weight: 400;
+        color: #23292e
+    }
+
+    .container1 .mine .person > .itemlist ~ .itemlist {
+        margin-top: 20px
+    }
+    /* 定义按钮样式 */
+        .button123 {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #10cf9e !important; /* 按钮背景颜色 */
+            color: #fff; /* 文本颜色 */
+            text-decoration: none; /* 去除下划线 */
+            border: none; /* 去除边框 */
+            border-radius: 5px; /* 圆角边框 */
+            cursor: pointer; /* 鼠标样式 */
+        }
+
+        /* 悬停时的样式 */
+        .button123:hover {
+            background-color: #0056b3; /* 鼠标悬停时的背景颜色 */
+        }
+</style>
+
+<body>
+<uni-app class="uni-app--maxwidth">
+    <uni-page data-page="pages/account/index">
+        <!---->
+        <!---->
+        <uni-page-wrapper>
+            <uni-page-body style="height:100%">
+                <div class="container1">
+                    <div class="top-page"
+                         style="height: 44px; background: linear-gradient(to right, rgb(237, 243, 251), rgb(237, 243, 251));">
+                        <div class="apex"
+                             style="height: 44px; line-height: 44px; background: linear-gradient(to right, rgb(237, 243, 251), rgb(237, 243, 251)); color: rgb(0, 0, 0); position: fixed;">
+                            <a href="javascript:window.history.go(-1)" class="left">
+                                <uni-text class="iconfont icon-fanhui1"
+                                          style="font-size: 16px; color: rgb(0, 0, 0);"><span></span></uni-text>
+                            </a>
+                            <div class="center" style="font-size: 17px;">{:lang("contactUs")}</div>
+                            <div class="right"></div>
+                        </div>
+                        <div class="placeholder" style="height: 44px; line-height: 44px;"></div>
+                    </div>
+                    <div class="mine">
+                        <div class="top">
+                            <div class="top-left">
+                                
+                                <div class="mine-info">
+                                    <div class="telphoneandvip">
+                                        <uni-text class="username"><span>{:lang("kindlyContact")}</span></uni-text>
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            
+                        </div>
+                      
+                       
+                        <div class="person">
+                            
+                            <!--<div class="itemlist">-->
+                                
+                                <div style="width:100%;text-align:center;">
+                                    <img src="/static/index/img/icon-15.png" style="width:48px;height:48px;margin-top:70px;" />
+                                    <!--<uni-image>-->
+                                    <!--    <div style="background-image: url(/static/index/img/icon-15.png); background-position: 0% 0%; background-size: 48px 48px; background-repeat: no-repeat;">-->
+                                    <!--    </div>-->
+                                    <!--    <img src="/static/index/img/icon-15.png" draggable="true">-->
+                                        <!---->
+                                    <!--</uni-image>    -->
+                                </div>
+                                <div style="width:100%;text-align:center;font-size:15px;padding:10px;">
+                                    {if $WhatsappTelegram==0}
+                                        {:lang("whatsappContact")}
+                                    {else}
+                                        {:lang("telegramContact")}
+                                    {/if}
+                                </div>
+                                <div style="width:100%;text-align:center;font-size:15px;padding:10px;">
+                                    {:lang("supportTime")} {$s_time}-{$e_time}
+                                </div>
+                                
+                                <div style="width:100%;text-align:center;padding:20px 0 20px 0;">
+                                    {if $WhatsappTelegram==0}
+                                        <a href="{$link}" class="button123">{:lang("directToWhatsApp")}</a>
+                                    {else}
+                                        <a href="{$link}" class="button123">{:lang("directToTelegram")}</a>
+                                    {/if}
+                                </div>
+                                
+                                <div style="width:100%;text-align:center;margin-top:100px;">
+                                    <img src="/static/index/img/icon-15.png" style="width:48px;height:48px;margin-top:48px;" />
+                                    <!--<uni-image>-->
+                                    <!--    <div style="background-image: url(/static/index/img/icon-15.png); background-position: 0% 0%; background-size: 48px 48px; background-repeat: no-repeat;">-->
+                                    <!--    </div>-->
+                                    <!--    <img src="/static/index/img/icon-15.png" draggable="true">-->
+                                        <!---->
+                                    <!--</uni-image>    -->
+                                </div>
+                                <div style="width:100%;text-align:center;font-size:15px;padding:10px;">
+                                    {:lang("telegramContact")}
+                                </div>
+                                <div style="width:100%;text-align:center;font-size:15px;padding:10px;">
+                                     {:lang("supportTime")} {$s_time}-{$e_time}
+                                </div>
+                                
+                            <!--</div>-->
+                            <!---->
+                        </div>
+                    </div>
+                    <div class="bg"></div>
+                    {include file="public/footer"/}
+                </div>
+            </uni-page-body>
+        </uni-page-wrapper>
+    </uni-page>
+    <uni-modal style="display: none;">
+        <div class="uni-mask"></div>
+        <div class="uni-modal">
+            <div class="uni-modal__hd"><strong class="uni-modal__title">{:lang("copyLink")}</strong></div>
+            <div class="uni-modal__bd">{$invite_url}{$user_info.invite_code}</div>
+            <div class="uni-modal__ft">
+                <div class="uni-modal__btn uni-modal__btn_default cancel" style="color: rgb(0, 0, 0);"> cancel</div>
+                <div class="uni-modal__btn uni-modal__btn_primary clip_copy"
+                     data-clipboard-text="{$invite_url}{$user_info.invite_code}"
+                     style="color: rgb(0, 122, 255);"> {:lang("copy")}
+                </div>
+            </div>
+        </div>
+    </uni-modal>
+</uni-app>
+</body>
+</html>
+
+<script src="/static/index/js/clipboard.min.js"></script>
+
+<script>
+    ;(function () {
+        let $modal = $("uni-modal");
+        $(".copy").on('click', showModal);
+        $(".cancel").on("click", closeModal);
+        $(".clip_copy").on("click", copy);
+
+        function showModal() {
+            $modal.show();
+        }
+
+        function closeModal() {
+            $modal.hide();
+        }
+
+        function copy() {
+            var clipboard = new ClipboardJS('.clip_copy');
+
+            clipboard.on('success', function (e) {
+                console.info('Action:', e.action);
+                console.info('Text:', e.text);
+                console.info('Trigger:', e.trigger);
+
+                e.clearSelection();
+                closeModal()
+            });
+
+            clipboard.on('error', function (e) {
+                console.error('Action:', e.action);
+                console.error('Trigger:', e.trigger);
+            });
+        }
+    }())
+</script>

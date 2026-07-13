@@ -1,0 +1,45 @@
+<form class="layui-form layui-card" action="{:request()->url()}" data-auto="true" method="post" autocomplete="off">
+    <div class="layui-card-body">
+
+        <div class="layui-form-item">
+            <label class="layui-form-label label-required">VIP等级</label>
+            <div class="layui-input-inline">
+                <select name="level" class="form-control">
+                    <option value="0">SVIP0</option>
+                    {volist name="level_info" id="vo"}
+                    {if condition="($info.level == $vo.id)"}
+                    <option value="{$vo.id}" selected="selected">{$vo.name}</option>
+                    {else /}
+                    <option value="{$vo.id}">{$vo.name}</option>
+                    {/if}
+                    {/volist}
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+
+        <div class="layui-input-block"></div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block"></div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block"></div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block"></div>
+    </div>
+
+    <div class="hr-line-dashed"></div>
+    <input type="hidden" name="id" value="{$info.id}">
+    <div class="layui-form-item text-center">
+        <button class="layui-btn" type='submit'>提交</button>
+        <button class="layui-btn layui-btn-danger" type='button' data-close>取消</button>
+    </div>
+    <script>window.form.render();</script>
+</form>

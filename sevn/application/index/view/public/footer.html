@@ -1,0 +1,39 @@
+<div class="custom-tabbar1">
+    <a href="{:Url('index/index')}" id="index" class="custom-tabbar__item">
+        <div>
+            <uni-text class="iconfont icon-Home"><span></span></uni-text>
+        </div>
+        <div class="custom-tabbar__label">{:lang("menuHome")}</div>
+    </a>
+    <a href="{:Url('account/contact')}" id="contact" class="custom-tabbar__item">
+        <div>
+            <uni-text class="iconfont icon-kefu"><span></span></uni-text>
+        </div>
+        <div class="custom-tabbar__label">{:lang("menuContactUs")}</div>
+    </a>
+    <a href="{:Url('grab/index')}" id="grab" class="custom-tabbar__item">
+        <div>
+            <uni-text class="iconfont icon-tedianshandianfahuo"><span></span></uni-text>
+        </div>
+        <div class="custom-tabbar__label">{:lang("menuGrab")}</div>
+    </a>
+    <a href="{:Url('order/index')}?type=0" id="order" class="custom-tabbar__item">
+        <div>
+            <uni-text class="iconfont icon-dingdanjianying"><span></span></uni-text>
+        </div>
+        <div class="custom-tabbar__label">{:lang("menuOrder")}</div>
+    </a>
+    <a href="{:Url('account/index')}" id="account" class="custom-tabbar__item">
+        <div>
+            <uni-text class="iconfont icon-yonghuming"><span></span></uni-text>
+        </div>
+        <div class="custom-tabbar__label">{:lang("menuAccount")}</div>
+    </a>
+</div>
+
+<script>
+    var c = "{$controller}";
+    if (c) {
+        $('#' + c).addClass('custom-bar__item_on');
+    }
+</script>

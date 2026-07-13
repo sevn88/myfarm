@@ -1,0 +1,386 @@
+{include file="public/header"/}
+<link rel="stylesheet" href="/static/index/css/team.css">
+
+<style>
+    * {
+        font-size: 14px
+    }
+
+    .container1 {
+        height: 100% !important;
+        padding: 0 0 44px;
+        background-color: #70e6cc
+    }
+
+    .container1 .record-tabbar {
+        width: 100%;
+        height: 44px;
+        background-color: #fff;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        position: relative;
+        -webkit-justify-content: space-around;
+        justify-content: space-around;
+        line-height: 44px;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: row;
+        flex-direction: row
+    }
+
+    .container1 .record-tabbar .list {
+        font-family: Rubik-Medium, Rubik;
+        font-weight: 500;
+        color: #aaa
+    }
+
+    .container1 .record-tabbar .list.action {
+        color: #323232;
+        position: relative
+    }
+
+    .container1 .record-tabbar .list.action::after {
+        content: "";
+        width: 24px;
+        height: 3px;
+        background: #323232;
+        position: absolute;
+        bottom: 0;
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+        left: 50%
+    }
+
+    .container1 .statisticalbg {
+        margin: 26px 16px;
+        background: -webkit-gradient(linear, left top, right top, from(#0d97f7), color-stop(#1aa2f8), to(#30adf8));
+        background: -webkit-linear-gradient(left, #0d97f7, #1aa2f8, #30adf8);
+        background: linear-gradient(90deg, #0d97f7, #1aa2f8, #30adf8);
+        border-radius: 16px
+    }
+
+    .container1 .statisticalbg .statistical {
+        padding: 20px 0 23px
+    }
+
+    .container1 .statisticalbg .statistical .item {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+        padding: 0 10px;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        justify-content: space-between;
+        margin-bottom: 16px
+    }
+
+    .container1 .statisticalbg .statistical .item:last-of-type {
+        margin: 0
+    }
+
+    .container1 .statisticalbg .statistical .item .item-left {
+        width: 47%
+    }
+
+    .container1 .statisticalbg .statistical .item .item-left .title uni-text {
+        font-size: 13px;
+        font-family: Rubik-Regular, Rubik;
+        font-weight: 400;
+        color: #fff
+    }
+
+    .container1 .statisticalbg .statistical .item .item-left .value {
+        height: 32px;
+        line-height: 32px;
+        margin-top: 8px;
+        background: hsla(0, 0%, 100%, .1);
+        border-radius: 6px;
+        text-align: center;
+        font-family: PingFangSC-Semibold, PingFang SC;
+        font-weight: 600;
+        color: #fff
+    }
+
+    .container1 .dateArray {
+        margin: 0 16px;
+        background-color: #fff;
+        border-radius: 12px 12px 0 0;
+        height: 44px;
+        padding: 15px 0 0 16px;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box
+    }
+
+    .container1 .dateArray .iconArrow {
+        font-size: 14px
+    }
+
+    .container1 .count {
+        padding: 27px 16px 0;
+        margin: 0 16px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        background: #fff;
+        position: relative
+    }
+
+    .container1 .count uni-view {
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        flex: 1;
+        border-bottom: 0.5px solid #eeeff2;
+        text-align: center;
+        font-size: 12px;
+        font-family: Rubik-Medium, Rubik;
+        font-weight: 500;
+        color: #2e2e2e;
+        padding-bottom: 16px;
+        position: relative
+    }
+
+    .container1 .count uni-view:first-of-type, .container1 .count uni-view:nth-of-type(3) {
+        position: absolute;
+        width: 50%;
+        top: 5px;
+        border-bottom: none;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        font-family: Rubik-Regular, Rubik;
+        font-weight: 400;
+        color: #2e2e2e;
+        padding-bottom: 0
+    }
+
+    .container1 .count uni-view:first-of-type {
+        left: 0;
+        padding-left: 16px
+    }
+
+    .container1 .count uni-view:nth-of-type(3) {
+        right: 0;
+        padding-right: 16px
+    }
+
+    .container1 .count::after {
+        content: "";
+        width: 0.5px;
+        height: 50%;
+        background: #eeeff2;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%)
+    }
+
+    .container1 .items {
+        background-color: #fff;
+        padding: 0 16px;
+        margin: 0 16px
+    }
+
+    .container1 .items .item {
+        height: 72px;
+        border-bottom: 0.5px solid #eeeff2;
+        padding-top: 15px;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box
+    }
+
+    .container1 .items .item:last-of-type {
+        border: none
+    }
+
+    .container1 .items .item .right .top {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        justify-content: space-between
+    }
+
+    .container1 .items .item .right .top uni-view {
+        font-size: 12px;
+        font-family: Rubik-Regular, Rubik;
+        font-weight: 400;
+        color: #939bab
+    }
+
+
+
+    .container1 .items .item .right .top .name[data-v-e596fcc0] {
+        font-size: 18px;
+        font-family: Rubik-Regular,Rubik;
+        font-weight: 400;
+        color: #000;
+    }
+
+    .container1 .items .item .right .top uni-text[data-v-e596fcc0] {
+        font-size: 18px;
+        font-family: Rubik-Medium,Rubik;
+        font-weight: 500;
+        color: #000;
+        margin-left: 6px;
+    }
+
+    .container1 .items .item .right .top uni-view[data-v-e596fcc0] {
+        font-size: 15px;
+        font-family: Rubik-Regular,Rubik;
+        font-weight: 400;
+        color: #939bab;
+    }
+
+</style>
+
+
+<body>
+<uni-app class="uni-app--maxwidth">
+    <uni-page data-page="pages/profile/team">
+        <!---->
+        <!---->
+        <uni-page-wrapper>
+            <uni-page-body>
+                <div class="container1">
+                    <div class="top-page"
+                         style="height: 44px; background: linear-gradient(to right, rgb(255, 255, 255), rgb(255, 255, 255));">
+                        <div class="apex"
+                             style="height: 44px; line-height: 44px; background: linear-gradient(to right, rgb(255, 255, 255), rgb(255, 255, 255)); color: rgb(0, 0, 0); position: fixed;">
+                            <a href="javascript:history.go(-1)" class="left">
+                                <uni-text class="iconfont icon-fanhui1"
+                                          style="font-size: 16px; color: rgb(0, 0, 0);"><span></span></uni-text>
+                            </a>
+                            <div class="center" style="font-size: 17px;">{:lang("TeamReport")}</div>
+                            <div class="right"></div>
+                        </div>
+                        <div class="placeholder" style="height: 44px; line-height: 44px;"></div>
+                    </div>
+                    <!--            <div class="record-tabbar">-->
+                    <!--              <div class="list action">-->
+                    <!--                <div>Direct</div>-->
+                    <!--              </div>-->
+                    <!--              <div class="list">-->
+                    <!--                <div>Secondary</div>-->
+                    <!--              </div>-->
+                    <!--              <div class="list">-->
+                    <!--                <div>Tertiary</div>-->
+                    <!--              </div>-->
+                    <!--            </div>-->
+                    <div class="statisticalbg">
+                        <div class="statistical">
+                            <div class="item flex-row">
+                                <div class="item-left">
+                                    <div class="title">
+                                        <uni-text><span>{:lang("TodayCommission")}</span></uni-text>
+                                    </div>
+                                    <div class="value">{$team_data.today_commission}</div>
+                                </div>
+                                <div class="item-left">
+                                    <div class="title">
+                                        <uni-text><span> {:lang("TotalCommission")}</span></uni-text>
+                                    </div>
+                                    <div class="value">{$team_data.total_commission}</div>
+                                </div>
+                            </div>
+                            <div class="item flex-row">
+                                <div class="item-left">
+                                    <div class="title">
+                                        <uni-text><span>{:lang("Num")}</span></uni-text>
+                                    </div>
+                                    <div class="value">{$team_data.num}</div>
+                                </div>
+                                <div class="item-left">
+                                    <div class="title">
+                                        <uni-text><span>{:lang("Rate")}</span></uni-text>
+                                    </div>
+                                    <div class="value">{$team_data.rate}%</div>
+                                </div>
+                            </div>
+                            <div class="item flex-row">
+                                <div class="item-left">
+                                    <div class="title">
+                                        <uni-text><span>{:lang("TodayRecharge")}</span></uni-text>
+                                    </div>
+                                    <div class="value">{$team_data.today_recharge}</div>
+                                </div>
+                                <div class="item-left">
+                                    <div class="title">
+                                        <uni-text><span>{:lang("TodayWithdraw")}</span></uni-text>
+                                    </div>
+                                    <div class="value">{$team_data.today_withdraw}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <uni-view data-v-e596fcc0="" class="items">
+                        <uni-scroll-view data-v-e596fcc0="" class="mescroll-wrap">
+                            <div class="uni-scroll-view">
+                                <div class="uni-scroll-view" style="overflow: hidden auto;">
+                                    <div class="uni-scroll-view-content">
+                                        <div class="uni-scroll-view-refresher"
+                                             style="background-color: rgb(255, 255, 255); height: 0px;">
+                                            <div class="uni-scroll-view-refresh">
+                                                <div class="uni-scroll-view-refresh-inner"><!----><!----></div>
+                                            </div>
+                                        </div>
+
+                                        {volist name="team_user" id="vo"}
+                                        <uni-view data-v-e596fcc0="" class="item">
+                                            <uni-view data-v-e596fcc0="" class="left"></uni-view>
+                                            <uni-view data-v-e596fcc0="" class="right">
+                                                <uni-view data-v-e596fcc0="" class="top">
+                                                    <uni-view data-v-e596fcc0="" class="name">{$vo.username}</uni-view>
+                                                    <uni-view data-v-e596fcc0="">
+                                                        <uni-text data-v-e596fcc0=""><span>{$vo.balance}</span></uni-text>
+                                                    </uni-view>
+                                                </uni-view>
+                                                <uni-view data-v-e596fcc0="" class="top">
+                                                    <uni-view data-v-e596fcc0="">{$vo.phone}</uni-view>
+                                                    {if $vo.level == 0}
+                                                    <uni-view data-v-e596fcc0="">SVIP0</uni-view>
+                                                    {else /}
+                                                    {volist name="level_info" id="level"}
+                                                    {if $level.id == $vo.level}
+                                                    <uni-view data-v-e596fcc0="">{$level.name}</uni-view>
+                                                    {/if}
+                                                    {/volist}
+                                                    {/if}
+                                                </uni-view>
+                                            </uni-view>
+                                        </uni-view>
+                                        {/volist}
+
+                                    </div>
+                                </div>
+                            </div>
+                        </uni-scroll-view>
+                    </uni-view>
+                    <!---->
+                    <div class="bg"></div>
+                    {include file="public/footer"/}
+
+                </div>
+            </uni-page-body>
+        </uni-page-wrapper>
+    </uni-page>
+</uni-app>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    ;(function () {
+        let $list = $(".record-tabbar .list");
+        $list.on("click", function () {
+            $(this).addClass("action").siblings().removeClass("action")
+        })
+    }())
+</script>
+</body>
+</html>

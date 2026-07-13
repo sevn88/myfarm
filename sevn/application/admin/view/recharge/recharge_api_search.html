@@ -1,0 +1,12 @@
+
+<fieldset>
+    <div class="layui-badge" style="border-radius:1px;top: 0px!important;">
+        特别注意:请保持至少有一个接口开放,添加前请技术先做好接口,否则添加的无效.
+    </div>
+</fieldset>
+
+<script>
+    var test = "{$Think.get.is_jia|default='0'}";
+    $("#selectList").find("option[value="+test+"]").prop("selected",true);
+    form.render()
+</script>

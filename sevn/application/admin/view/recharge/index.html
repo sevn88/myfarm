@@ -1,0 +1,150 @@
+{extend name='main'}
+
+{block name="button"}
+
+{if auth("add_users")}
+<!--<button data-modal='{:url("add_users")}' data-title="添加会员" class='layui-btn'>添加会员</button>-->
+{/if}
+
+{/block}
+
+{block name="content"}
+<style type="text/css" media="all">
+    .fillbg { background-color: rgba(0, 0, 0, 0.6); bottom: 0; height: 100%; left: 0; opacity: 0; position: fixed; right: 0; top: 0; width: 100%; z-index: 1100; display:none; }
+.fillbg-active { opacity: 1; display:block; }
+</style>
+
+<div class="think-box-shadow">
+    {include file='recharge/index_search'}
+    <table class="layui-table" lay-filter="tab" lay-skin="line">
+        {notempty name='list'}
+        <thead>
+        <tr>
+            <th lay-data="{field:'id',width:60}" class='text-left nowrap'>ID</th>
+            <th lay-data="{field:'order_id',width:150}" class='text-left nowrap'>商户订单号</th>
+<!--            <th lay-data="{field:'p_order_id'}" class='text-left nowrap'>平台订单号</th>-->
+            <th lay-data="{field:'pusername'}" class='text-left nowrap'>上级账号</th>
+            <th lay-data="{field:'uid',width:80}" class='text-left nowrap'>用户ID</th>
+            <th lay-data="{field:'username'}" class='text-left nowrap'>账号</th>
+            <th lay-data="{field:'phone'}" class='text-left nowrap'>账号手机</th>
+            <th lay-data="{field:'money'}" class='text-left nowrap'>充值金额</th>
+            <th lay-data="{field:'the'}" class='text-left nowrap'>凭证</th>
+            <th lay-data="{field:'address'}" class='text-left nowrap'>充值方式</th>
+            <th lay-data="{field:'status'}" class='text-left nowrap'>状态</th>
+            <th lay-data="{field:'create_time',width:200}" class='text-left nowrap'>创建时间</th>
+            <th lay-data="{field:'by_agent_username'}" class='text-left nowrap'>by 代理</th>
+            <th lay-data="{field:'edit',width:280,fixed: 'right'}" class='text-left nowrap' id="a" onClick="abc">操作</th>
+        </tr>
+        </thead>
+        {/notempty}
+        <tbody>
+        {foreach $list as $key=>$vo}
+        <tr>
+            <td class='text-left nowrap'>{$vo.id}</td>
+            <td class='text-left nowrap'>{$vo.order_id}</td>
+<!--            <td class='text-left nowrap'>{$vo.p_order_id}</td>-->
+            <td class='text-left nowrap'>{$vo.pusername}</td>
+            <td class='text-left nowrap'>{$vo.uid}</td>
+            <td class='text-left nowrap'>{$vo.username}</td>
+            <td class='text-left nowrap'>{$vo.phone}</td>
+            <td class='text-left nowrap'>{$vo.money}</td>
+            <td class='text-left nowrap'>
+                <img class="comment_pics" src="{$vo.the}" onClick="img('{$vo.the}')"/>
+            </td>
+            <td class='text-left nowrap'>{$vo.address}</td>
+            {switch vo.status}
+            {case 0}<td class='text-left nowrap'><span class="color-blue">等待支付</span></td>{/case}
+            {case 1}<td class='text-left nowrap'><span class="color-green">付款成功</span></td>{/case}
+            {case 2}<td class='text-left nowrap'><span class="color-red">付款失败</span></td>{/case}
+            {case 3}<td class='text-left nowrap'><span class="color-red">付款中</span></td>{/case}
+            {/switch}
+            <td class='text-left nowrap'>{$vo.create_time|format_datetime}</td>
+            <td class='text-left nowrap'>{$vo.by_agent_username}</td>
+             <td class='text-left nowrap'>
+                {if ($vo.status == 0)}
+                 <!--<button type="button" onClick="pass({$vo.id})" class="layui-btn layui-btn-xs">同意充值</button>-->
+                <!--<button type="button" onClick="rejected({$vo.id})" class="layui-btn layui-btn-danger layui-btn-xs">拒绝</button>-->
+                    {if ( substr($vo.order_id,0,1)=='X')}
+                        <button type="button" onClick="pass({$vo.id})" class="layui-btn layui-btn-xs">同意充值</button>
+                        <button type="button" onClick="rejected({$vo.id})" class="layui-btn layui-btn-danger layui-btn-xs">拒绝</button>
+                        <!--<a onclick="xadmin.open('编辑','{:Url(\'recharge/edit\',[\'id\'=>$vo.id])}',500,500)"class="layui-btn" role="button" data-toggle="modal" style="font-size:12px;height:22px;line-height:22px;">编辑备注</a>-->
+                        <!--<a data-dbclick class="layui-btn layui-btn-xs" data-title="编辑等级" data-modal='{:url("admin/recharge/edit")}?id={$vo.id}' style="background-color:#009658;">编辑备注</a>-->
+                    {else /}
+                        <button type="button"  class="layui-btn layui-btn-xs layui-btn-disabled">等待充值</button>
+                    {/if}
+                {else /}
+                <button type="button"  class="layui-btn layui-btn-xs layui-btn-disabled">充值成功</button>
+                {/if}
+            </td>
+        </tr>
+        {/foreach}
+        </tbody>
+    </table>
+    <div id="mkc" style="width: 100%;height:820px;position: fixed;top: 0;left:0;z-index: 1000;background-color:rgba(0,0,0,0.3);display:none;"  onclick="show()">
+       <img id="img" src="" style="margin:5% 25%;width:800px;height:600px;opacity:none;"/>
+    </div>
+    <script>
+        var table = layui.table;
+        //转换静态表格
+        var limit = Number('{$Think.get.limit}');
+        if(limit==0) limit=20;
+        table.init('tab', {
+            cellMinWidth:120,
+            skin: 'line,row',
+            even: false,
+            size: 'sm ',
+            limit: limit
+        });
+        function img(src){
+            var ui = document.getElementById("mkc");
+            var img = document.getElementById("img");
+            ui.style.display="block";
+            
+            img.src = src;
+        }
+        function show(){
+             var ui = document.getElementById("mkc");
+            ui.style.display="none";
+        }
+        function pass(id){
+            var lock = false;
+            layer.confirm('确定已完成支付?',{btn:['确定','取消']},function(index){
+                if(!lock) {
+                    //加锁防止多次回调
+                    lock =true;
+                    layer.load(2);
+                    $.ajax({
+                        url: "{:Url('determine')}",
+                        type: "post",
+                        traditional: true,
+                        data: {id:id},
+                        success: function (e) {
+                            layer.closeAll('loading');
+                            if (e.code === 1){
+                                layer.msg(e.msg, {
+                                    time: 2000,
+                                    end: function () {
+                                        location.reload();
+                                    }
+                                });
+                            }else {
+                                layer.msg(e.msg, function(){});
+                                return false;
+                            }
+                        },
+                    });
+                }
+            });
+        }
+    </script>
+    
+    {empty name='list'}<span class="notdata">没有记录哦</span>{else}{$pages|raw|default=''}{/empty}
+</div>
+{/block}
+<script type="text/javascript" charset="utf-8">
+    
+    $(function(){ 
+        console.log(1)
+    }
+    
+</script>

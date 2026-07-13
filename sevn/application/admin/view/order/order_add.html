@@ -1,0 +1,128 @@
+{extend name='main'}
+
+{block name="content"}
+
+<div class="think-box-shadow">
+    <fieldset>
+        <legend>条件搜索</legend>
+        <form class="layui-form layui-form-pane form-search" action="{:request()->url()}" onsubmit="return false" method="get" autocomplete="off">
+
+            <div class="layui-form-item layui-inline" style="margin-right: 10px">
+                <button type="button" class='layui-btn layui-btn-sm layui-btn-danger' onclick="add()">添加</button>
+            </div>
+
+            <div class="layui-form-item layui-inline">
+                <label class="layui-form-label">商品名</label>
+                <div class="layui-input-inline">
+                    <input name="goods_name" value="" placeholder="请输入商品名" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item layui-inline">
+                <label class="layui-form-label">最小价格</label>
+                <div class="layui-input-inline">
+                    <input name="money_min" value="" placeholder="请输入商品最小价格" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item layui-inline">
+                <label class="layui-form-label">最大价格</label>
+                <div class="layui-input-inline">
+                    <input name="money_max" value="" placeholder="请输入商品最大价格" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item layui-inline">
+                <button class="layui-btn layui-btn-primary"><i class="layui-icon">&#xe615;</i> 搜 索</button>
+            </div>
+        </form>
+    </fieldset>
+
+    <script>form.render()</script>
+    <table class="layui-table margin-top-15" lay-skin="line">
+        {notempty name='list'}
+        <thead>
+        <tr>
+            <th class='list-table-check-td think-checkbox'>
+                <input data-auto-none data-check-target='.list-check-box' type='checkbox'>
+            </th>
+            <th lay-data="{field:'id'}" class='text-left nowrap'>ID</th>
+            <th lay-data="{field:'goods_name'}" class='text-left nowrap'>商品名称</th>
+            <th lay-data="{field:'goods_price'}" class='text-left nowrap'>商品价格</th>
+            <th lay-data="{field:'goods_pic'}" class='text-left nowrap'>商品图片</th>
+        </tr>
+        </thead>
+        {/notempty}
+        <tbody>
+        {foreach $list as $key=>$vo}
+        <tr>
+            <td class='list-table-check-td think-checkbox'>
+                <input class="list-check-box" value='{$vo.id}' type='checkbox'>
+            </td>
+
+            <td class='text-left'>{$vo.id}</td>
+            <td class='text-left'>{$vo.goods_name}</td>
+            <td class='text-left'>{$vo.goods_price}</td>
+            <td class='text-left'><img src="{$vo.goods_pic}"></td>
+
+        </tr>
+        {/foreach}
+        </tbody>
+        <input type="hidden" id="oid" value="{$oid}">
+    </table>
+    {empty name='list'}<span class="notdata">没有记录哦</span>{else}{$pages|raw|default=''}{/empty}
+</div>
+
+<script>
+    var table = layui.table;
+    //转换静态表格
+    var limit = Number('{$Think.get.limit}');
+    if(limit==0) limit=20;
+    table.init('tab', {
+        cellMinWidth:120,
+        skin: 'line,row',
+        even: false,
+        size: 'sm ',
+        limit: limit
+    });
+</script>
+<script>
+    var test = "{$Think.get.cid|default='0'}";
+    $("#selectList").find("option[value="+test+"]").prop("selected",true);
+    form.render()
+</script>
+
+<script>
+    function add(argument) {
+        var gid = [];
+        // 获取选中的id
+        $('tbody input').each(function (index, el) {
+            if ($(this).prop('checked')) {
+                gid.push($(this).val())
+            }
+        });
+        var goods_id = gid.toString();
+        var oid = $("#oid").val();
+        layer.confirm('确认要添加这些商品吗？', function (index) {
+            $.ajax({
+                url: "{:Url('order_add_run')}",
+                type: "post",
+                traditional: true,
+                data: {oid: oid, goods_id: goods_id},
+                success: function (e) {
+                    if (e.code === 1) {
+                        layer.msg(e.msg, {
+                            time: 2000,
+                            end: function () {
+                                history.go(-1);
+                            }
+                        });
+                    } else {
+                        layer.msg(e.msg, function () {
+                            return false;
+                        });
+                    }
+
+                },
+            });
+        });
+    }
+</script>
+{/block}

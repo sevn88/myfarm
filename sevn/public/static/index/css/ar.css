@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+/* 针对阿拉伯做的调整 */
+body {
+  font-family: 'Droid Arabic Kufi', ArabicTypesetting, sans-serif;
+  direction: rtl; 
+  unicode-bidi: embed; 
+}
+.arabic {
+  /* 数字也需要RTL */ 
+  direction: rtl;  
+}
+p {
+  text-align: right;
+}
+/* 针对阿拉伯做的调整 */

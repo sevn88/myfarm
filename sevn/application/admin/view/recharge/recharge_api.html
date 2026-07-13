@@ -1,0 +1,122 @@
+{extend name='main'}
+
+{block name="button"}
+
+{if auth("recharge_add")}
+<button data-modal='{:url("recharge_add")}' data-title="添加接口" class='layui-btn'>添加接口</button>
+{/if}
+
+{/block}
+
+{block name="content"}
+
+<div class="think-box-shadow">
+    {include file='recharge/recharge_api_search'}
+    <table class="layui-table" lay-filter="tab" lay-skin="line">
+        {notempty name='list'}
+        <thead>
+        <tr>
+            <th lay-data="{field:'id',width:60}" class='text-left nowrap'>ID</th>
+            <th lay-data="{field:'name',width:150}" class='text-left nowrap'>接口名称</th>
+            <th lay-data="{field:'status'}" class='text-left nowrap'>状态</th>
+            <th lay-data="{field:'create_time',width:200}" class='text-left nowrap'>创建时间</th>
+            <th lay-data="{field:'edit',width:280,fixed: 'right'}" class='text-left nowrap'>操作</th>
+        </tr>
+        </thead>
+        {/notempty}
+        <tbody>
+        {foreach $list as $key=>$vo}
+        <tr>
+            <td class='text-left nowrap'>{$vo.id}</td>
+            <td class='text-left nowrap'>{$vo.name}</td>
+            {switch vo.status}
+            {case 1}<td class='text-left nowrap'><span class="color-green">已启用</span></td>{/case}
+            {case 2}<td class='text-left nowrap'><span class="color-red">已禁用</span></td>{/case}
+            {/switch}
+            <td class='text-left nowrap'>{$vo.create_time|format_datetime}</td>
+            <td class='text-left nowrap'>
+                {switch vo.status}
+                {case 1}
+                <button type="button" onClick="recharge_stop({$vo.id})" class="layui-btn layui-btn-xs layui-btn-warm">禁用</button>
+                {/case}
+                {case 2}<button type="button" onClick="recharge_start({$vo.id})" class="layui-btn layui-btn-xs layui-bg-blue">启用</button>{/case}
+                {/switch}
+            </td>
+        </tr>
+        {/foreach}
+        </tbody>
+    </table>
+
+    <script>
+        var table = layui.table;
+        //转换静态表格
+        var limit = Number('{$Think.get.limit}');
+        if(limit==0) limit=20;
+        table.init('tab', {
+            cellMinWidth:120,
+            skin: 'line,row',
+            even: false,
+            size: 'sm ',
+            limit: limit
+        });
+    </script>
+
+    <script>
+        function recharge_start(id){
+            layer.confirm('确定启用该接口吗？', {
+                btn: ['确定','取消']
+            }, function(){
+                $.ajax({
+                    url: "{:Url('recharge_start')}",
+                    type: "post",
+                    traditional: true,
+                    data: {id:id},
+                    success: function (e) {
+                        layer.closeAll('loading');
+                        if (e.code === 1){
+                            layer.msg(e.msg, {
+                                time: 2000,
+                                end: function () {
+                                    location.reload();
+                                }
+                            });
+                        }else {
+                            layer.msg(e.msg, function(){});
+                            return false;
+                        }
+                    },
+                });
+            });
+        }
+
+        function recharge_stop(id){
+            layer.confirm('确定停用该接口吗？', {
+                btn: ['确定','取消']
+            }, function(){
+                $.ajax({
+                    url: "{:Url('recharge_stop')}",
+                    type: "post",
+                    traditional: true,
+                    data: {id:id},
+                    success: function (e) {
+                        layer.closeAll('loading');
+                        if (e.code === 1){
+                            layer.msg(e.msg, {
+                                time: 2000,
+                                end: function () {
+                                    location.reload();
+                                }
+                            });
+                        }else {
+                            layer.msg(e.msg, function(){});
+                            return false;
+                        }
+                    },
+                });
+            });
+        }
+    </script>
+
+    {empty name='list'}<span class="notdata">没有记录哦</span>{else}{$pages|raw|default=''}{/empty}
+</div>
+{/block}

@@ -1,0 +1,222 @@
+{include file="public/header"/}
+{include file="public/menu"/}
+<div class="page-content">
+<div class="x-nav">
+          <span class="layui-breadcrumb">
+            <a href="{:Url('index/index')}">首页</a>
+            <a>
+              <cite>充值记录</cite></a>
+          </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
+        <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
+</div>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body ">
+                    <form class="layui-form layui-col-space5" action="">
+
+                        <div class="layui-input-inline layui-show-xs-block">
+                            <input style="width:240px" class="layui-input" placeholder="会员名" name="keyword">
+                        </div>
+                        <div class="layui-input-inline layui-show-xs-block">
+                            <input style="width:240px" class="layui-input" placeholder="订单号" name="order_id">
+                        </div>
+                        <div class="layui-input-inline layui-show-xs-block">
+                            <input style="width:240px" class="layui-input" placeholder="会员ID" name="userid">
+                        </div>
+                        <div class="layui-input-inline layui-show-xs-block">
+                            <input style="width:240px" class="layui-input" placeholder="会员电话" name="usertel">
+
+                        </div>
+<!--                        <div class="layui-form-item layui-inline">-->
+
+                            <div class="layui-input-inline " style="width:245px;height:35px;">
+
+                                <select name="cid" id="selectList" style="width:240px;height:30px;display:block;background:transparent;border:1px solid #e6e6e6;margin:2px;border-radius:2px;">
+                                    <option value="99">状态选择</option>
+                                    {foreach $recharge_type as $key=>$vo}
+                                    <option value="{$vo.status_value}">{$vo.name}</option>
+                                    {/foreach}
+                                </select>
+                            </div>
+<!--                        </div>-->
+
+                        <div class="layui-input-inline layui-show-xs-block">
+                            <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i>搜索</button>
+                        </div>
+                        {present name="sum"}
+                        <div class="layui-input-inline layui-show-xs-block">
+                        <input class="layui-btn layui-btn-primary layui-border-blue" value="合计:{$sum}">
+                        </div>
+
+
+                        {/present}
+                    </form>
+                </div>
+                <div class="layui-card-body ">
+                    <table class="layui-table layui-form">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>商户订单号</th>
+                            <th>上级用户名</th>
+                            <th>用户ID</th>
+                            <th>用户名</th>
+                            <th>用户手机</th>
+                            <th>充值金额</th>
+                            <th>状态</th>
+                            <th>时间</th>
+                            <th width="auto">状态</th>
+                        </thead>
+                        <tbody>
+                        {volist name='list' id='vo'}
+                        <tr>
+                            <td>{$vo.id}</td>
+                            <td>{$vo.order_id}</td>
+                            <td>{$vo.pusername}</td>    
+                            <td>{$vo.uid}</td>
+                            <td>{$vo.username}</td>
+                            <td>{$vo.phone}</td>
+                            <td>{$vo.money}</td>
+
+                                {switch vo.status}
+                                {case 0}<td><span style="color: #2494f2">等待支付</span></td>{/case}
+                                {case 1}<td><span style="color: #090">付款成功</span></td>{/case}
+                                {case 2}<td><span style="color: #4E5465">付款失败</span></td>{/case}
+                                {case 3}<td><span style="color: #ecca1b">正在付款</span></td>{/case}
+                                {/switch}
+
+                            <td>{$vo.create_time|toDate}</td>
+                            <td class="td-status">
+                                <!--<button type="button" class="layui-btn layui-btn-disabled">无需操作</button>-->
+                                 {if ($vo.status == 0) }
+                                    {if ( substr($vo.order_id,0,1)=='X')}
+                                        {if condition="($agent_role==3 or $agent_role==2)"}
+                                        <button type="button" onClick="pass({$vo.id})" class="layui-btn layui-btn-xs">同意充值</button>
+                                        {/if}
+                                       
+                                        <button type="button" onClick="rejected({$vo.id})" class="layui-btn layui-btn-danger layui-btn-xs">拒绝</button>
+                                    {else /}
+                                        <button type="button"  class="layui-btn layui-btn-xs layui-btn-disabled">等待充值</button>
+                                    {/if}
+                                
+                                {else /}
+                                <button type="button"  class="layui-btn layui-btn-xs layui-btn-disabled">充值成功</button>
+                                    {/if}
+                            </td>
+                        </tr>
+                        {/volist}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="layui-card-body ">
+                    <div class="page">
+                        <div>
+                            <td colspan="10">{$pages|raw}</td>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="public/footer"/}
+
+<script>
+    $(document).on("click", ".cz", function (){
+        var uid = $(this).data('uid');
+        layer.prompt({title: '充值金额(元)', formType: 3}, function(money, index){
+            layer.close(index);
+            if (money != null){
+                $.ajax({
+                    url: "{:Url('user_recharge')}",
+                    type: "post",
+                    traditional: true,
+                    data: {uid:uid,money:money} ,
+                    success: function (data) {
+                        if (data.status === 1){
+                            layer.msg(data.msg, {
+                                time: 2000,
+                                end: function () {
+                                    window.location.href = "{:Url('user_list')}";
+                                }
+                            });
+                        }else {
+                            layer.msg(data.msg, function(){
+                                return false;
+                            });
+                        }
+
+                    },
+                });
+            }
+        });
+    });
+</script>
+
+<script>
+    $(document).on("click", ".status", function (){
+        var uid = $(this).data('uid');
+        layer.prompt({title: '充值金额(元)', formType: 3}, function(money, index){
+            layer.close(index);
+            if (money != null){
+                $.ajax({
+                    url: "{:Url('user_recharge')}",
+                    type: "post",
+                    traditional: true,
+                    data: {uid:uid,money:money} ,
+                    success: function (data) {
+                        if (data.status === 1){
+                            layer.msg(data.msg, {
+                                time: 2000,
+                                end: function () {
+                                    window.location.href = "{:Url('user_list')}";
+                                }
+                            });
+                        }else {
+                            layer.msg(data.msg, function(){
+                                return false;
+                            });
+                        }
+
+                    },
+                });
+            }
+        });
+    });
+    var test = "{$Think.get.cid|default='99'}";
+    $("#selectList").find("option[value="+test+"]").prop("selected",true);
+    form.render()
+    function pass(id){
+            var lock = false;
+            layer.confirm('确定已完成支付?',{btn:['确定','取消']},function(index){
+                if(!lock) {
+                    //加锁防止多次回调
+                    lock =true;
+                    layer.load(2);
+                    $.ajax({
+                        url: "{:Url('determine')}",
+                        type: "post",
+                        traditional: true,
+                        data: {id:id},
+                        success: function (e) {
+                            layer.closeAll('loading');
+                            if (e.code === 1){
+                                layer.msg(e.msg, {
+                                    time: 2000,
+                                    end: function () {
+                                        location.reload();
+                                    }
+                                });
+                            }else {
+                                layer.msg(e.msg, function(){});
+                                return false;
+                            }
+                        },
+                    });
+                }
+            });
+        }
+</script>

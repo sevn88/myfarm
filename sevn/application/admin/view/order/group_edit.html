@@ -1,0 +1,35 @@
+<form class="layui-form layui-card" action="{:request()->url()}" data-auto="true" method="post" autocomplete="off">
+    <div class="layui-card-body">
+        <div class="layui-form-item">
+            <label class="layui-form-label label-required">分组名</label>
+            <div class="layui-input-block">
+                <input name="name" value="{$group_info.name}" class="layui-input" >
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label label-required">支付方式</label>
+            <div class="layui-input-block">
+                <input type="checkbox" name="pay[]" {if strpos($group_info.pay,'MarsPay') !== false } checked {/if} value="MarsPay" lay-skin="primary" title="MarsPay">
+                <input type="checkbox" name="pay[]" {if strpos($group_info.pay,'SEP') !== false } checked {/if} value="SEP" lay-skin="primary" title="SEP">
+                <input type="checkbox" name="pay[]" value="Oceanpay" {if strpos($group_info.pay,'Oceanpay') !== false } checked {/if} lay-skin="primary" title="Oceanpay" >
+                <input type="checkbox" name="pay[]" value="GoldInd" {if strpos($group_info.pay,'GoldInd') !== false } checked {/if} lay-skin="primary" title="GoldInd" >
+                <input type="checkbox" name="pay[]" value="QeInd" {if strpos($group_info.pay,'QeInd') !== false } checked {/if} lay-skin="primary" title="QeInd" >
+            </div>
+        </div>
+
+    </div>
+
+    <input name="id" type="hidden" value="{$group_info.id}">
+
+    <div class="hr-line-dashed"></div>
+    <div class="layui-form-item text-center">
+        <button class="layui-btn" type='submit'>提交</button>
+        <button class="layui-btn layui-btn-danger" type='button' data-close>取消</button>
+    </div>
+
+    <script>
+        window.form.render();
+    </script>
+
+</form>

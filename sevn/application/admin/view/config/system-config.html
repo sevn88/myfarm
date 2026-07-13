@@ -1,0 +1,293 @@
+<form onsubmit="return false" data-auto="true" action="{:url()}" method="post" class='layui-form layui-card' autocomplete="off">
+    <div class="layui-card-body padding-left-40">
+
+        <div class="layui-form-item">
+            <label class="relative block">
+                <span class="color-green font-w7">前台应用名称 App_name</span>
+                <input name="app_name" required placeholder="请输入网站名称" value="{:sysconf('app_name')}" class="layui-input">
+            </label>
+            <p class="help-block">网站名称，将在浏览器的标签上显示名称</p>
+        </div>
+        <div class="layui-form-item">
+            <label class="relative block">
+                <span class="color-green font-w7">后台管理名称 Site_name</span>
+                <input name="site_name" required placeholder="请输入程序名称" value="{:sysconf('site_name')}" class="layui-input">
+            </label>
+            <p class="help-block">管理程序名称，在后台左上角标题处理显示</p>
+        </div>
+        <div class="layui-form-item">
+            <label class="relative block">
+                <span class="color-green font-w7">管理程序版本 Version</span>
+                <input name="app_version" placeholder="请输入程序版本" value="{:sysconf('app_version')}" class="layui-input">
+            </label>
+            <p class="help-block">管理程序版本，在后台左上角标题处理显示</p>
+        </div>
+        <div class="layui-form-item">
+            <label class="relative block">
+                <span class="color-green font-w7">首页公告内容（英语）</span>
+                <input name="notice" placeholder="公告管理" value="{:sysconf('notice')}" class="layui-input">
+            </label>
+        </div>
+        <div class="layui-form-item">
+            <label class="relative block">
+                <span class="color-green font-w7">首页公告内容（俄语）</span>
+                <input name="noticeru" placeholder="公告管理" value="{:sysconf('noticeru')}" class="layui-input">
+            </label>
+        </div>
+        <div class="layui-form-item">
+            <label class="relative block">
+                <span class="color-green font-w7">首页公告内容（西班牙语）</span>
+                <input name="noticees" placeholder="公告管理" value="{:sysconf('noticees')}" class="layui-input">
+            </label>
+        </div>
+        <div class="layui-form-item">
+            <label class="relative block">
+                <span class="color-green font-w7">首页弹窗内容(为空不弹)</span>
+                <input name="popup" placeholder="公告管理" value="{:sysconf('popup')}" class="layui-input">
+            </label>
+        </div>
+        <div class="layui-form-item">
+            <label class="relative block">
+                <span class="color-green font-w7">起充金额(元)</span>
+                <input name="start_recharge" required placeholder="日收益增值" value="{:sysconf('start_recharge')}" class="layui-input">
+            </label>
+        </div>
+        <div class="layui-form-item">
+            <label class="relative block">
+                <span class="color-green font-w7">起提金额(元)</span>
+                <input name="start_withdrawal" required placeholder="日收益增值" value="{:sysconf('start_withdrawal')}" class="layui-input">
+            </label>
+        </div>
+        <div class="layui-form-item">
+            <label class="relative block">
+                <span class="color-green font-w7">最低收费(元)</span>
+                <input name="min_money" required placeholder="日收益增值" value="{:sysconf('min_money')}" class="layui-input">
+            </label>
+        </div>
+        <div class="layui-form-item">
+            <label class="relative block">
+                <span class="color-green font-w7">提现手续费(%)</span>
+                <input name="service_tx" required placeholder="百分比" value="{:sysconf('service_tx')}" class="layui-input">
+            </label>
+        </div>
+        <div class="layui-form-item">
+            <label class="relative block">
+                <span class="color-green font-w7">充值手续费(%)</span>
+                <input name="service_cz" required placeholder="百分比" value="{:sysconf('service_cz')}" class="layui-input">
+            </label>
+        </div>
+        <div class="layui-form-item">
+            <label class="relative block">
+                <span class="color-green font-w7">trc20</span>
+                <input name="trc" required placeholder="地址" value="{:sysconf('trc')}" class="layui-input">
+            </label>
+        </div>
+        <div class="layui-form-item">
+            <label class="relative block">
+                <span class="color-green font-w7">erc20</span>
+                <input name="erc" required placeholder="地址" value="{:sysconf('erc')}" class="layui-input">
+            </label>
+        </div>
+        <div class="layui-form-item">
+            <span class="color-green font-w7">trc20</span>
+            <div class="relative block">
+                <img alt="icon" data-tips-image style="height:auto;max-height:42px;min-width:42px" src="{:sysconf('trc_img')}"/>
+                <input type="hidden" name="trc_img" onchange="$(this).prev('img').attr('src', this.value)" value="{:sysconf('trc_img')}" class="layui-input">
+                <a class="margin-left-10" data-file="btn" data-type="ico,png,jpg" data-field="trc_img">上传图片</a>
+                <p class="help-block">trc20充值操作流程</p>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <span class="color-green font-w7">erc20</span>
+            <div class="relative block">
+                <img alt="icon" data-tips-image style="height:auto;max-height:42px;min-width:42px" src="{:sysconf('erc_img')}"/>
+                <input type="hidden" name="erc_img" onchange="$(this).prev('img').attr('src', this.value)" value="{:sysconf('erc_img')}" class="layui-input">
+                <a class="margin-left-10" data-file="btn" data-type="ico,png,jpg" data-field="erc_img">上传图片</a>
+                <p class="help-block">erc20充值操作流程</p>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <span class="color-green font-w7">usdt绑定</span>
+            <div class="relative block">
+                <img alt="icon" data-tips-image style="height:auto;max-height:42px;min-width:42px" src="{:sysconf('usdt_img')}"/>
+                <input type="hidden" name="usdt_img" onchange="$(this).prev('img').attr('src', this.value)" value="{:sysconf('usdt_img')}" class="layui-input">
+                <a class="margin-left-10" data-file="btn" data-type="ico,png,jpg" data-field="usdt_img">上传图片</a>
+                <p class="help-block">usdt绑定操作流程</p>
+            </div>
+        </div>
+        
+        
+        <div class="layui-form-item">
+            <label class="relative block">
+                <span class="color-green font-w7">erc20</span>
+                <input name="erc" required placeholder="地址" value="{:sysconf('erc')}" class="layui-input">
+            </label>
+        </div>
+        
+        
+        <div class="layui-form-item">
+            <label class="relative block">
+                <span class="color-green font-w7">统计用-充值手续费（小数形式）</span>
+                <input name="tongji_chongzhi" required placeholder="统计用-充值手续费（小数形式）" value="{:sysconf('tongji_chongzhi')}" class="layui-input">
+            </label>
+        </div>
+        <div class="layui-form-item">
+            <label class="relative block">
+                <span class="color-green font-w7">统计用-提现手续费比例（小数形式）</span>
+                <input name="tongji_tixian1" required placeholder="统计用-提现手续费比例（小数形式）" value="{:sysconf('tongji_tixian1')}" class="layui-input">
+            </label>
+        </div>
+        <!--<div class="layui-form-item">-->
+        <!--    <label class="relative block">-->
+        <!--        <span class="color-green font-w7">统计用-提现手续费比例2（小数形式）</span>-->
+        <!--        <input name="tongji_tixian2" required placeholder="统计用-提现手续费比例2（小数形式）" value="{:sysconf('tongji_tixian2')}" class="layui-input">-->
+        <!--    </label>-->
+        <!--</div>-->
+        <div class="layui-form-item">
+            <label class="relative block">
+                <span class="color-green font-w7">统计用-单笔提现手续费</span>
+                <input name="tongji_tixian3" required placeholder="统计用-单笔提现手续费" value="{:sysconf('tongji_tixian3')}" class="layui-input">
+            </label>
+        </div>
+        
+        <div class="layui-form-item">
+            <label class="relative block">
+                <span class="color-green font-w7">注册送多少钱。例如60.00（小数形式）</span>
+                <input name="zhuce_zengsong" required placeholder="注册送多少钱。例如60.00（小数形式）" value="{:sysconf('zhuce_zengsong')}" class="layui-input">
+            </label>
+        </div>
+        
+        <!--第1个线下的信息 start-->
+          <div class="layui-form-item">
+            <label class="relative block">
+                <span class="color-green font-w7">线下收款银行卡号-jazzcash</span>
+                <input name="offline_bank_number"  placeholder="下线收款银行卡号" value="{:sysconf('offline_bank_number')}" class="layui-input">
+            </label>
+        </div>
+        <div class="layui-form-item">
+            <label class="relative block">
+                <span class="color-green font-w7">线下收款人-jazzcash</span>
+                <input name="offline_bank_user"  placeholder="线下银行收款人姓名" value="{:sysconf('offline_bank_user')}" class="layui-input">
+            </label>
+        </div>
+        <div class="layui-form-item">
+            <label class="relative block">
+                <span class="color-green font-w7">线下所属银行-jazzcash</span>
+                <input name="offline_bank_name"  placeholder="线下所属银行名称" value="{:sysconf('offline_bank_name')}" class="layui-input">
+            </label>
+        </div>
+        <div class="layui-form-item">
+            <label class="relative block">
+                <span class="color-green font-w7">线下开户行-jazzcash</span>
+                <input name="offline_bank_name_kai"  placeholder="线下开户行称" value="{:sysconf('offline_bank_name_kai')}" class="layui-input">
+            </label>
+        </div>
+        <!--第1个线下的信息 end-->
+        
+        <!--第2个线下的信息 start-->
+          <div class="layui-form-item">
+            <label class="relative block">
+                <span class="color-green font-w7">线下收款银行卡号-walletpay</span>
+                <input name="offline_bank_number2"  placeholder="下线收款银行卡号" value="{:sysconf('offline_bank_number2')}" class="layui-input">
+            </label>
+        </div>
+        <div class="layui-form-item">
+            <label class="relative block">
+                <span class="color-green font-w7">线下收款人-walletpay</span>
+                <input name="offline_bank_user2"  placeholder="线下银行收款人姓名" value="{:sysconf('offline_bank_user2')}" class="layui-input">
+            </label>
+        </div>
+        <div class="layui-form-item">
+            <label class="relative block">
+                <span class="color-green font-w7">线下所属银行-walletpay</span>
+                <input name="offline_bank_name2"  placeholder="线下所属银行名称" value="{:sysconf('offline_bank_name2')}" class="layui-input">
+            </label>
+        </div>
+        <div class="layui-form-item">
+            <label class="relative block">
+                <span class="color-green font-w7">线下开户行-walletpay</span>
+                <input name="offline_bank_name_kai2"  placeholder="线下开户行称" value="{:sysconf('offline_bank_name_kai2')}" class="layui-input">
+            </label>
+        </div>
+        <!--第2个线下的信息 end-->
+        
+        <!--第3个线下的信息 start-->
+          <div class="layui-form-item">
+            <label class="relative block">
+                <span class="color-green font-w7">线下收款银行卡号-easypaisa</span>
+                <input name="offline_bank_number3"  placeholder="下线收款银行卡号" value="{:sysconf('offline_bank_number3')}" class="layui-input">
+            </label>
+        </div>
+        <div class="layui-form-item">
+            <label class="relative block">
+                <span class="color-green font-w7">线下收款人-easypaisa</span>
+                <input name="offline_bank_user3"  placeholder="线下银行收款人姓名" value="{:sysconf('offline_bank_user3')}" class="layui-input">
+            </label>
+        </div>
+        <div class="layui-form-item">
+            <label class="relative block">
+                <span class="color-green font-w7">线下所属银行-easypaisa</span>
+                <input name="offline_bank_name3"  placeholder="线下所属银行名称" value="{:sysconf('offline_bank_name3')}" class="layui-input">
+            </label>
+        </div>
+        <div class="layui-form-item">
+            <label class="relative block">
+                <span class="color-green font-w7">线下开户行-easypaisa</span>
+                <input name="offline_bank_name_kai3"  placeholder="线下开户行称" value="{:sysconf('offline_bank_name_kai3')}" class="layui-input">
+            </label>
+        </div>
+        <!--第3个线下的信息 end-->
+        
+        <!--第4个线下的信息 start-->
+          <div class="layui-form-item">
+            <label class="relative block">
+                <span class="color-green font-w7">线下收款银行卡号-bankcard</span>
+                <input name="offline_bank_number4"  placeholder="下线收款银行卡号" value="{:sysconf('offline_bank_number4')}" class="layui-input">
+            </label>
+        </div>
+        <div class="layui-form-item">
+            <label class="relative block">
+                <span class="color-green font-w7">线下收款人-bankcard</span>
+                <input name="offline_bank_user4"  placeholder="线下银行收款人姓名" value="{:sysconf('offline_bank_user4')}" class="layui-input">
+            </label>
+        </div>
+        <div class="layui-form-item">
+            <label class="relative block">
+                <span class="color-green font-w7">线下所属银行-bankcard</span>
+                <input name="offline_bank_name4"  placeholder="线下所属银行名称" value="{:sysconf('offline_bank_name4')}" class="layui-input">
+            </label>
+        </div>
+        <div class="layui-form-item">
+            <label class="relative block">
+                <span class="color-green font-w7">线下开户行-bankcard</span>
+                <input name="offline_bank_name_kai4"  placeholder="线下开户行称" value="{:sysconf('offline_bank_name_kai4')}" class="layui-input">
+            </label>
+        </div>
+        <!--第4个线下的信息 end-->
+        
+        <div class="layui-form-item">
+            <label class="relative block">
+                <span class="color-green font-w7">USDT汇率 (1:?)</span>
+                <input name="usdt_huilv"  placeholder="1USDT换算成多少钱" value="{:sysconf('usdt_huilv')}" class="layui-input">
+            </label>
+        </div>
+        
+        
+        
+<!--        <div class="layui-form-item">-->
+<!--            <label class="relative block">-->
+<!--                <span class="color-green font-w7">网站版权信息 Copyright</span>-->
+<!--                <input name="site_copy" required placeholder="请输入版权信息" value="{:sysconf('site_copy')}" class="layui-input">-->
+<!--            </label>-->
+<!--            <p class="help-block">网站版权信息，在后台登录页面显示版本信息并链接到备案到信息备案管理系统</p>-->
+<!--        </div>-->
+
+        <div class="hr-line-dashed"></div>
+
+        <div class="layui-form-item text-center">
+            <button class="layui-btn" type="submit">保存配置</button>
+            <button class="layui-btn layui-btn-danger" type='button' data-confirm="确定要取消修改吗？" data-close>取消修改</button>
+        </div>
+    </div>
+
+</form>

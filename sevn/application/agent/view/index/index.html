@@ -1,0 +1,124 @@
+{include file="public/header"/}
+{include file="public/menu"/}
+<div class="page-content">
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body ">
+                    <blockquote class="layui-elem-quote">欢迎：
+                        <span class="x-red">{$user_info.username}</span>！当前时间:<?php echo date("Y年n月j日 H:i:s") ?>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+
+        <!--        <div class="layui-col-md12">-->
+        <!--            <div class="layui-card">-->
+        <!--                <div class="layui-card-header">数据</div>-->
+        <!--                <div class="layui-card-body ">-->
+        <!--                    <ul class="layui-row layui-col-space10 layui-this x-admin-carousel x-admin-backlog">-->
+
+        <!--                        <li class="layui-col-md2 layui-col-xs6" style="width: 200px">-->
+        <!--                            <a href="javascript:;" class="x-admin-backlog-body">-->
+        <!--                                <h3>充值</h3>-->
+        <!--                                <p style="text-align: center;">-->
+        <!--                                    <cite><img class="alipay" src="/static/index/images/alipay.png" width="36" height="36"></cite>-->
+        <!--                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+        <!--                                    <cite><img class="wxpay" src="/static/index/images/wxpay.png" width="36" height="36"></cite>-->
+        <!--                                </p>-->
+        <!--                            </a>-->
+        <!--                        </li>-->
+
+        <!--                        <li class="layui-col-md2 layui-col-xs6" style="width: 200px;">-->
+        <!--                            <a href="javascript:;" class="x-admin-backlog-body">-->
+        <!--                                <h3>客服</h3>-->
+        <!--                                <p style="margin-top: -11px">-->
+        <!--                                    <cite style="font-size: 1px">技术QQ:1467572213</cite>-->
+        <!--                                </p>-->
+        <!--                            </a>-->
+        <!--                        </li>-->
+
+        <!--                    </ul>-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--        </div>-->
+
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body ">
+                    <table class="layui-table">
+                        <tbody>
+                        <tr>
+                            <th><h3>最新公告(点击标题查看内容)</h3></th>
+                            <td>发布时间</td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <style id="welcome_style"></style>
+    </div>
+</div>
+</div>
+{include file="public/footer"/}
+<script>
+    $(document).on("click", ".alipay", function (){
+        layer.open({
+            type: 1,
+            shade: false,
+            title: false, //不显示标题
+            content: '<div style="padding: 20px 80px;">客服:</br>qq:1467572213</div>',
+            cancel: function(){
+            }
+        });
+    });
+
+    $(document).on("click", ".wxpay", function (){
+        layer.open({
+            type: 1,
+            shade: false,
+            title: false, //不显示标题
+            content: '<div style="padding: 20px 80px;">客服:</br>qq:1467572213</div>',
+            cancel: function(){
+            }
+        });
+    });
+</script>
+
+<script>
+    $(document).on("click", ".notice", function (){
+        var id = $(this).data('id');
+        layer.load(2);
+        $.ajax({
+            url: "{:Url('notice_info')}",
+            type: "post",
+            traditional: true,
+            data: {id:id},
+            success: function (data) {
+                layer.closeAll('loading');
+                if (data.code === 1){
+                    layer.open({
+                        type: 1
+                        ,title: false //不显示标题栏
+                        ,closeBtn: false
+                        ,area: '300px;'
+                        ,shade: 0.7
+                        ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+                        ,resize: false
+                        ,btn: ['知道了']
+                        ,btnAlign: 'c'
+                        ,moveType: 1 //拖拽模式，0或者1
+                        ,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">'+ data.data.content +'</div>'
+                    });
+                }else {
+                    layer.msg(data.msg, function(){
+                        return false;
+                    });
+                }
+            },
+        });
+    });
+</script>

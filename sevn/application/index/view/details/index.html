@@ -1,0 +1,610 @@
+{include file="public/header"/}
+<script type="text/javascript" src="/static/index/js/moment.min.js"></script>
+<script type="text/javascript" src="/static/index/js/newdaterangepicker.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/index/css/newdaterangepicker.css"/>
+<style>
+    .uni-pagination {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        position: relative;
+        overflow: hidden;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center
+    }
+
+    .uni-pagination__btn {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        width: 60px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 14px;
+        position: relative;
+        background-color: #f8f8f8;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        text-align: center;
+        border-width: 1px;
+        border-style: solid;
+        border-color: #e5e5e5
+    }
+
+    .uni-pagination__child-btn {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        font-size: 14px;
+        position: relative;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        text-align: center
+    }
+
+    .uni-pagination__num {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        flex: 1;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        height: 30px;
+        line-height: 30px;
+        font-size: 14px;
+        color: #333
+    }
+
+    .uni-pagination__num-current {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: row;
+        flex-direction: row
+    }
+
+    .uni-pagination__num-current-text {
+        font-size: 15px
+    }
+
+    .uni-pagination--enabled {
+        color: #333;
+        opacity: 1
+    }
+
+    .uni-pagination--disabled {
+        opacity: .3
+    }
+
+    .uni-pagination--hover {
+        color: rgba(0, 0, 0, .6);
+        background-color: #f1f1f1
+    }
+
+    .record {
+        background: #70e6cc;
+        height: calc(100vh - 50px)
+    }
+
+    .record .record-tabbar {
+        height: 50px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        white-space: nowrap;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        justify-content: space-between;
+        width: 100vw;
+        overflow-x: auto;
+        line-height: 50px;
+        padding: 0 20px;
+        background: #fff;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box
+    }
+
+    .record .record-tabbar .list {
+        font-size: 14px;
+        text-align: center;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        flex-direction: column;
+        padding: 0 15px
+    }
+
+    .record .record-tabbar .list uni-text {
+        opacity: .4;
+        font-weight: 500
+    }
+
+    .record .record-tabbar .list.action .line {
+        display: block;
+    }
+
+    .record .record-tabbar .list .line {
+        display: none;
+        background: #323232;
+        width: 20px;
+        height: 5px
+    }
+
+    .record .record-tabbar .action uni-text {
+        opacity: 1;
+        font-weight: 500
+    }
+
+    .record .Statistics {
+        background: #70e6cc
+    }
+
+    .record .Statistics > div {
+        margin-left: 20px
+    }
+
+    .record .Statistics .dateArray {
+        padding-top: 16px;
+        padding-bottom: 4px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        padding-left: 20px
+    }
+
+    .record .Statistics .dateArray uni-text {
+        color: #334360;
+        font-family: DINPro-Medium, DINPro;
+        font-weight: 500
+    }
+
+    .record .Statistics .dateArray .iconArrow {
+        display: inline-block;
+        width: 0;
+        height: 0;
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        border-top: 6px solid #333;
+        margin-left: 5px
+    }
+
+    .record .Statistics .moneyArray > div {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-justify-content: space-around;
+        justify-content: space-around;
+        margin-top: 4px
+    }
+
+    .record .Statistics .moneyArray > div uni-text {
+        color: #334360;
+        opacity: .4;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400
+    }
+
+    .record .recordslist {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        height: 63px;
+        font-size: 12px;
+        padding: 0 20px;
+        border-bottom: 1px solid #eeeff2;
+        -webkit-box-shadow: 0 0 0 0 #eeeff2;
+        box-shadow: 0 0 0 0 #eeeff2
+    }
+
+    .record .recordslist .item-time {
+        font-size: 12px;
+        pointer-events: none
+    }
+
+    .record .recordslist .item-amount {
+        color: #f80;
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        flex: 1;
+        margin-left: 30px;
+        pointer-events: none
+    }
+
+    .record .recordslist .item-color {
+        color: #f80;
+        pointer-events: none
+    }
+
+    .record .recordslist .item-status {
+        font-size: 12px;
+        text-align: right;
+        pointer-events: none
+    }
+
+    .mescroll-wrap {
+        height: calc(100vh - 290px);
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        overflow-y: auto
+    }
+
+    .details-empty {
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 50px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center
+    }
+
+    .details-empty .empty-img {
+        width: 64px;
+        height: 64px
+    }
+
+    .details-empty .empty-text {
+        font-size: 14px;
+        color: #999
+    }
+
+    .details-empty .jump-btn {
+        color: #fff;
+        width: 120px;
+        height: 40px;
+        line-height: 40px;
+        border-radius: 40px;
+        background: -webkit-gradient(linear, left top, right top, from(var(--color1)), to(var(--color2)));
+        background: -webkit-linear-gradient(left, var(--color1), var(--color2));
+        background: linear-gradient(90deg, var(--color1), var(--color2));
+        margin-top: 10px;
+        text-align: center
+    }
+
+    .statistics {
+        height: 50px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        border: 1px solid #eee;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box
+    }
+
+    .statistics .statistics-item {
+        padding: 0 10px;
+        height: 100%;
+        width: 50%;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        border-right: 1px solid #eee;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center
+    }
+
+    .search-time {
+        color: #999;
+        border: 0.5px solid #eee;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        height: 30px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center
+    }
+
+    .search-time.has {
+        color: #333
+    }
+</style>
+
+<body>
+<uni-app class="uni-app--maxwidth">
+    <uni-page data-page="pages/record/index">
+        <!---->
+        <!---->
+        <uni-page-wrapper>
+            <uni-page-body>
+                <div class="record">
+                    <div class="top-page"
+                         style="height: 44px; background: linear-gradient(to right, rgb(255, 255, 255), rgb(255, 255, 255));">
+                        <div class="apex"
+                             style="height: 44px; line-height: 44px; background: linear-gradient(to right, rgb(255, 255, 255), rgb(255, 255, 255)); color: rgb(0, 0, 0); position: fixed;">
+                            <a href="javascript:history.go(-1)" class="left">
+                                <uni-text class="iconfont icon-fanhui1"
+                                          style="font-size: 16px; color: rgb(0, 0, 0);"><span></span></uni-text>
+                            </a>
+                            <div class="center" style="font-size: 17px;">{:lang("BillDetail")}</div>
+                            <div class="right"></div>
+                        </div>
+                        <div class="placeholder" style="height: 44px; line-height: 44px;"></div>
+                    </div>
+                    <div class="record-tabbar">
+
+                        <a href="{:Url('details/index')}">
+                            <div class="list">
+                                <uni-text><span>{:lang("All")}</span></uni-text>
+                                <div class="line"></div>
+                            </div>
+                        </a>
+
+                        <a href="{:Url('details/index')}?type=1">
+                            <div class="list">
+                                <uni-text><span>{:lang("recharge2")}</span></uni-text>
+                                <div class="line"></div>
+                            </div>
+                        </a>
+
+                        <a href="{:Url('details/index')}?type=2">
+                            <div class="list">
+                                <uni-text><span> {:lang("withdrawal2")}</span></uni-text>
+                                <div class="line"></div>
+                            </div>
+                        </a>
+
+                        <a href="{:Url('details/index')}?type=3">
+                            <div class="list">
+                                <uni-text><span>{:lang("menuGrab")}</span></uni-text>
+                                <div class="line"></div>
+                            </div>
+                        </a>
+
+                        <a href="{:Url('details/index')}?type=4">
+                            <div class="list">
+                                <uni-text><span>{:lang("Commission")}</span></uni-text>
+                                <div class="line"></div>
+                            </div>
+                        </a>
+
+                        <a href="{:Url('details/index')}?type=5">
+                            <div class="list">
+                                <uni-text><span>{:lang("financial")} </span></uni-text>
+                                <div class="line"></div>
+                            </div>
+                        </a>
+
+                        <a href="{:Url('details/index')}?type=6">
+                            <div class="list">
+                                <uni-text><span> VIP </span></uni-text>
+                                <div class="line"></div>
+                            </div>
+                        </a>
+
+                    </div>
+
+<!--                    <div class="Statistics">-->
+<!--                        <div class="dateArray">-->
+<!--                            <div class="selectedtime">Start time-End time</div>-->
+<!--                            <uni-text class="iconArrow"><span></span></uni-text>-->
+<!--                        </div>-->
+<!--                        <div class="moneyArray">-->
+<!--                            <div>-->
+<!--                                <div>-->
+<!--                                    <uni-text><span> total number:</span></uni-text>-->
+<!--                                    <uni-text><span>1</span></uni-text>-->
+<!--                                </div>-->
+<!--                                <div>-->
+<!--                                    <uni-text><span>current number:</span></uni-text>-->
+<!--                                    <uni-text><span>1</span></uni-text>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            &lt;!&ndash;&ndash;&gt;-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+                    <div class="picker">
+                        <div class="picker-modal">
+                            <div class="picker-modal-header"></div>
+                            <div class="picker-modal-body"></div>
+                            <div class="picker-modal-footer"></div>
+                        </div>
+                    </div>
+                    <!-- 空 -->
+                    {if $type == 1}
+                    {present name="list"}
+                    <div class="mescroll-wrap" style="height: calc(100vh - 255px);">
+                        {volist name="list" id="vo"}
+                        <div data-index="0" class="recordslist">
+                            <div class="item-time">{$vo.create_time|toDate}</div>
+                            <div class="item-amount">+{$vo.money}</div>
+                            {if $vo.status==0}
+                                <div class="item-status" style="color:purple" >{:lang("WaitingPay")}</div>
+                            {/if}
+                            {if $vo.status==1}
+                                <div class="item-status" style="color:green">{:lang("PaidSuccess")}</div>
+                            {/if}
+                            {if $vo.status==2}
+                                <div class="item-status" style="color:red">{:lang("PaidError")}</div>
+                            {/if}
+                            
+                        </div>
+                        {/volist}
+                    </div>
+                    {$pages|raw}
+                    {else /}
+                    <div class="details-empty">
+                        <uni-image class="empty-img">
+                            <div style="background-image: url(/static/index/img/empty.png); background-position: center center; background-size: contain; background-repeat: no-repeat;"></div>
+                            <img src="/static/index/img/empty.png" draggable="true">
+                        </uni-image>
+                        <div class="empty-text">{:lang("NoRecord")}</div>
+                        <a href="{:Url('grab/index')}" class="jump-btn">{:lang("GrabNow")}</a>
+                    </div>
+                    {/present}
+                    {/if}
+
+                    {if $type == 2}
+                    {present name="list"}
+                    <div class="mescroll-wrap" style="height: calc(100vh - 255px);">
+                        {volist name="list" id="vo"}
+                        <div data-index="0" class="recordslist">
+                            <div class="item-time">{$vo.create_time|toDate}</div>
+                            <div class="item-amount">+{$vo.apply_money}</div>
+                            {if $vo.status==0 }
+                                <div class="item-status" style="color:purple">{:lang("WatingTransfer")}</div>
+                            {/if}
+                            {if $vo.status==1}
+                                <div class="item-status" style="color:green">{:lang("FinishTransfer")}</div>
+                            {/if}
+                            {if $vo.status==3 }
+                                <div class="item-status" style="color:purple">{:lang("WatingTransfer")}</div>
+                            {/if}
+                            {if $vo.status==2 }
+                                <div class="item-status" style="color:black">{:lang("RefuseWithdraw")}</div>
+                            {/if}
+                            {if $vo.status==4 }
+                                <div class="item-status" style="color:black">{:lang("RefuseWithdraw")}</div>
+                            {/if}
+                            {if $vo.status==5 }
+                                <div class="item-status" style="color:red">{:lang("WithdrawError")}</div>
+                            {/if}
+                            {if $vo.status==6}
+                                <div class="item-status" style="color:green">{:lang("FinishTransfer")}</div>
+                            {/if}
+                            
+                        </div>
+                        {/volist}
+                    </div>
+                    {$pages|raw}
+                    {else /}
+                    <div class="details-empty">
+                        <uni-image class="empty-img">
+                            <div style="background-image: url(/static/index/img/empty.png); background-position: center center; background-size: contain; background-repeat: no-repeat;"></div>
+                            <img src="/static/index/img/empty.png" draggable="true">
+                        </uni-image>
+                        <div class="empty-text"> {:lang("NoRecord")}</div>
+                        <a href="{:Url('grab/index')}" class="jump-btn">{:lang("GrabNow")}</a>
+                    </div>
+                    {/present}
+                    {/if}
+
+                    {include file="public/footer"/}
+                </div>
+            </uni-page-body>
+        </uni-page-wrapper>
+    </uni-page>
+</uni-app>
+<script>
+    ;(function () {
+        function getUrlParam(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg); //匹配目标函数
+            if (r != null) return unescape(r[2]);
+            return null; // 返回参数值
+        }
+
+        let $list = $(".record-tabbar .list");
+        let type = getUrlParam("type") || 0;
+        $list.eq(type).addClass("action").siblings().removeClass("action");
+        $list.on("click", function () {
+            $(this).addClass("action").siblings().removeClass("action");
+        });
+
+        $('.dateArray').daterangepicker({
+            // 'locale': locale,
+            ranges: {
+                // '今日': [moment(), moment()],
+                // '昨日': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                // '最近7日': [moment().subtract(6, 'days'), moment()],
+                // '最近30日': [moment().subtract(29, 'days'), moment()],
+                // '本月': [moment().startOf('month'), moment().endOf('month')],
+                // '上月': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month')
+                //     .endOf('month')
+                // ]
+            },
+            "alwaysShowCalendars": true,
+            "startDate": new Date(),
+            "endDate": new Date(),
+            "opens": "right",
+            // "singleDatePicker":true,
+        }, function (start, end, label) {
+            console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
+            $(".selectedtime").html(start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD'))
+        });
+    }())
+</script>
+</body>
+
+</html>

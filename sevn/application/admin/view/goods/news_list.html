@@ -1,0 +1,65 @@
+{extend name='main'}
+
+{block name="button"}
+
+    {if auth("roll_add")}
+    <button data-open='{:url("news_add")}' data-title="添加Roll" class='layui-btn'>添加News</button>
+    {/if}
+
+{/block}
+
+{block name="content"}
+
+<div class="think-box-shadow">
+    {include file='goods/roll_search'}
+
+    <table class="layui-table margin-top-15" lay-skin="line">
+        {notempty name='list'}
+        <thead>
+        <tr>
+            <th class='text-left nowrap'>昵称</th>
+            <th class='text-left nowrap'>图片</th>
+            <th class='text-left nowrap'>金额</th>
+            <th class='text-left nowrap'>创建时间</th>
+            <th class='text-left nowrap'>操作</th>
+        </tr>
+        </thead>
+        {/notempty}
+        <tbody>
+        {foreach $list as $key=>$vo}
+        <tr>
+            <td class='text-left nowrap'>{$vo.name}</td>
+            <td class='text-left nowrap'><img src="{$vo.img}" alt="" style="width: 80px"></td>
+            <td class='text-left nowrap'>¥{$vo.money}</td>
+            <td class='text-left nowrap'>{$vo.create_time|toDate}</td>
+            <td class='text-left nowrap'>
+                {if auth("news_del")}
+                <a class="layui-btn layui-btn-xs layui-btn" style='background:red;' onClick="roll_del({$vo.id})">删除</a>
+                {/if}
+            </td>
+        </tr>
+        {/foreach}
+        </tbody>
+    </table>
+
+    {empty name='list'}<span class="notdata">没有记录哦</span>{else}{$pages|raw|default=''}{/empty}
+
+</div>
+<script>
+    function roll_del(id){
+         layer.confirm("确认要删除吗，删除后不能恢复",{ title: "删除确认" },function(index){
+            $.ajax({
+                type: 'POST',
+                url: "{:url('roll_del')}",
+                data: {
+                    'id': id,
+                },
+                success:function (e) {
+                    layer.msg(e.msg,{time:2500});
+                    location.reload();
+                }
+            });
+        },function(){});
+    }
+</script>
+{/block}

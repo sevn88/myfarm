@@ -1,0 +1,83 @@
+<form class="layui-form layui-card" action="{:request()->url()}" data-auto="true" method="post" autocomplete="off">
+    <div class="layui-card-body">
+        <div class="layui-form-item">
+            <label class="layui-form-label">等级名称</label>
+            <div class="layui-input-block">
+                <input name="name" placeholder="请输入等级名称" class="layui-input">
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-card-body">
+        <div class="layui-form-item">
+            <label class="layui-form-label">派单金额</label>
+            <div class="layui-input-block">
+                <input name="money" placeholder="请输入对应金额" class="layui-input">
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-card-body">
+        <div class="layui-form-item">
+            <label class="layui-form-label">接单次数</label>
+            <div class="layui-input-block">
+                <input name="order_num" placeholder="请输入提现次数" class="layui-input">
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-card-body">
+        <div class="layui-form-item">
+            <label class="layui-form-label">提现次数</label>
+            <div class="layui-input-block">
+                <input name="w_num" placeholder="请输入提现次数" class="layui-input">
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-card-body">
+        <div class="layui-form-item">
+            <label class="layui-form-label">提现最小限制</label>
+            <div class="layui-input-block">
+                <input name="w_min" placeholder="请输入提现最小限制" class="layui-input">
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-card-body">
+        <div class="layui-form-item">
+            <label class="layui-form-label">提现最大限制</label>
+            <div class="layui-input-block">
+                <input name="w_max" placeholder="请输入提现最大限制" class="layui-input">
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-card-body">
+        <div class="layui-form-item">
+            <label class="layui-form-label">VIP有效期/天</label>
+            <div class="layui-input-block">
+                <input name="level_day" placeholder="0表示无限制" class="layui-input">
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-card-body">
+        <div class="layui-form-item">
+            <label class="layui-form-label">提现至少完成订单/天</label>
+            <div class="layui-input-block">
+                <input name="w_order_num" placeholder="0表示无限制" class="layui-input">
+            </div>
+        </div>
+    </div>
+
+    <div class="hr-line-dashed"></div>
+
+    <div class="layui-form-item text-center">
+        <button class="layui-btn" type='submit'>提交</button>
+        <button class="layui-btn layui-btn-danger" type='button' data-close>取消</button>
+    </div>
+
+    <script>window.form.render();</script>
+
+</form>

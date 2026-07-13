@@ -1,0 +1,44 @@
+{include file="public/header"/}
+  <style>.container{height:100vh;padding:0 15px 15px;background:#f7f7f7;-webkit-box-sizing:border-box;box-sizing:border-box;overflow-y:auto}.container .items{margin-top:15px}.container .items .item{padding:10px;background:#fff;border-radius:5px;margin-bottom:10px}.container .items .item .title{color:#333;font-size:14px}.container .items .item .time{color:#999;font-size:13px;margin-top:3px}.container .details-empty{-webkit-box-sizing:border-box;box-sizing:border-box;padding:50px;display:-webkit-box;display:-webkit-flex;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-webkit-justify-content:center;justify-content:center;-webkit-box-align:center;-webkit-align-items:center;align-items:center;margin-top:100px}.container .details-empty .empty-img{width:60px;height:60px}.container .details-empty .empty-text{font-size:14px;color:#999}.container .details-empty .jump-btn{color:#fff;width:120px;height:40px;line-height:40px;border-radius:40px;background:-webkit-gradient(linear,left top,right top,from(#7260fc),to(#8b64fe));background:-webkit-linear-gradient(left,#7260fc,#8b64fe);background:linear-gradient(90deg,#7260fc,#8b64fe);margin-top:10px;text-align:center}.mescroll-wrap{height:calc(100vh - 100px);-webkit-box-sizing:border-box;box-sizing:border-box}
+  </style>
+
+
+<body>
+  <uni-app class="uni-app--maxwidth">
+    <uni-page data-page="pages/profile/message">
+      <!---->
+      <!---->
+      <uni-page-wrapper>
+        <uni-page-body>
+          <div class="container">
+            <div class="top-page"
+              style="height: 44px; background: linear-gradient(to right, rgb(255, 255, 255), rgb(255, 255, 255));">
+              <div class="apex"
+                style="height: 44px; line-height: 44px; background: linear-gradient(to right, rgb(255, 255, 255), rgb(255, 255, 255)); color: rgb(0, 0, 0); position: fixed;">
+                <a href="javascript:history.go(-1)" class="left">
+                  <uni-text class="iconfont icon-fanhui1"
+                    style="font-size: 16px; color: rgb(0, 0, 0);"><span></span></uni-text>
+                </a>
+                <div class="center" style="font-size: 17px;">{:lang("Message")}</div>
+                <div class="right"></div>
+              </div>
+              <div class="placeholder" style="height: 44px; line-height: 44px;"></div>
+            </div>
+            <div class="details-empty">
+              <uni-image class="empty-img">
+                <div
+                  style="background-image: url(&quot;./static/img/empty.png&quot;); background-position: center center; background-size: contain; background-repeat: no-repeat;">
+                </div><img src="./static/img/empty.png" draggable="true">
+                <!---->
+              </uni-image>
+              <div class="empty-text">{:lang("NoMessage")}</div>
+            </div>
+            {include file="public/footer"/}
+          </div>
+        </uni-page-body>
+      </uni-page-wrapper>
+    </uni-page>
+  </uni-app>
+</body>
+
+</html>
